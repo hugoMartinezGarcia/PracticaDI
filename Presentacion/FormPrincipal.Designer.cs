@@ -50,6 +50,7 @@
             this.tsbInsertarEmpleado = new System.Windows.Forms.ToolStripButton();
             this.tsbNuevoPedido = new System.Windows.Forms.ToolStripButton();
             this.tsbImprimirFactura = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,19 +84,19 @@
             // insertarToolStripMenuItem
             // 
             this.insertarToolStripMenuItem.Name = "insertarToolStripMenuItem";
-            this.insertarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.insertarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.insertarToolStripMenuItem.Text = "Insertar";
             // 
             // modificarToolStripMenuItem
             // 
             this.modificarToolStripMenuItem.Name = "modificarToolStripMenuItem";
-            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.modificarToolStripMenuItem.Text = "Modificar";
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             // 
             // tsmProductos
@@ -109,7 +110,7 @@
             // modificarPrecioToolStripMenuItem
             // 
             this.modificarPrecioToolStripMenuItem.Name = "modificarPrecioToolStripMenuItem";
-            this.modificarPrecioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.modificarPrecioToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.modificarPrecioToolStripMenuItem.Text = "Modificar precio";
             // 
             // tsmPedidos
@@ -124,13 +125,13 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             // 
             // modificarToolStripMenuItem1
             // 
             this.modificarToolStripMenuItem1.Name = "modificarToolStripMenuItem1";
-            this.modificarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.modificarToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.modificarToolStripMenuItem1.Text = "Modificar";
             // 
             // tsmEstadisticas
@@ -165,7 +166,7 @@
             // facturaToolStripMenuItem
             // 
             this.facturaToolStripMenuItem.Name = "facturaToolStripMenuItem";
-            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.facturaToolStripMenuItem.Text = "Factura";
             // 
             // tsmAcercaDe
@@ -186,7 +187,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbInsertarEmpleado,
             this.tsbNuevoPedido,
-            this.tsbImprimirFactura});
+            this.tsbImprimirFactura,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1280, 25);
@@ -219,6 +221,15 @@
             this.tsbImprimirFactura.Name = "tsbImprimirFactura";
             this.tsbImprimirFactura.Size = new System.Drawing.Size(97, 22);
             this.tsbImprimirFactura.Text = "Imprimir factura";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(110, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // FormPrincipal
             // 
@@ -264,5 +275,6 @@
         private ToolStripButton tsbInsertarEmpleado;
         private ToolStripButton tsbNuevoPedido;
         private ToolStripButton tsbImprimirFactura;
+        private ToolStripLabel toolStripButton1;
     }
 }

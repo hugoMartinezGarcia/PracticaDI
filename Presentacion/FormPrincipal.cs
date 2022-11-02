@@ -11,6 +11,12 @@ namespace Presentacion
         public FormPrincipal()
         {
             InitializeComponent();
+
+            FormAcceso formAcceso = new FormAcceso();
+            DialogResult resultado = formAcceso.ShowDialog();
+
+            //if (resultado == DialogResult.Cancel)
+              //  this.Close();
         }
 
         // Método para manejar el botón Salir de la barra de menú

@@ -162,6 +162,11 @@ namespace Entidades
             return resultado;          
         }
 
+        public string FullName()
+        {
+            return FirstName + " " + LastName;
+        }
+
         public override string ToString()
         {
             return EmployeeId + "#" + LastName + "#" + FirstName + "#" + Title + "#" + TitleOfCourtesy + "#" +
