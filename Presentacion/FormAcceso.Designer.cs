@@ -43,7 +43,7 @@
             this.lbEmployee.Name = "lbEmployee";
             this.lbEmployee.Size = new System.Drawing.Size(61, 15);
             this.lbEmployee.TabIndex = 2;
-            this.lbEmployee.Text = "Employee";
+            this.lbEmployee.Text = "Empleado";
             // 
             // btAcceder
             // 
@@ -72,7 +72,7 @@
             this.lbIdEmployee.Name = "lbIdEmployee";
             this.lbIdEmployee.Size = new System.Drawing.Size(98, 15);
             this.lbIdEmployee.TabIndex = 5;
-            this.lbIdEmployee.Text = "ID del employee";
+            this.lbIdEmployee.Text = "ID del empleado";
             // 
             // cbEmployee
             // 

@@ -211,16 +211,16 @@ namespace Negocio
             return EmployeeADO.Listar();
         }
 
-        public List<Employee> BuscarEmployee(int id)
+        public Employee BuscarEmployee(int id)
         {
-            List<Employee> objeto = new List<Employee>();
+            Employee emp = new Employee();
 
-            using (EmployeeADO c = new EmployeeADO())
+            using (EmployeeADO e = new EmployeeADO())
             {
-                objeto.Add(c.Listar(id));
+                emp = e.Listar(id);
             }
 
-            return objeto;
+            return emp;
         }
 
         public void InsertarEmployee(Employee employee)

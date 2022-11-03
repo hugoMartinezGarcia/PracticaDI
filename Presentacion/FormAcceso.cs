@@ -6,6 +6,8 @@ namespace Presentacion
 {
     public partial class FormAcceso : Form
     {
+        public Employee? Empleado { get; set; } = null;
+
         public FormAcceso()
         {
             InitializeComponent();
@@ -13,14 +15,12 @@ namespace Presentacion
             List<Employee> employees = Gestion.ListarEmployee();
 
             cbEmployee.DataSource = employees;
-            
             cbEmployee.ValueMember = "EmployeeId";
             cbEmployee.SelectedItem = null;
         }
 
         private void btAcceder_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 int id = Convert.ToInt32(tbEmployee.Text);
@@ -31,7 +31,9 @@ namespace Presentacion
 
                     if (selected == id)
                     {
-                        MessageBox.Show("Acceso correcto");
+                        Gestion g = new Gestion();
+                        Empleado =  g.BuscarEmployee(selected);
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
@@ -42,17 +44,17 @@ namespace Presentacion
                 else
                 {
                     MessageBox.Show("Selecciona un employee de la lista");
-                }
-                
+                    tbEmployee.Clear();
+                } 
             }
             catch (FormatException)
             {
                 MessageBox.Show("introduce un id válido");
                 tbEmployee.Clear();
-            }
-            
+            }    
         }
 
+        // Método para formatear los valores que muestra el combobox
         private void cbEmployee_Format(object sender, ListControlConvertEventArgs e)
         {
             string firstName = (e.ListItem as Employee)!.FirstName;
