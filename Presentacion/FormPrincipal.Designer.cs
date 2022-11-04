@@ -117,7 +117,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1082, 64);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1068, 64);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // toolStrip1
@@ -129,7 +129,7 @@
             this.tsbImprimirFactura});
             this.toolStrip1.Location = new System.Drawing.Point(0, 32);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1082, 32);
+            this.toolStrip1.Size = new System.Drawing.Size(1068, 32);
             this.toolStrip1.TabIndex = 26;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -141,6 +141,7 @@
             this.tsbInsertarEmpleado.Name = "tsbInsertarEmpleado";
             this.tsbInsertarEmpleado.Size = new System.Drawing.Size(106, 29);
             this.tsbInsertarEmpleado.Text = "Insertar empleado";
+            this.tsbInsertarEmpleado.Click += new System.EventHandler(this.tsbInsertarEmpleado_Click);
             // 
             // tsbNuevoPedido
             // 
@@ -173,7 +174,7 @@
             this.tsmSalir});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1082, 32);
+            this.menuStrip1.Size = new System.Drawing.Size(1068, 32);
             this.menuStrip1.TabIndex = 25;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -290,18 +291,17 @@
             // 
             // tlpPrincipal
             // 
-            this.tlpPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpPrincipal.ColumnCount = 2;
             this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tlpPrincipal.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tlpPrincipal.Controls.Add(this.tlpDatosEmpleado, 1, 0);
+            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Top;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 1;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(1280, 70);
+            this.tlpPrincipal.Size = new System.Drawing.Size(1264, 70);
             this.tlpPrincipal.TabIndex = 16;
             // 
             // tlpDatosEmpleado
@@ -314,11 +314,11 @@
             this.tlpDatosEmpleado.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tlpDatosEmpleado.Controls.Add(this.pbEmpleado, 0, 0);
             this.tlpDatosEmpleado.Controls.Add(this.lbEmpleado, 1, 0);
-            this.tlpDatosEmpleado.Location = new System.Drawing.Point(1091, 3);
+            this.tlpDatosEmpleado.Location = new System.Drawing.Point(1077, 3);
             this.tlpDatosEmpleado.Name = "tlpDatosEmpleado";
             this.tlpDatosEmpleado.RowCount = 1;
             this.tlpDatosEmpleado.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpDatosEmpleado.Size = new System.Drawing.Size(186, 64);
+            this.tlpDatosEmpleado.Size = new System.Drawing.Size(184, 64);
             this.tlpDatosEmpleado.TabIndex = 1;
             // 
             // pbEmpleado
@@ -337,7 +337,7 @@
             this.lbEmpleado.AutoSize = true;
             this.lbEmpleado.Location = new System.Drawing.Point(58, 24);
             this.lbEmpleado.Name = "lbEmpleado";
-            this.lbEmpleado.Size = new System.Drawing.Size(125, 15);
+            this.lbEmpleado.Size = new System.Drawing.Size(123, 15);
             this.lbEmpleado.TabIndex = 1;
             this.lbEmpleado.Text = "label1";
             // 
@@ -345,7 +345,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 900);
+            this.ClientSize = new System.Drawing.Size(1264, 861);
             this.Controls.Add(this.tlpPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;

@@ -64,5 +64,12 @@ namespace Presentacion
                 }
             }
         }
+
+        private void tsbInsertarEmpleado_Click(object sender, EventArgs e)
+        {
+            FormInsertarEmpleado formInsertarEmpleado = new FormInsertarEmpleado();
+            formInsertarEmpleado.MdiParent = this;
+            formInsertarEmpleado.Show();
+        }
     }
 }
