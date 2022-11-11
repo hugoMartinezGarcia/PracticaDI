@@ -183,11 +183,13 @@
             // 
             // tbLastName
             // 
-            this.tbLastName.Location = new System.Drawing.Point(133, 35);
+            this.tbLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbLastName.Location = new System.Drawing.Point(133, 38);
             this.tbLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(231, 23);
             this.tbLastName.TabIndex = 2;
+            this.tbLastName.Leave += new System.EventHandler(this.tbLastName_Leave);
             // 
             // tbTitle
             // 
@@ -197,6 +199,7 @@
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(231, 23);
             this.tbTitle.TabIndex = 3;
+            this.tbTitle.Leave += new System.EventHandler(this.tbTitle_Leave);
             // 
             // label2
             // 

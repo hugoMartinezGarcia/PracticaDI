@@ -107,18 +107,6 @@ namespace Presentacion
             }
         }
 
-        public int ValidarString(string texto, int longitudMax, bool nulo)
-        {
-            int codigoError = 0;
-
-            if (texto.Length > longitudMax)
-                codigoError = 1;
-            if (texto.Length < 1 && !nulo)
-                codigoError = 2;
-
-            return codigoError;
-        }
-
         private void IndicarError(Control control, String cadenaErrores)
         {
             control.BackColor = Color.LightCoral;
@@ -165,28 +153,66 @@ namespace Presentacion
 
         private void tbFirstName_Leave(object sender, EventArgs e)
         {
+           valFirstName = ValidarTextBoxString((TextBox)sender, "First name", 10, false);
+        }
+
+        private void tbLastName_Leave(object sender, EventArgs e)
+        {
+            valLastName = ValidarTextBoxString((TextBox)sender, "Last name", 20, false);
+        }
+
+        private void tbTitle_Leave(object sender, EventArgs e)
+        {
+            valTitle = ValidarTextBoxString((TextBox)sender, "Title", 30, true);
+        }
+
+        // Método genérico para validar TextBox de string
+        private bool ValidarTextBoxString(TextBox textBox, string nombreCampo, int longitudMax, bool nulo)
+        {
             string cadenaErrores = "";
-            int resultado = 0;
+            bool respuesta;
+            int codigoError = 0;
 
-            resultado = ValidarString(tbFirstName.Text, 10, false);
+            if(textBox.Text.Length > longitudMax)
+                codigoError = 1;
+            if (textBox.Text.Length < 1 && !nulo)
+                codigoError = 2;
 
-            if (resultado > 0)
+            if (codigoError > 0)
             {
-                switch (resultado)
+                switch (codigoError)
                 {
-                    case 1: cadenaErrores = "El campo First Name no permite más de 10 caracteres"; 
+                    case 1:
+                        cadenaErrores = $"El campo {nombreCampo} no permite más de {longitudMax} caracteres";
                         break;
-                    case 2: cadenaErrores = "El campo First Name no puede estar vacío";
+                    case 2:
+                        cadenaErrores = $"El campo {nombreCampo} no puede estar vacío";
                         break;
                 }
-                IndicarError(tbFirstName, cadenaErrores);
-                valFirstName = false;
+                IndicarError(textBox, cadenaErrores);
+                respuesta = false;
             }
             else
             {
-                IndicarOK(tbFirstName);
-                valFirstName = true;
+                IndicarOK(textBox);
+                respuesta = true;
             }
+
+            return respuesta;
         }
+
+        /*
+        public int ValidarString(string texto, int longitudMax, bool nulo)
+        {
+            int codigoError = 0;
+
+            if (texto.Length > longitudMax)
+                codigoError = 1;
+            if (texto.Length < 1 && !nulo)
+                codigoError = 2;
+
+            return codigoError;
+        }
+        */
     }
 }
