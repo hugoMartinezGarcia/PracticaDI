@@ -6,56 +6,65 @@ namespace Presentacion
 {
     public partial class FormAcceso : Form
     {
-        public Employee? Empleado { get; set; } = null;
+        internal Employee? empleado;
+        // Se crea una variable de tipo Interfaz IForm para pasar el empleado al Form Principal
+        private IForm iFormPrincipal;
 
-        public FormAcceso()
+        public FormAcceso(IForm iFormPrincipal)
         {
             InitializeComponent();
+            empleado = null;
+            this.iFormPrincipal = iFormPrincipal;
 
             List<Employee> employees = Gestion.ListarEmployee();
-
-            cbEmployee.DataSource = employees;
-            cbEmployee.ValueMember = "EmployeeId";
-            cbEmployee.SelectedItem = null;
+        
+            lbEmployees.DataSource = employees;
+            lbEmployees.ValueMember = "EmployeeId";
+            lbEmployees.SelectedItem = null;
         }
 
         private void btAcceder_Click(object sender, EventArgs e)
         {
             try
             {
-                int id = Convert.ToInt32(tbEmployee.Text);
+                int id = Convert.ToInt32(tbIdEmployee.Text);
 
-                if (cbEmployee.SelectedValue != null)
+                if (lbEmployees.SelectedValue != null)
                 {
-                    int selected = Convert.ToInt32(cbEmployee.SelectedValue);
+                    int selected = Convert.ToInt32(lbEmployees.SelectedValue);
 
                     if (selected == id)
                     {
-                        Gestion g = new Gestion();
-                        Empleado =  g.BuscarEmployee(selected);
+                        using (Gestion g = new Gestion())
+                        {
+                            empleado = g.BuscarEmployee(selected);
+                        }
+
+                        // Se pasa el empleado al Form Principal utilizando la interfaz
+                        iFormPrincipal.DefinirEmpleado(empleado);
+                        // Se indica que el acceso ha sido correcto
                         DialogResult = DialogResult.OK;
                     }
                     else
                     {
                         MessageBox.Show("id incorrecto");
-                        tbEmployee.Clear();
+                        tbIdEmployee.Clear();
                     }
                 }
                 else
                 {
                     MessageBox.Show("Selecciona un employee de la lista");
-                    tbEmployee.Clear();
+                    tbIdEmployee.Clear();
                 } 
             }
             catch (FormatException)
             {
                 MessageBox.Show("introduce un id válido");
-                tbEmployee.Clear();
+                tbIdEmployee.Clear();
             }    
         }
 
-        // Método para formatear los valores que muestra el combobox
-        private void cbEmployee_Format(object sender, ListControlConvertEventArgs e)
+        private void listBox1_Format(object sender, ListControlConvertEventArgs e)
         {
             string firstName = (e.ListItem as Employee)!.FirstName;
             string lastName = (e.ListItem as Employee)!.LastName;

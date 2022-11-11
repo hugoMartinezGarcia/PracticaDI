@@ -6,13 +6,14 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    public partial class FormPrincipal : Form
+    public partial class FormPrincipal : Form, IForm
     {
-        private Employee? empleado = null;
+        private Employee? empleado;
 
         public FormPrincipal()
         {
             InitializeComponent();
+            empleado = null;
         }
 
         // Método para manejar el botón Salir de la barra de menú
@@ -24,25 +25,33 @@ namespace Presentacion
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             CargarFormAcceso();
-            MemoryStream mS = new MemoryStream();
-            mS.Write(empleado.Photo, 78, empleado.Photo.Length - 78);
-            pbEmpleado.Image = Image.FromStream(mS);
-            lbEmpleado.Text = empleado.FullName();
+            
+            
         }
 
         private void CargarFormAcceso()
         {
-            FormAcceso formAcceso = new FormAcceso();
+            FormAcceso formAcceso = new FormAcceso(this);
 
             DialogResult respuesta = formAcceso.ShowDialog();
+            
             if (respuesta == DialogResult.OK)
             {
-                empleado = formAcceso.Empleado;
+                pbEmpleado.Image = ByteArrayToImage(empleado!.Photo);
+                lbEmpleado.Text = empleado!.FullName();
             }
             else
             {
                 this.Close();
             }
+        }
+
+        public Image? ByteArrayToImage(byte[]? byteArray)
+        {
+            ImageConverter converter = new ImageConverter();
+            Image? imagen = (Image?)converter.ConvertFrom(byteArray);
+
+            return imagen;
         }
 
         // Manejo del evento FormClosing
@@ -70,6 +79,13 @@ namespace Presentacion
             FormInsertarEmpleado formInsertarEmpleado = new FormInsertarEmpleado();
             formInsertarEmpleado.MdiParent = this;
             formInsertarEmpleado.Show();
+        }
+
+        // Método implementado por heredar de la interfaz IForm.
+        // A través de este método se recibe el empleado que accede a la aplicación desde el Form Acceso.
+        public void DefinirEmpleado(Employee empleado)
+        {
+            this.empleado = empleado;
         }
     }
 }

@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbInformacionPersonal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.tbTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.tbCity = new System.Windows.Forms.TextBox();
+            this.tbCountry = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.tbRegion = new System.Windows.Forms.TextBox();
+            this.tbPostalcode = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.cbTitleCourtesy = new System.Windows.Forms.ComboBox();
+            this.mtbHomePhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,17 +61,19 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.tbExtension = new System.Windows.Forms.TextBox();
+            this.tbPhotoPath = new System.Windows.Forms.TextBox();
+            this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
+            this.cbReportsTo = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.tbNotes = new System.Windows.Forms.TextBox();
+            this.pbPhoto = new System.Windows.Forms.PictureBox();
+            this.btSeleccionarPhoto = new System.Windows.Forms.Button();
+            this.btCancelar = new System.Windows.Forms.Button();
+            this.btInsertar = new System.Windows.Forms.Button();
+            this.ofdPhoto = new System.Windows.Forms.OpenFileDialog();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbInformacionPersonal.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -78,7 +81,8 @@
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbInformacionPersonal
@@ -109,23 +113,23 @@
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tbLastName, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tbTitle, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label7, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label8, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.label9, 3, 2);
             this.tableLayoutPanel2.Controls.Add(this.label10, 3, 3);
             this.tableLayoutPanel2.Controls.Add(this.label11, 3, 4);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox5, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox7, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox9, 4, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBox10, 4, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tbFirstName, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tbAddress, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tbCity, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tbCountry, 4, 3);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.dateTimePicker1, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.dtpBirthDate, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.cbTitleCourtesy, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.mtbHomePhone, 4, 4);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(19, 20);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -177,22 +181,22 @@
             this.label4.Text = "Title of courtesy";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // tbLastName
             // 
-            this.textBox2.Location = new System.Drawing.Point(133, 35);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(231, 23);
-            this.textBox2.TabIndex = 6;
+            this.tbLastName.Location = new System.Drawing.Point(133, 35);
+            this.tbLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(231, 23);
+            this.tbLastName.TabIndex = 2;
             // 
-            // textBox3
+            // tbTitle
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(133, 71);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(231, 23);
-            this.textBox3.TabIndex = 7;
+            this.tbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTitle.Location = new System.Drawing.Point(133, 71);
+            this.tbTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbTitle.Name = "tbTitle";
+            this.tbTitle.Size = new System.Drawing.Size(231, 23);
+            this.tbTitle.TabIndex = 3;
             // 
             // label2
             // 
@@ -272,98 +276,91 @@
             this.label11.Text = "Home phone";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // tbFirstName
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(133, 5);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(231, 23);
-            this.textBox1.TabIndex = 5;
+            this.tbFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFirstName.Location = new System.Drawing.Point(133, 5);
+            this.tbFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(231, 23);
+            this.tbFirstName.TabIndex = 1;
+            this.tbFirstName.Leave += new System.EventHandler(this.tbFirstName_Leave);
             // 
-            // textBox5
+            // tbAddress
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(581, 5);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(234, 23);
-            this.textBox5.TabIndex = 11;
+            this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAddress.Location = new System.Drawing.Point(581, 5);
+            this.tbAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(234, 23);
+            this.tbAddress.TabIndex = 6;
             // 
-            // textBox7
+            // tbCity
             // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox7.Location = new System.Drawing.Point(581, 38);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(234, 23);
-            this.textBox7.TabIndex = 18;
+            this.tbCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCity.Location = new System.Drawing.Point(581, 38);
+            this.tbCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbCity.Name = "tbCity";
+            this.tbCity.Size = new System.Drawing.Size(234, 23);
+            this.tbCity.TabIndex = 7;
             // 
-            // textBox9
+            // tbCountry
             // 
-            this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox9.Location = new System.Drawing.Point(581, 104);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(234, 23);
-            this.textBox9.TabIndex = 20;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox10.Location = new System.Drawing.Point(581, 139);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(234, 23);
-            this.textBox10.TabIndex = 21;
+            this.tbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCountry.Location = new System.Drawing.Point(581, 104);
+            this.tbCountry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbCountry.Name = "tbCountry";
+            this.tbCountry.Size = new System.Drawing.Size(234, 23);
+            this.tbCountry.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel3.Controls.Add(this.label12, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.textBox8, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.textBox11, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tbRegion, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tbPostalcode, 2, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(581, 68);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(234, 21);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(234, 29);
             this.tableLayoutPanel3.TabIndex = 22;
             // 
             // label12
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(73, 0);
+            this.label12.Location = new System.Drawing.Point(73, 7);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(87, 21);
+            this.label12.Size = new System.Drawing.Size(87, 15);
             this.label12.TabIndex = 23;
             this.label12.Text = "Postal code";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox8
+            // tbRegion
             // 
-            this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox8.Location = new System.Drawing.Point(3, 2);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(64, 23);
-            this.textBox8.TabIndex = 23;
+            this.tbRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbRegion.Location = new System.Drawing.Point(3, 3);
+            this.tbRegion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbRegion.Name = "tbRegion";
+            this.tbRegion.Size = new System.Drawing.Size(64, 23);
+            this.tbRegion.TabIndex = 8;
             // 
-            // textBox11
+            // tbPostalcode
             // 
-            this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox11.Location = new System.Drawing.Point(166, 2);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(65, 23);
-            this.textBox11.TabIndex = 24;
+            this.tbPostalcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPostalcode.Location = new System.Drawing.Point(166, 3);
+            this.tbPostalcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbPostalcode.Name = "tbPostalcode";
+            this.tbPostalcode.Size = new System.Drawing.Size(65, 23);
+            this.tbPostalcode.TabIndex = 9;
             // 
             // label6
             // 
@@ -378,27 +375,38 @@
             this.label6.Text = "Birth date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker1
+            // dtpBirthDate
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(133, 139);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2022, 11, 4, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(231, 23);
-            this.dateTimePicker1.TabIndex = 23;
-            this.dateTimePicker1.Value = new System.DateTime(1948, 12, 8, 0, 0, 0, 0);
+            this.dtpBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBirthDate.Location = new System.Drawing.Point(133, 139);
+            this.dtpBirthDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpBirthDate.MaxDate = new System.DateTime(2022, 11, 4, 0, 0, 0, 0);
+            this.dtpBirthDate.Name = "dtpBirthDate";
+            this.dtpBirthDate.Size = new System.Drawing.Size(231, 23);
+            this.dtpBirthDate.TabIndex = 5;
+            this.dtpBirthDate.Value = new System.DateTime(1948, 12, 8, 0, 0, 0, 0);
             // 
             // cbTitleCourtesy
             // 
-            this.cbTitleCourtesy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTitleCourtesy.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbTitleCourtesy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTitleCourtesy.FormattingEnabled = true;
+            this.cbTitleCourtesy.ItemHeight = 15;
             this.cbTitleCourtesy.Location = new System.Drawing.Point(133, 104);
             this.cbTitleCourtesy.Name = "cbTitleCourtesy";
-            this.cbTitleCourtesy.Size = new System.Drawing.Size(231, 23);
-            this.cbTitleCourtesy.TabIndex = 24;
+            this.cbTitleCourtesy.Size = new System.Drawing.Size(125, 23);
+            this.cbTitleCourtesy.TabIndex = 4;
+            // 
+            // mtbHomePhone
+            // 
+            this.mtbHomePhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.mtbHomePhone.Location = new System.Drawing.Point(581, 139);
+            this.mtbHomePhone.Mask = "000000000999";
+            this.mtbHomePhone.Name = "mtbHomePhone";
+            this.mtbHomePhone.Size = new System.Drawing.Size(234, 23);
+            this.mtbHomePhone.TabIndex = 23;
+            this.mtbHomePhone.ValidatingType = typeof(int);
             // 
             // groupBox2
             // 
@@ -440,10 +448,10 @@
             this.tableLayoutPanel4.Controls.Add(this.label14, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label15, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label16, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.textBox14, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.textBox15, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.textBox16, 1, 3);
-            this.tableLayoutPanel4.Controls.Add(this.dateTimePicker2, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tbExtension, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.tbPhotoPath, 1, 3);
+            this.tableLayoutPanel4.Controls.Add(this.dtpHireDate, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.cbReportsTo, 1, 2);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 2);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -508,44 +516,44 @@
             this.label16.Text = "Reports to";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox14
+            // tbExtension
             // 
-            this.textBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox14.Location = new System.Drawing.Point(133, 48);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(226, 23);
-            this.textBox14.TabIndex = 8;
+            this.tbExtension.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbExtension.Location = new System.Drawing.Point(133, 48);
+            this.tbExtension.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbExtension.Name = "tbExtension";
+            this.tbExtension.Size = new System.Drawing.Size(226, 23);
+            this.tbExtension.TabIndex = 14;
             // 
-            // textBox15
+            // tbPhotoPath
             // 
-            this.textBox15.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.textBox15.Location = new System.Drawing.Point(133, 88);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(34, 23);
-            this.textBox15.TabIndex = 9;
+            this.tbPhotoPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPhotoPath.Location = new System.Drawing.Point(133, 129);
+            this.tbPhotoPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbPhotoPath.Name = "tbPhotoPath";
+            this.tbPhotoPath.Size = new System.Drawing.Size(226, 23);
+            this.tbPhotoPath.TabIndex = 16;
             // 
-            // textBox16
+            // dtpHireDate
             // 
-            this.textBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox16.Location = new System.Drawing.Point(133, 129);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(226, 23);
-            this.textBox16.TabIndex = 10;
+            this.dtpHireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpHireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHireDate.Location = new System.Drawing.Point(133, 8);
+            this.dtpHireDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpHireDate.MaxDate = new System.DateTime(2022, 11, 4, 12, 37, 2, 0);
+            this.dtpHireDate.Name = "dtpHireDate";
+            this.dtpHireDate.Size = new System.Drawing.Size(226, 23);
+            this.dtpHireDate.TabIndex = 12;
+            this.dtpHireDate.Value = new System.DateTime(1992, 5, 1, 0, 0, 0, 0);
             // 
-            // dateTimePicker2
+            // cbReportsTo
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(133, 8);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dateTimePicker2.MaxDate = new System.DateTime(2022, 11, 4, 12, 37, 2, 0);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(226, 23);
-            this.dateTimePicker2.TabIndex = 11;
-            this.dateTimePicker2.Value = new System.DateTime(1992, 5, 1, 0, 0, 0, 0);
+            this.cbReportsTo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbReportsTo.FormattingEnabled = true;
+            this.cbReportsTo.Location = new System.Drawing.Point(133, 88);
+            this.cbReportsTo.Name = "cbReportsTo";
+            this.cbReportsTo.Size = new System.Drawing.Size(122, 23);
+            this.cbReportsTo.TabIndex = 15;
             // 
             // tableLayoutPanel5
             // 
@@ -553,9 +561,9 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.56F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.44F));
             this.tableLayoutPanel5.Controls.Add(this.label19, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label18, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBox17, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.pictureBox1, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tbNotes, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.pbPhoto, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btSeleccionarPhoto, 0, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(452, 2);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -578,64 +586,78 @@
             this.label19.Text = "Notes";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label18
+            // tbNotes
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tbNotes.Location = new System.Drawing.Point(132, 34);
+            this.tbNotes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbNotes.Multiline = true;
+            this.tbNotes.Name = "tbNotes";
+            this.tbNotes.Size = new System.Drawing.Size(228, 126);
+            this.tbNotes.TabIndex = 18;
+            // 
+            // pbPhoto
+            // 
+            this.pbPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(123, 32);
-            this.label18.TabIndex = 11;
-            this.label18.Text = "Photo";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pbPhoto.Location = new System.Drawing.Point(15, 34);
+            this.pbPhoto.Margin = new System.Windows.Forms.Padding(15, 2, 15, 2);
+            this.pbPhoto.Name = "pbPhoto";
+            this.pbPhoto.Size = new System.Drawing.Size(99, 126);
+            this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPhoto.TabIndex = 13;
+            this.pbPhoto.TabStop = false;
             // 
-            // textBox17
+            // btSeleccionarPhoto
             // 
-            this.textBox17.Location = new System.Drawing.Point(132, 34);
-            this.textBox17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox17.Multiline = true;
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(228, 126);
-            this.textBox17.TabIndex = 12;
+            this.btSeleccionarPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btSeleccionarPhoto.Location = new System.Drawing.Point(3, 4);
+            this.btSeleccionarPhoto.Name = "btSeleccionarPhoto";
+            this.btSeleccionarPhoto.Size = new System.Drawing.Size(123, 23);
+            this.btSeleccionarPhoto.TabIndex = 17;
+            this.btSeleccionarPhoto.Text = "Seleccionar photo";
+            this.btSeleccionarPhoto.UseVisualStyleBackColor = true;
+            this.btSeleccionarPhoto.Click += new System.EventHandler(this.btSeleccionarPhoto_Click);
             // 
-            // pictureBox1
+            // btCancelar
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 34);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(123, 125);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.btCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCancelar.Location = new System.Drawing.Point(767, 443);
+            this.btCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btCancelar.Name = "btCancelar";
+            this.btCancelar.Size = new System.Drawing.Size(82, 22);
+            this.btCancelar.TabIndex = 20;
+            this.btCancelar.Text = "Cancelar";
+            this.btCancelar.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btInsertar
             // 
-            this.button1.Location = new System.Drawing.Point(767, 443);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 22);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btInsertar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btInsertar.Location = new System.Drawing.Point(679, 443);
+            this.btInsertar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btInsertar.Name = "btInsertar";
+            this.btInsertar.Size = new System.Drawing.Size(82, 22);
+            this.btInsertar.TabIndex = 19;
+            this.btInsertar.Text = "Insertar";
+            this.btInsertar.UseVisualStyleBackColor = true;
+            this.btInsertar.Click += new System.EventHandler(this.btInsertar_Click);
             // 
-            // button3
+            // ofdPhoto
             // 
-            this.button3.Location = new System.Drawing.Point(679, 443);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 22);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Insertar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ofdPhoto.FileName = "openFileDialog1";
+            this.ofdPhoto.Title = "Photo";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormInsertarEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 476);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btInsertar);
+            this.Controls.Add(this.btCancelar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbInformacionPersonal);
             this.Location = new System.Drawing.Point(0, 70);
@@ -654,7 +676,8 @@
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -666,25 +689,24 @@
         private Label label1;
         private Label label3;
         private Label label4;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox tbLastName;
+        private TextBox tbTitle;
         private Label label2;
         private Label label7;
         private Label label8;
         private Label label9;
         private Label label10;
         private Label label11;
-        private TextBox textBox1;
-        private TextBox textBox5;
-        private TextBox textBox7;
-        private TextBox textBox9;
-        private TextBox textBox10;
+        private TextBox tbFirstName;
+        private TextBox tbAddress;
+        private TextBox tbCity;
+        private TextBox tbCountry;
         private TableLayoutPanel tableLayoutPanel3;
         private Label label12;
-        private TextBox textBox8;
-        private TextBox textBox11;
+        private TextBox tbRegion;
+        private TextBox tbPostalcode;
         private Label label6;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpBirthDate;
         private ComboBox cbTitleCourtesy;
         private GroupBox groupBox2;
         private TableLayoutPanel tableLayoutPanel1;
@@ -693,16 +715,19 @@
         private Label label14;
         private Label label15;
         private Label label16;
-        private TextBox textBox14;
-        private TextBox textBox15;
-        private TextBox textBox16;
-        private DateTimePicker dateTimePicker2;
+        private TextBox tbExtension;
+        private TextBox tbPhotoPath;
+        private DateTimePicker dtpHireDate;
         private TableLayoutPanel tableLayoutPanel5;
         private Label label19;
-        private Label label18;
-        private TextBox textBox17;
-        private PictureBox pictureBox1;
-        private Button button1;
-        private Button button3;
+        private TextBox tbNotes;
+        private PictureBox pbPhoto;
+        private Button btCancelar;
+        private Button btInsertar;
+        private ComboBox cbReportsTo;
+        private OpenFileDialog ofdPhoto;
+        private Button btSeleccionarPhoto;
+        private MaskedTextBox mtbHomePhone;
+        private ErrorProvider errorProvider1;
     }
 }
