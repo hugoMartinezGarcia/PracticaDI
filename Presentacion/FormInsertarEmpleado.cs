@@ -33,6 +33,8 @@ namespace Presentacion
         private bool valReportsTo;
         private bool valPhotoPath;
 
+        private Employee? employee;
+
         public FormInsertarEmpleado()
         {
             InitializeComponent();
@@ -53,6 +55,13 @@ namespace Presentacion
             valNotes = false;
             valReportsTo = false;
             valPhotoPath = false;
+
+            employee = null;
+        }
+
+        public FormInsertarEmpleado(Employee employee) : this()
+        {
+            this.employee = employee;
         }
 
         // Método que se ejecuta al abrir el formulario por primera vez.
@@ -69,14 +78,42 @@ namespace Presentacion
 
             cbReportsTo.Items.AddRange(idEmpleados.ToArray());
             cbReportsTo.SelectedIndex = 0;
+
+            if (employee != null)
+            {
+                ModoActualizar();
+            }
         }
 
+        private void ModoActualizar()
+        {
+            tbLastName.Text = employee.LastName;
+            tbFirstName.Text = employee.FirstName;
+            tbTitle.Text = employee.Title;
+            cbTitleCourtesy.SelectedItem = employee.TitleOfCourtesy;
+            dtpBirthDate.Value = (DateTime)employee.BirthDate!;
+            dtpHireDate.Value = (DateTime)employee.HireDate!;
+            tbAddress.Text = employee.Address;
+            tbCity.Text = employee.City;
+            tbRegion.Text = employee.Region;
+            tbPostalcode.Text = employee.PostalCode;
+            tbCountry.Text = employee.Country;
+            mtbHomePhone.Text = employee.HomePhone;
+            tbExtension.Text = employee.Extension;
+            pbPhoto.Image = ByteArrayToImage(employee.Photo);
+            tbNotes.Text = employee.Notes;
+            cbReportsTo.SelectedItem = employee.ReportsTo;
+            tbPhotoPath.Text = employee.PhotoPath;
+
+            btInsertar.Text = "Actualizar";
+        }
 
         private void btInsertar_Click(object sender, EventArgs e)
         {
             try
             {
                 Employee emp = new Employee();
+
                 emp.LastName = tbLastName.Text;
                 emp.FirstName = tbFirstName.Text;
                 emp.Title = tbTitle.Text;
@@ -120,6 +157,15 @@ namespace Presentacion
             errorProvider1.SetError(control, "");
         }
 
+        // Método para convertir Array de bytes en Imagen
+        public Image? ByteArrayToImage(byte[]? byteArray)
+        {
+            ImageConverter converter = new ImageConverter();
+            Image? imagen = (Image?)converter.ConvertFrom(byteArray);
+
+            return imagen;
+        }
+
         // Método para convertir imagen a array de bytes
         public byte[] ImageToByteArray(Image imageIn)
         {
@@ -146,7 +192,6 @@ namespace Presentacion
                 {
                     MessageBox.Show("No es un archivo válido");
                 }
-                
             }
         }
 

@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -42,11 +43,13 @@
             this.dgvEmployees.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployees.Location = new System.Drawing.Point(39, 158);
+            this.dgvEmployees.Location = new System.Drawing.Point(39, 175);
             this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.ReadOnly = true;
             this.dgvEmployees.RowTemplate.Height = 25;
-            this.dgvEmployees.Size = new System.Drawing.Size(634, 292);
+            this.dgvEmployees.Size = new System.Drawing.Size(649, 292);
             this.dgvEmployees.TabIndex = 2;
+            this.dgvEmployees.DoubleClick += new System.EventHandler(this.dgvEmployees_DoubleClick);
             // 
             // tbBuscar
             // 
@@ -54,7 +57,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBuscar.Location = new System.Drawing.Point(20, 47);
             this.tbBuscar.Name = "tbBuscar";
-            this.tbBuscar.Size = new System.Drawing.Size(223, 21);
+            this.tbBuscar.Size = new System.Drawing.Size(238, 21);
             this.tbBuscar.TabIndex = 5;
             this.tbBuscar.TextChanged += new System.EventHandler(this.tbBuscar_TextChanged);
             // 
@@ -83,22 +86,33 @@
             this.groupBox1.Controls.Add(this.tbBuscar);
             this.groupBox1.Location = new System.Drawing.Point(39, 37);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(634, 93);
+            this.groupBox1.Size = new System.Drawing.Size(649, 93);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar employee";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 157);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(343, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "* Haga doble click sobre el employee para mostrar sus datos";
             // 
             // FormBuscarEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 473);
+            this.ClientSize = new System.Drawing.Size(731, 490);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvEmployees);
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "FormBuscarEmpleado";
             this.Text = "FormBuscarEmpleado";
+            this.Load += new System.EventHandler(this.FormBuscarEmpleado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -114,5 +128,6 @@
         private Label label1;
         private Label label2;
         private GroupBox groupBox1;
+        private Label label3;
     }
 }

@@ -94,5 +94,10 @@ namespace Presentacion
             formBuscarEmpleado.MdiParent = this;
             formBuscarEmpleado.Show();
         }
+
+        private void insertarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tsbInsertarEmpleado_Click(sender, e);
+        }
     }
 }

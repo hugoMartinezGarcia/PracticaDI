@@ -193,6 +193,7 @@
             this.insertarToolStripMenuItem.Name = "insertarToolStripMenuItem";
             this.insertarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.insertarToolStripMenuItem.Text = "Insertar";
+            this.insertarToolStripMenuItem.Click += new System.EventHandler(this.insertarToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem
             // 
