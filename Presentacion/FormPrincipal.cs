@@ -87,5 +87,12 @@ namespace Presentacion
         {
             this.empleado = empleado;
         }
+
+        private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormBuscarEmpleado formBuscarEmpleado = new FormBuscarEmpleado();
+            formBuscarEmpleado.MdiParent = this;
+            formBuscarEmpleado.Show();
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -119,16 +120,6 @@ namespace Presentacion
             errorProvider1.SetError(control, "");
         }
 
-
-        // Método para recoger los string que admiten null
-        public string? ComprobarTextBox(TextBox tb)
-        {
-
-            string? resultado = tb.Text != String.Empty ? tb.Text.Trim() : null;
-            
-            return resultado;
-        }
-
         // Método para convertir imagen a array de bytes
         public byte[] ImageToByteArray(Image imageIn)
         {
@@ -144,26 +135,19 @@ namespace Presentacion
 
             if (ofdPhoto.ShowDialog() == DialogResult.OK)
             {
-                // Se obtiene la ruta del archivo seleccionado
-                string rutaFoto = ofdPhoto.FileName;
+                try
+                {
+                    // Se obtiene la ruta del archivo seleccionado
+                    string rutaFoto = ofdPhoto.FileName;
 
-                pbPhoto.Image = Image.FromFile(rutaFoto);
+                    pbPhoto.Image = Image.FromFile(rutaFoto);
+                }
+                catch
+                {
+                    MessageBox.Show("No es un archivo válido");
+                }
+                
             }
-        }
-
-        private void tbFirstName_Leave(object sender, EventArgs e)
-        {
-           valFirstName = ValidarTextBoxString((TextBox)sender, "First name", 10, false);
-        }
-
-        private void tbLastName_Leave(object sender, EventArgs e)
-        {
-            valLastName = ValidarTextBoxString((TextBox)sender, "Last name", 20, false);
-        }
-
-        private void tbTitle_Leave(object sender, EventArgs e)
-        {
-            valTitle = ValidarTextBoxString((TextBox)sender, "Title", 30, true);
         }
 
         // Método genérico para validar TextBox de string
@@ -173,7 +157,7 @@ namespace Presentacion
             bool respuesta;
             int codigoError = 0;
 
-            if(textBox.Text.Length > longitudMax)
+            if (textBox.Text.Length > longitudMax)
                 codigoError = 1;
             if (textBox.Text.Length < 1 && !nulo)
                 codigoError = 2;
@@ -201,6 +185,67 @@ namespace Presentacion
             return respuesta;
         }
 
+        private void tbFirstName_Leave(object sender, EventArgs e)
+        {
+           valFirstName = ValidarTextBoxString((TextBox)sender, "First name", 10, false);
+        }
+
+        private void tbLastName_Leave(object sender, EventArgs e)
+        {
+            valLastName = ValidarTextBoxString((TextBox)sender, "Last name", 20, false);
+        }
+
+        private void tbTitle_Leave(object sender, EventArgs e)
+        {
+            valTitle = ValidarTextBoxString((TextBox)sender, "Title", 30, true);
+        }
+
+        private void tbAddress_Leave(object sender, EventArgs e)
+        {
+            valAddress = ValidarTextBoxString((TextBox)sender, "Address", 60, true);
+        }
+
+        private void tbCity_Leave(object sender, EventArgs e)
+        {
+            valCity = ValidarTextBoxString((TextBox)sender, "City", 15, true);
+        }
+
+        private void tbRegion_Leave(object sender, EventArgs e)
+        {
+            valRegion = ValidarTextBoxString((TextBox)sender, "Region", 15, true);
+        }
+
+        private void tbPostalcode_Leave(object sender, EventArgs e)
+        {
+            valPostalCode = ValidarTextBoxString((TextBox)sender, "Postal code", 10, true);
+        }
+
+        private void tbCountry_Leave(object sender, EventArgs e)
+        {
+            valCountry = ValidarTextBoxString((TextBox)sender, "Country", 15, true);
+        }
+
+        private void tbExtension_Leave(object sender, EventArgs e)
+        {
+            valExtension = ValidarTextBoxString((TextBox)sender, "Extension", 4, true);
+        }
+
+        private void tbPhotoPath_Leave(object sender, EventArgs e)
+        {
+            string patron = "^(ht|f)tp(s?)\\:\\/\\/[0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*(:(0-9)*)*(\\/?)([a-zA-Z0-9\\-\\.\\?\\,\\'\\/\\\\\\+&amp;%\\$#_]*)?$";
+
+            if (Regex.IsMatch(tbPhotoPath.Text, patron) || String.IsNullOrEmpty(tbPhotoPath.Text.Trim()))
+            {
+                IndicarOK(tbPhotoPath);
+            }
+            else
+            {
+                string cadenaErrores = "No es una dirección válida";
+                IndicarError(tbPhotoPath, cadenaErrores);
+            }
+
+        }
+
         /*
         public int ValidarString(string texto, int longitudMax, bool nulo)
         {
@@ -212,6 +257,15 @@ namespace Presentacion
                 codigoError = 2;
 
             return codigoError;
+        }
+
+        // Método para recoger los string que admiten null
+        public string? ComprobarTextBox(TextBox tb)
+        {
+
+            string? resultado = tb.Text != String.Empty ? tb.Text.Trim() : null;
+            
+            return resultado;
         }
         */
     }
