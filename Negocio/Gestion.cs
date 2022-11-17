@@ -127,16 +127,16 @@ namespace Negocio
             return CategoryADO.Listar();
         }
 
-        public List<Category> BuscarCategory(int id)
+        public Category BuscarCategory(int id)
         {
-            List<Category> objeto = new List<Category>();
+            Category cat = new Category();
 
             using (CategoryADO c = new CategoryADO())
             {
-                objeto.Add(c.Listar(id));
+                cat = c.Listar(id);
             }
 
-            return objeto;
+            return cat;
         }
 
         public void InsertarCategory(Category category)
@@ -169,16 +169,16 @@ namespace Negocio
             return CustomerADO.Listar();
         }
 
-        public List<Customer> BuscarCustomer(string id)
+        public Customer BuscarCustomer(string id)
         {
-            List<Customer> objeto = new List<Customer>();
+            Customer cus = new Customer();
 
             using (CustomerADO c = new CustomerADO())
             {
-                objeto.Add(c.Listar(id));
+                cus = c.Listar(id);
             }
 
-            return objeto;
+            return cus;
         }
 
         public void InsertarCustomer(Customer customer)
@@ -253,16 +253,16 @@ namespace Negocio
             return OrderADO.Listar();
         }
 
-        public List<Order> BuscarOrder(int id)
+        public Order BuscarOrder(int id)
         {
-            List<Order> objeto = new List<Order>();
+            Order ord = new Order();
 
             using (OrderADO c = new OrderADO())
             {
-                objeto.Add(c.Listar(id));
+                ord = c.Listar(id);
             }
 
-            return objeto;
+            return ord;
         }
 
         public void InsertarOrder(Order order)
@@ -295,16 +295,16 @@ namespace Negocio
             return OrderDetailADO.Listar();
         }
 
-        public List<OrderDetail> BuscarOrderDetail(int id)
+        public OrderDetail BuscarOrderDetail(int id)
         {
-            List<OrderDetail> objeto = new List<OrderDetail>();
+            OrderDetail orDet = new OrderDetail();
 
             using (OrderDetailADO c = new OrderDetailADO())
             {
-                objeto.Add(c.Listar(id));
+                orDet = c.Listar(id);
             }
 
-            return objeto;
+            return orDet;
         }
 
         public void InsertarOrderDetail(OrderDetail orderDetail)
@@ -337,16 +337,16 @@ namespace Negocio
             return ProductADO.Listar();
         }
 
-        public List<Product> BuscarProduct(int id)
+        public Product BuscarProduct(int id)
         {
-            List<Product> objeto = new List<Product>();
+            Product pro = new Product();
 
             using (ProductADO c = new ProductADO())
             {
-                objeto.Add(c.Listar(id));
+                pro = c.Listar(id);
             }
 
-            return objeto;
+            return pro;
         }
 
         public void InsertarProduct(Product product)
@@ -379,16 +379,16 @@ namespace Negocio
             return ShipperADO.Listar();
         }
 
-        public List<Shipper> BuscarShipper(int id)
+        public Shipper BuscarShipper(int id)
         {
-            List<Shipper> objeto = new List<Shipper>();
+            Shipper ship = new Shipper();
 
             using (ShipperADO c = new ShipperADO())
             {
-                objeto.Add(c.Listar(id));
+                ship = c.Listar(id);
             }
 
-            return objeto;
+            return ship;
         }
 
         public void InsertarShipper(Shipper shipper)
@@ -421,16 +421,16 @@ namespace Negocio
             return SupplierADO.Listar();
         }
 
-        public List<Supplier> BuscarSupplier(int id)
+        public Supplier BuscarSupplier(int id)
         {
-            List<Supplier> objeto = new List<Supplier>();
+            Supplier sup = new Supplier();
 
             using (SupplierADO c = new SupplierADO())
             {
-                objeto.Add(c.Listar(id));
+                sup = c.Listar(id);
             }
 
-            return objeto;
+            return sup;
         }
 
         public void InsertarSupplier(Supplier supplier)

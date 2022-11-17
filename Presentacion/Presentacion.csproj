@@ -7,6 +7,20 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Description>Aplicación para la Gestión de Ventas de la empresa Northwind
+
+
+Práctica final trimestre de Desarrollo de Interfaces 
+
+
+IES San Vicente</Description>
+    <Company>Northwind</Company>
+    <Product>Ventas DAM</Product>
+    <Authors>Hugo Martínez</Authors>
+    <Copyright>Hugo Martínez</Copyright>
+    <PackageId>ventasdam.hugomartinez</PackageId>
+    <Title>Ventas DAM</Title>
   </PropertyGroup>
 
   <ItemGroup>

@@ -99,5 +99,18 @@ namespace Presentacion
         {
             tsbInsertarEmpleado_Click(sender, e);
         }
+
+        private void modificarPrecioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormProductos formProductos = new FormProductos();
+            formProductos.MdiParent = this;
+            formProductos.Show();
+        }
+
+        private void tsmAcercaDe_Click(object sender, EventArgs e)
+        {
+            FormAcercaDe formAcercaDe= new FormAcercaDe();
+            formAcercaDe.Show();
+        }
     }
 }

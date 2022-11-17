@@ -74,7 +74,7 @@ namespace Presentacion
             idEmpleados.Add("Seleccionar");
 
             // Se carga la lista de id de empleados
-            Gestion.ListarEmployee().ForEach(e => idEmpleados.Add(e.EmployeeId.ToString()));
+            Gestion.ListarEmployee().ForEach(e => idEmpleados.Add(e.EmployeeId.ToString() + " - " + e.FirstName + " " + e.LastName));
 
             cbReportsTo.Items.AddRange(idEmpleados.ToArray());
             cbReportsTo.SelectedIndex = 0;

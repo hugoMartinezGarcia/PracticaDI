@@ -20,18 +20,15 @@ namespace Presentacion
         {
             InitializeComponent();
             employees = new List<Employee>();
+            dtEmployees = new DataTable();
         }
 
         private void FormBuscarEmpleado_Load(object sender, EventArgs e)
         {
             // Se recupera la lista de empleados de la BBDD
-            using (Gestion g = new Gestion())
-            {
-                employees = Gestion.ListarEmployee();
-            }
+            employees = Gestion.ListarEmployee();
 
             // Se crea un DataTable con las columnas de Employee que se mostrarán
-            dtEmployees = new DataTable();
             dtEmployees.Columns.Add("Employee Id", typeof(int));
             dtEmployees.Columns.Add("First name", typeof(string));
             dtEmployees.Columns.Add("Last name", typeof(string));
