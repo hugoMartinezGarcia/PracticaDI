@@ -16,22 +16,37 @@ namespace Presentacion
     {
         private DataTable dtEmployees;
         private List<Employee> employees;
-        public FormBuscarEmpleado()
+        private bool modoActualizar;
+
+        public FormBuscarEmpleado(bool modoActualizar)
         {
             InitializeComponent();
             employees = new List<Employee>();
             dtEmployees = new DataTable();
+            this.modoActualizar = modoActualizar;
         }
 
         private void FormBuscarEmpleado_Load(object sender, EventArgs e)
         {
-            // Se recupera la lista de empleados de la BBDD
-            employees = Gestion.ListarEmployee();
-
             // Se crea un DataTable con las columnas de Employee que se mostrarán
             dtEmployees.Columns.Add("Employee Id", typeof(int));
             dtEmployees.Columns.Add("First name", typeof(string));
             dtEmployees.Columns.Add("Last name", typeof(string));
+
+            RellenarDataTable();
+           
+            if (!modoActualizar)
+                lbDataGridView.Text = "* Haga doble click sobre el employee para eliminarlo";
+        }
+
+        // Método para rellenar el dgv con la lista de empleados
+        private void RellenarDataTable()
+        {
+            // Se vacía el datatable por si tuviera datos
+            dtEmployees.Rows.Clear();
+
+            // Se recupera la lista de empleados de la BBDD
+            employees = Gestion.ListarEmployee();
 
             // Se rellena el Datatable con los datos de la lista de Employees
             employees.ForEach(e => dtEmployees.Rows.Add(e.EmployeeId, e.FirstName, e.LastName));
@@ -63,18 +78,58 @@ namespace Presentacion
 
         private void dgvEmployees_DoubleClick(object sender, EventArgs e)
         {
-            int id = (int)dgvEmployees.CurrentRow.Cells["Employee Id"].Value;
-            Employee emp = new Employee();
-
-            using (Gestion g = new Gestion())
+            try
             {
-                emp = g.BuscarEmployee(id);
-            }
+                int id = (int)dgvEmployees.CurrentRow.Cells["Employee Id"].Value;
+                Employee emp = new Employee();
 
-            FormInsertarEmpleado formActualizarEmpleado = new FormInsertarEmpleado(emp);
-            formActualizarEmpleado.MdiParent = this.MdiParent;
-            this.Close();
-            formActualizarEmpleado.Show();
+                using (Gestion g = new Gestion())
+                {
+                    emp = g.BuscarEmployee(id);
+                }
+
+                if (modoActualizar)
+                {
+                    FormInsertarEmpleado formActualizarEmpleado = new FormInsertarEmpleado(true);
+                    formActualizarEmpleado.DefinirEmpleado(emp);
+                    formActualizarEmpleado.MdiParent = this.MdiParent;
+                    this.Close();
+                    formActualizarEmpleado.Show();
+                }
+                else
+                {
+                    DialogResult respuesta = MessageBox.Show(
+                    String.Format("¿Confirma que desea eliminar el empleado {0}- {1} {2}?",
+                        emp.EmployeeId, emp.FirstName, emp.LastName),
+                    "Eliminar empleado",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Exclamation);
+
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            using (Gestion g = new Gestion())
+                            {
+                                g.BorrarEmployee(emp);
+                            }
+
+                            MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha eliminado correctamente",
+                                emp.EmployeeId, emp.FirstName, emp.LastName));
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("No se ha podido eliminar el empleado");
+                        }
+
+                        RellenarDataTable();
+                    }
+                } 
+            }
+            catch 
+            {
+                // No hacer nada
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Presentacion
             
             if (respuesta == DialogResult.OK)
             {
-                pbEmpleado.Image = ByteArrayToImage(empleado!.Photo);
+                pbEmpleado.Image = empleado!.Photo != null ?  ByteArrayToImage(empleado.Photo): null;
                 lbEmpleado.Text = empleado!.FullName();
             }
             else
@@ -46,7 +46,8 @@ namespace Presentacion
             }
         }
 
-        public Image? ByteArrayToImage(byte[]? byteArray)
+        // Método para convertir un array de bytes a imagen
+        public Image? ByteArrayToImage(byte[] byteArray)
         {
             ImageConverter converter = new ImageConverter();
             Image? imagen = (Image?)converter.ConvertFrom(byteArray);
@@ -76,7 +77,7 @@ namespace Presentacion
 
         private void tsbInsertarEmpleado_Click(object sender, EventArgs e)
         {
-            FormInsertarEmpleado formInsertarEmpleado = new FormInsertarEmpleado();
+            FormInsertarEmpleado formInsertarEmpleado = new FormInsertarEmpleado(false);
             formInsertarEmpleado.MdiParent = this;
             formInsertarEmpleado.Show();
         }
@@ -90,7 +91,14 @@ namespace Presentacion
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormBuscarEmpleado formBuscarEmpleado = new FormBuscarEmpleado();
+            FormBuscarEmpleado formBuscarEmpleado = new FormBuscarEmpleado(true);
+            formBuscarEmpleado.MdiParent = this;
+            formBuscarEmpleado.Show();
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormBuscarEmpleado formBuscarEmpleado = new FormBuscarEmpleado(false);
             formBuscarEmpleado.MdiParent = this;
             formBuscarEmpleado.Show();
         }
@@ -112,5 +120,28 @@ namespace Presentacion
             FormAcercaDe formAcercaDe= new FormAcercaDe();
             formAcercaDe.Show();
         }
+
+        private void totalPedidosPorClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEstadisticas formEstadisticas= new FormEstadisticas();
+            formEstadisticas.MdiParent = this;
+            formEstadisticas.Show();
+        }
+
+        private void productosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEstadisticas formEstadisticas = new FormEstadisticas();
+            formEstadisticas.MdiParent = this;
+            formEstadisticas.Show();
+        }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEstadisticas formEstadisticas = new FormEstadisticas();
+            formEstadisticas.MdiParent = this;
+            formEstadisticas.Show();
+        }
+
+        
     }
 }

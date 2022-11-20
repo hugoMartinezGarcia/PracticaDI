@@ -33,7 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbDataGridView = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -91,21 +91,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar employee";
             // 
-            // label3
+            // lbDataGridView
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 183);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(343, 15);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "* Haga doble click sobre el employee para mostrar sus datos";
+            this.lbDataGridView.AutoSize = true;
+            this.lbDataGridView.Location = new System.Drawing.Point(59, 183);
+            this.lbDataGridView.Name = "lbDataGridView";
+            this.lbDataGridView.Size = new System.Drawing.Size(343, 15);
+            this.lbDataGridView.TabIndex = 8;
+            this.lbDataGridView.Text = "* Haga doble click sobre el employee para mostrar sus datos";
             // 
             // FormBuscarEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 761);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbDataGridView);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvEmployees);
@@ -129,6 +129,6 @@
         private Label label1;
         private Label label2;
         private GroupBox groupBox1;
-        private Label label3;
+        private Label lbDataGridView;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInsertarEmpleado));
             this.gbInformacionPersonal = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,20 +52,24 @@
             this.tbRegion = new System.Windows.Forms.TextBox();
             this.tbPostalcode = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.cbTitleCourtesy = new System.Windows.Forms.ComboBox();
             this.mtbHomePhone = new System.Windows.Forms.MaskedTextBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
+            this.btBorrarBirthDate = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tbExtension = new System.Windows.Forms.TextBox();
-            this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.tbPhotoPath = new System.Windows.Forms.TextBox();
             this.cbReportsTo = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.btBorrarHireDate = new System.Windows.Forms.Button();
+            this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label19 = new System.Windows.Forms.Label();
             this.tbNotes = new System.Windows.Forms.TextBox();
@@ -74,15 +79,25 @@
             this.btInsertar = new System.Windows.Forms.Button();
             this.ofdPhoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.button2 = new System.Windows.Forms.Button();
             this.gbInformacionPersonal.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbInformacionPersonal
@@ -126,9 +141,9 @@
             this.tableLayoutPanel2.Controls.Add(this.tbCountry, 4, 3);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.dtpBirthDate, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.cbTitleCourtesy, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.mtbHomePhone, 4, 4);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 1, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -185,9 +200,9 @@
             // 
             this.tbLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbLastName.Location = new System.Drawing.Point(187, 58);
-            this.tbLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbLastName.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(344, 21);
+            this.tbLastName.Size = new System.Drawing.Size(327, 21);
             this.tbLastName.TabIndex = 2;
             this.tbLastName.Leave += new System.EventHandler(this.tbLastName_Leave);
             // 
@@ -195,9 +210,9 @@
             // 
             this.tbTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTitle.Location = new System.Drawing.Point(187, 104);
-            this.tbTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbTitle.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbTitle.Name = "tbTitle";
-            this.tbTitle.Size = new System.Drawing.Size(344, 21);
+            this.tbTitle.Size = new System.Drawing.Size(327, 21);
             this.tbTitle.TabIndex = 3;
             this.tbTitle.Leave += new System.EventHandler(this.tbTitle_Leave);
             // 
@@ -283,9 +298,9 @@
             // 
             this.tbFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFirstName.Location = new System.Drawing.Point(187, 12);
-            this.tbFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(344, 21);
+            this.tbFirstName.Size = new System.Drawing.Size(327, 21);
             this.tbFirstName.TabIndex = 1;
             this.tbFirstName.Leave += new System.EventHandler(this.tbFirstName_Leave);
             // 
@@ -293,9 +308,9 @@
             // 
             this.tbAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbAddress.Location = new System.Drawing.Point(846, 12);
-            this.tbAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbAddress.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(340, 21);
+            this.tbAddress.Size = new System.Drawing.Size(323, 21);
             this.tbAddress.TabIndex = 6;
             this.tbAddress.Leave += new System.EventHandler(this.tbAddress_Leave);
             // 
@@ -303,9 +318,9 @@
             // 
             this.tbCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCity.Location = new System.Drawing.Point(846, 58);
-            this.tbCity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbCity.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbCity.Name = "tbCity";
-            this.tbCity.Size = new System.Drawing.Size(340, 21);
+            this.tbCity.Size = new System.Drawing.Size(323, 21);
             this.tbCity.TabIndex = 7;
             this.tbCity.Leave += new System.EventHandler(this.tbCity_Leave);
             // 
@@ -313,10 +328,10 @@
             // 
             this.tbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCountry.Location = new System.Drawing.Point(846, 150);
-            this.tbCountry.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbCountry.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbCountry.Name = "tbCountry";
-            this.tbCountry.Size = new System.Drawing.Size(340, 21);
-            this.tbCountry.TabIndex = 1;
+            this.tbCountry.Size = new System.Drawing.Size(323, 21);
+            this.tbCountry.TabIndex = 91;
             this.tbCountry.Leave += new System.EventHandler(this.tbCountry_Leave);
             // 
             // tableLayoutPanel3
@@ -354,9 +369,9 @@
             // 
             this.tbRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbRegion.Location = new System.Drawing.Point(3, 10);
-            this.tbRegion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbRegion.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbRegion.Name = "tbRegion";
-            this.tbRegion.Size = new System.Drawing.Size(96, 21);
+            this.tbRegion.Size = new System.Drawing.Size(79, 21);
             this.tbRegion.TabIndex = 8;
             this.tbRegion.Leave += new System.EventHandler(this.tbRegion_Leave);
             // 
@@ -364,9 +379,9 @@
             // 
             this.tbPostalcode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPostalcode.Location = new System.Drawing.Point(241, 10);
-            this.tbPostalcode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbPostalcode.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbPostalcode.Name = "tbPostalcode";
-            this.tbPostalcode.Size = new System.Drawing.Size(96, 21);
+            this.tbPostalcode.Size = new System.Drawing.Size(79, 21);
             this.tbPostalcode.TabIndex = 9;
             this.tbPostalcode.Leave += new System.EventHandler(this.tbPostalcode_Leave);
             // 
@@ -383,20 +398,6 @@
             this.label6.Text = "Birth date";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dtpBirthDate
-            // 
-            this.dtpBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpBirthDate.CustomFormat = "";
-            this.dtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBirthDate.Location = new System.Drawing.Point(187, 197);
-            this.dtpBirthDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpBirthDate.MaxDate = new System.DateTime(2022, 11, 14, 0, 0, 0, 0);
-            this.dtpBirthDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpBirthDate.Name = "dtpBirthDate";
-            this.dtpBirthDate.Size = new System.Drawing.Size(344, 21);
-            this.dtpBirthDate.TabIndex = 5;
-            this.dtpBirthDate.Value = new System.DateTime(1948, 12, 8, 0, 0, 0, 0);
-            // 
             // cbTitleCourtesy
             // 
             this.cbTitleCourtesy.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -405,18 +406,60 @@
             this.cbTitleCourtesy.ItemHeight = 15;
             this.cbTitleCourtesy.Location = new System.Drawing.Point(187, 149);
             this.cbTitleCourtesy.Name = "cbTitleCourtesy";
-            this.cbTitleCourtesy.Size = new System.Drawing.Size(125, 23);
+            this.cbTitleCourtesy.Size = new System.Drawing.Size(173, 23);
             this.cbTitleCourtesy.TabIndex = 4;
             // 
             // mtbHomePhone
             // 
             this.mtbHomePhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.mtbHomePhone.Location = new System.Drawing.Point(846, 197);
+            this.mtbHomePhone.Margin = new System.Windows.Forms.Padding(3, 3, 20, 3);
             this.mtbHomePhone.Mask = "000000000999";
             this.mtbHomePhone.Name = "mtbHomePhone";
-            this.mtbHomePhone.Size = new System.Drawing.Size(340, 21);
-            this.mtbHomePhone.TabIndex = 23;
+            this.mtbHomePhone.Size = new System.Drawing.Size(323, 21);
+            this.mtbHomePhone.TabIndex = 92;
             this.mtbHomePhone.ValidatingType = typeof(int);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.75581F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.24419F));
+            this.tableLayoutPanel6.Controls.Add(this.dtpBirthDate, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btBorrarBirthDate, 1, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(187, 187);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(344, 42);
+            this.tableLayoutPanel6.TabIndex = 24;
+            // 
+            // dtpBirthDate
+            // 
+            this.dtpBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpBirthDate.CustomFormat = "";
+            this.dtpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBirthDate.Location = new System.Drawing.Point(3, 10);
+            this.dtpBirthDate.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
+            this.dtpBirthDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpBirthDate.Name = "dtpBirthDate";
+            this.dtpBirthDate.Size = new System.Drawing.Size(272, 21);
+            this.dtpBirthDate.TabIndex = 5;
+            this.dtpBirthDate.Value = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+            this.dtpBirthDate.ValueChanged += new System.EventHandler(this.dtpBirthDate_ValueChanged);
+            this.dtpBirthDate.Leave += new System.EventHandler(this.dtpBirthDate_Leave);
+            // 
+            // btBorrarBirthDate
+            // 
+            this.btBorrarBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btBorrarBirthDate.Image = ((System.Drawing.Image)(resources.GetObject("btBorrarBirthDate.Image")));
+            this.btBorrarBirthDate.Location = new System.Drawing.Point(298, 5);
+            this.btBorrarBirthDate.Name = "btBorrarBirthDate";
+            this.btBorrarBirthDate.Size = new System.Drawing.Size(31, 31);
+            this.btBorrarBirthDate.TabIndex = 6;
+            this.btBorrarBirthDate.UseVisualStyleBackColor = true;
+            this.btBorrarBirthDate.Click += new System.EventHandler(this.btBorrarBirthDate_Click);
             // 
             // groupBox2
             // 
@@ -457,13 +500,13 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.42391F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.57609F));
             this.tableLayoutPanel4.Controls.Add(this.tbExtension, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.dtpHireDate, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label17, 0, 3);
             this.tableLayoutPanel4.Controls.Add(this.label14, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label15, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label16, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.tbPhotoPath, 1, 3);
             this.tableLayoutPanel4.Controls.Add(this.cbReportsTo, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel9, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 2);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -484,21 +527,8 @@
             this.tbExtension.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbExtension.Name = "tbExtension";
             this.tbExtension.Size = new System.Drawing.Size(330, 21);
-            this.tbExtension.TabIndex = 14;
+            this.tbExtension.TabIndex = 94;
             this.tbExtension.Leave += new System.EventHandler(this.tbExtension_Leave);
-            // 
-            // dtpHireDate
-            // 
-            this.dtpHireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpHireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpHireDate.Location = new System.Drawing.Point(179, 11);
-            this.dtpHireDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpHireDate.MaxDate = new System.DateTime(2022, 11, 4, 12, 37, 2, 0);
-            this.dtpHireDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpHireDate.Name = "dtpHireDate";
-            this.dtpHireDate.Size = new System.Drawing.Size(347, 21);
-            this.dtpHireDate.TabIndex = 12;
-            this.dtpHireDate.Value = new System.DateTime(1992, 5, 1, 0, 0, 0, 0);
             // 
             // label17
             // 
@@ -556,10 +586,10 @@
             // 
             this.tbPhotoPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPhotoPath.Location = new System.Drawing.Point(179, 144);
-            this.tbPhotoPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbPhotoPath.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbPhotoPath.Name = "tbPhotoPath";
-            this.tbPhotoPath.Size = new System.Drawing.Size(347, 21);
-            this.tbPhotoPath.TabIndex = 16;
+            this.tbPhotoPath.Size = new System.Drawing.Size(330, 21);
+            this.tbPhotoPath.TabIndex = 96;
             this.tbPhotoPath.Leave += new System.EventHandler(this.tbPhotoPath_Leave);
             // 
             // cbReportsTo
@@ -568,8 +598,49 @@
             this.cbReportsTo.FormattingEnabled = true;
             this.cbReportsTo.Location = new System.Drawing.Point(179, 98);
             this.cbReportsTo.Name = "cbReportsTo";
-            this.cbReportsTo.Size = new System.Drawing.Size(122, 23);
-            this.cbReportsTo.TabIndex = 15;
+            this.cbReportsTo.Size = new System.Drawing.Size(178, 23);
+            this.cbReportsTo.TabIndex = 95;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 85.87896F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.12104F));
+            this.tableLayoutPanel9.Controls.Add(this.btBorrarHireDate, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.dtpHireDate, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(179, 3);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(347, 38);
+            this.tableLayoutPanel9.TabIndex = 17;
+            // 
+            // btBorrarHireDate
+            // 
+            this.btBorrarHireDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btBorrarHireDate.Image = ((System.Drawing.Image)(resources.GetObject("btBorrarHireDate.Image")));
+            this.btBorrarHireDate.Location = new System.Drawing.Point(300, 3);
+            this.btBorrarHireDate.Name = "btBorrarHireDate";
+            this.btBorrarHireDate.Size = new System.Drawing.Size(31, 31);
+            this.btBorrarHireDate.TabIndex = 9;
+            this.btBorrarHireDate.UseVisualStyleBackColor = true;
+            this.btBorrarHireDate.Click += new System.EventHandler(this.btBorrarHireDate_Click);
+            // 
+            // dtpHireDate
+            // 
+            this.dtpHireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpHireDate.CustomFormat = "";
+            this.dtpHireDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpHireDate.Location = new System.Drawing.Point(3, 8);
+            this.dtpHireDate.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
+            this.dtpHireDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpHireDate.Name = "dtpHireDate";
+            this.dtpHireDate.Size = new System.Drawing.Size(274, 21);
+            this.dtpHireDate.TabIndex = 93;
+            this.dtpHireDate.Value = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+            this.dtpHireDate.ValueChanged += new System.EventHandler(this.dtpHireDate_ValueChanged);
+            this.dtpHireDate.Leave += new System.EventHandler(this.dtpHireDate_Leave);
             // 
             // tableLayoutPanel5
             // 
@@ -607,11 +678,11 @@
             // 
             this.tbNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbNotes.Location = new System.Drawing.Point(191, 37);
-            this.tbNotes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbNotes.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbNotes.Multiline = true;
             this.tbNotes.Name = "tbNotes";
-            this.tbNotes.Size = new System.Drawing.Size(336, 139);
-            this.tbNotes.TabIndex = 18;
+            this.tbNotes.Size = new System.Drawing.Size(319, 139);
+            this.tbNotes.TabIndex = 97;
             // 
             // pbPhoto
             // 
@@ -647,6 +718,7 @@
             this.btCancelar.TabIndex = 20;
             this.btCancelar.Text = "Cancelar";
             this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // btInsertar
             // 
@@ -669,6 +741,82 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.62791F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.37209F));
+            this.tableLayoutPanel7.Controls.Add(this.dateTimePicker1, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel7.TabIndex = 0;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.CustomFormat = "";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 38);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
+            this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(150, 23);
+            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.Value = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(176, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(21, 36);
+            this.button1.TabIndex = 6;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 86.62791F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.37209F));
+            this.tableLayoutPanel8.Controls.Add(this.dateTimePicker2, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel8.TabIndex = 0;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker2.CustomFormat = "";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(3, 38);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
+            this.dateTimePicker2.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(150, 23);
+            this.dateTimePicker2.TabIndex = 5;
+            this.dateTimePicker2.Value = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(176, 32);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 36);
+            this.button2.TabIndex = 6;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // FormInsertarEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -689,14 +837,18 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -736,7 +888,6 @@
         private Label label16;
         private TextBox tbExtension;
         private TextBox tbPhotoPath;
-        private DateTimePicker dtpHireDate;
         private TableLayoutPanel tableLayoutPanel5;
         private Label label19;
         private TextBox tbNotes;
@@ -748,5 +899,16 @@
         private Button btSeleccionarPhoto;
         private MaskedTextBox mtbHomePhone;
         private ErrorProvider errorProvider1;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Button btBorrarBirthDate;
+        private TableLayoutPanel tableLayoutPanel7;
+        private DateTimePicker dateTimePicker1;
+        private Button button1;
+        private TableLayoutPanel tableLayoutPanel8;
+        private DateTimePicker dateTimePicker2;
+        private Button button2;
+        private TableLayoutPanel tableLayoutPanel9;
+        private DateTimePicker dtpHireDate;
+        private Button btBorrarHireDate;
     }
 }

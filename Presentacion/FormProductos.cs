@@ -29,6 +29,7 @@ namespace Presentacion
             categories = Gestion.ListarCategory();
 
             dgvCategories.DataSource = categories;
+            dgvCategories.Columns["Products"].Visible = false;
         }
 
         private void dgvCategories_CellEnter(object sender, DataGridViewCellEventArgs e)
