@@ -74,8 +74,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.tbNotes = new System.Windows.Forms.TextBox();
             this.pbPhoto = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.btBorrarPhoto = new System.Windows.Forms.Button();
             this.btSeleccionarPhoto = new System.Windows.Forms.Button();
-            this.btCancelar = new System.Windows.Forms.Button();
+            this.btCerrar = new System.Windows.Forms.Button();
             this.btInsertar = new System.Windows.Forms.Button();
             this.ofdPhoto = new System.Windows.Forms.OpenFileDialog();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -95,6 +97,7 @@
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
+            this.tableLayoutPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -418,7 +421,8 @@
             this.mtbHomePhone.Name = "mtbHomePhone";
             this.mtbHomePhone.Size = new System.Drawing.Size(323, 21);
             this.mtbHomePhone.TabIndex = 92;
-            this.mtbHomePhone.ValidatingType = typeof(int);
+            this.mtbHomePhone.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtbHomePhone_MaskInputRejected);
+            this.mtbHomePhone.Leave += new System.EventHandler(this.mtbHomePhone_Leave);
             // 
             // tableLayoutPanel6
             // 
@@ -650,14 +654,14 @@
             this.tableLayoutPanel5.Controls.Add(this.label19, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.tbNotes, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.pbPhoto, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btSeleccionarPhoto, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel10, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(656, 2);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.7191F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.2809F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(530, 178);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
@@ -669,7 +673,7 @@
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(191, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(336, 35);
+            this.label19.Size = new System.Drawing.Size(336, 44);
             this.label19.TabIndex = 11;
             this.label19.Text = "Notes";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -677,11 +681,11 @@
             // tbNotes
             // 
             this.tbNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNotes.Location = new System.Drawing.Point(191, 37);
+            this.tbNotes.Location = new System.Drawing.Point(191, 46);
             this.tbNotes.Margin = new System.Windows.Forms.Padding(3, 2, 20, 2);
             this.tbNotes.Multiline = true;
             this.tbNotes.Name = "tbNotes";
-            this.tbNotes.Size = new System.Drawing.Size(319, 139);
+            this.tbNotes.Size = new System.Drawing.Size(319, 130);
             this.tbNotes.TabIndex = 97;
             // 
             // pbPhoto
@@ -689,41 +693,67 @@
             this.pbPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbPhoto.Location = new System.Drawing.Point(15, 37);
+            this.pbPhoto.Location = new System.Drawing.Point(15, 46);
             this.pbPhoto.Margin = new System.Windows.Forms.Padding(15, 2, 15, 2);
             this.pbPhoto.Name = "pbPhoto";
-            this.pbPhoto.Size = new System.Drawing.Size(158, 139);
+            this.pbPhoto.Size = new System.Drawing.Size(158, 130);
             this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPhoto.TabIndex = 13;
             this.pbPhoto.TabStop = false;
             // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.62637F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.37363F));
+            this.tableLayoutPanel10.Controls.Add(this.btBorrarPhoto, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btSeleccionarPhoto, 0, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(182, 38);
+            this.tableLayoutPanel10.TabIndex = 98;
+            // 
+            // btBorrarPhoto
+            // 
+            this.btBorrarPhoto.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btBorrarPhoto.Image = ((System.Drawing.Image)(resources.GetObject("btBorrarPhoto.Image")));
+            this.btBorrarPhoto.Location = new System.Drawing.Point(137, 3);
+            this.btBorrarPhoto.Name = "btBorrarPhoto";
+            this.btBorrarPhoto.Size = new System.Drawing.Size(31, 31);
+            this.btBorrarPhoto.TabIndex = 19;
+            this.btBorrarPhoto.UseVisualStyleBackColor = true;
+            this.btBorrarPhoto.Click += new System.EventHandler(this.btBorrarPhoto_Click);
+            // 
             // btSeleccionarPhoto
             // 
             this.btSeleccionarPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSeleccionarPhoto.Location = new System.Drawing.Point(3, 6);
+            this.btSeleccionarPhoto.Location = new System.Drawing.Point(3, 7);
             this.btSeleccionarPhoto.Name = "btSeleccionarPhoto";
-            this.btSeleccionarPhoto.Size = new System.Drawing.Size(182, 23);
-            this.btSeleccionarPhoto.TabIndex = 17;
+            this.btSeleccionarPhoto.Size = new System.Drawing.Size(128, 23);
+            this.btSeleccionarPhoto.TabIndex = 18;
             this.btSeleccionarPhoto.Text = "Seleccionar photo";
             this.btSeleccionarPhoto.UseVisualStyleBackColor = true;
             this.btSeleccionarPhoto.Click += new System.EventHandler(this.btSeleccionarPhoto_Click);
             // 
-            // btCancelar
+            // btCerrar
             // 
-            this.btCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btCancelar.Location = new System.Drawing.Point(1146, 674);
-            this.btCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(82, 22);
-            this.btCancelar.TabIndex = 20;
-            this.btCancelar.Text = "Cancelar";
-            this.btCancelar.UseVisualStyleBackColor = true;
-            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
+            this.btCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btCerrar.Location = new System.Drawing.Point(1146, 595);
+            this.btCerrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btCerrar.Name = "btCerrar";
+            this.btCerrar.Size = new System.Drawing.Size(82, 22);
+            this.btCerrar.TabIndex = 20;
+            this.btCerrar.Text = "Cerrar";
+            this.btCerrar.UseVisualStyleBackColor = true;
+            this.btCerrar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // btInsertar
             // 
             this.btInsertar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btInsertar.Location = new System.Drawing.Point(1038, 674);
+            this.btInsertar.Location = new System.Drawing.Point(1038, 595);
             this.btInsertar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btInsertar.Name = "btInsertar";
             this.btInsertar.Size = new System.Drawing.Size(82, 22);
@@ -821,12 +851,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btCerrar;
             this.ClientSize = new System.Drawing.Size(1264, 761);
+            this.ControlBox = false;
             this.Controls.Add(this.btInsertar);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btCancelar);
+            this.Controls.Add(this.btCerrar);
             this.Controls.Add(this.gbInformacionPersonal);
             this.Location = new System.Drawing.Point(0, 70);
+            this.MinimizeBox = false;
             this.Name = "FormInsertarEmpleado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormInsertarEmpleado";
@@ -846,6 +879,7 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
+            this.tableLayoutPanel10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
@@ -892,11 +926,10 @@
         private Label label19;
         private TextBox tbNotes;
         private PictureBox pbPhoto;
-        private Button btCancelar;
+        private Button btCerrar;
         private Button btInsertar;
         private ComboBox cbReportsTo;
         private OpenFileDialog ofdPhoto;
-        private Button btSeleccionarPhoto;
         private MaskedTextBox mtbHomePhone;
         private ErrorProvider errorProvider1;
         private TableLayoutPanel tableLayoutPanel6;
@@ -910,5 +943,8 @@
         private TableLayoutPanel tableLayoutPanel9;
         private DateTimePicker dtpHireDate;
         private Button btBorrarHireDate;
+        private TableLayoutPanel tableLayoutPanel10;
+        private Button btBorrarPhoto;
+        private Button btSeleccionarPhoto;
     }
 }

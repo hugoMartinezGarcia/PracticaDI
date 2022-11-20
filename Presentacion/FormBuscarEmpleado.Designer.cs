@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbDataGridView = new System.Windows.Forms.Label();
+            this.btCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -100,11 +101,22 @@
             this.lbDataGridView.TabIndex = 8;
             this.lbDataGridView.Text = "* Haga doble click sobre el employee para mostrar sus datos";
             // 
+            // btCerrar
+            // 
+            this.btCerrar.Location = new System.Drawing.Point(1026, 546);
+            this.btCerrar.Name = "btCerrar";
+            this.btCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btCerrar.TabIndex = 9;
+            this.btCerrar.Text = "Cerrar";
+            this.btCerrar.UseVisualStyleBackColor = true;
+            this.btCerrar.Click += new System.EventHandler(this.btCerrar_Click);
+            // 
             // FormBuscarEmpleado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 761);
+            this.Controls.Add(this.btCerrar);
             this.Controls.Add(this.lbDataGridView);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -130,5 +142,6 @@
         private Label label2;
         private GroupBox groupBox1;
         private Label lbDataGridView;
+        private Button btCerrar;
     }
 }

@@ -32,8 +32,9 @@ namespace Presentacion
 
         private bool modoActualizar;
 
-        private Employee? employee;
-        
+        private Employee? empleado;
+        private SortedList<int, string> empleados;
+
         public FormInsertarEmpleado()
         {
             InitializeComponent();
@@ -54,7 +55,8 @@ namespace Presentacion
 
             modoActualizar = false;
 
-            employee = null;
+            empleado = null;
+            empleados = new SortedList<int, string>();
         }
 
         public FormInsertarEmpleado(bool modoActualizar) : this()
@@ -68,15 +70,12 @@ namespace Presentacion
             cbTitleCourtesy.Items.AddRange(new string[] {"Sin selección", "Ms.", "Dr.", "Mrs.", "Mr."});
             cbTitleCourtesy.SelectedIndex = 0;
 
-            List<String> empleados = new List<String>();
-            empleados.Add("Sin selección");
-
-            // Se carga la lista de id de empleados
-            Gestion.ListarEmployee().ForEach(e => empleados.Add(e.EmployeeId.ToString() + " - " + e.FirstName + " " + e.LastName));
-
-            cbReportsTo.Items.AddRange(empleados.ToArray());
-
-            
+            // Se añaden los datos a la sorted List
+            empleados.Add(0, "Sin selección");
+            Gestion.ListarEmployee().ForEach(e => empleados.Add(
+                e.EmployeeId, 
+                e.EmployeeId.ToString() + " - " + e.FirstName + " " + e.LastName));
+            cbReportsTo.Items.AddRange(empleados.Values.ToArray());
             cbReportsTo.SelectedIndex = 0;
 
             BorrarFecha(dtpBirthDate);
@@ -91,41 +90,39 @@ namespace Presentacion
         // Método para rellenar los campos con los datos del empleado cuando el Form está en modo actualizar
         private void ModoActualizar()
         {
-            tbLastName.Text = employee!.LastName;
-            tbFirstName.Text = employee!.FirstName;
-            tbTitle.Text = employee.Title;
-            cbTitleCourtesy.SelectedItem = employee.TitleOfCourtesy;
-            if (employee.BirthDate != null) 
+            tbLastName.Text = empleado!.LastName;
+            tbFirstName.Text = empleado!.FirstName;
+            tbTitle.Text = empleado.Title;
+            cbTitleCourtesy.SelectedItem = empleado.TitleOfCourtesy;
+            if (empleado.BirthDate != null) 
             {
                 dtpBirthDate.Format = DateTimePickerFormat.Short;
-                dtpBirthDate.Value = (DateTime)employee.BirthDate; 
-            }
-            else
-            {
-                BorrarFecha(dtpBirthDate);
+                dtpBirthDate.Value = (DateTime)empleado.BirthDate; 
             }
 
-            if (employee.HireDate != null)
+            if (empleado.HireDate != null)
             {
                 dtpHireDate.Format = DateTimePickerFormat.Short;
-                dtpHireDate.Value = (DateTime)employee.HireDate;
-            }
-            else
-            {
-                BorrarFecha(dtpHireDate);
+                dtpHireDate.Value = (DateTime)empleado.HireDate;
             }
 
-            tbAddress.Text = employee.Address;
-            tbCity.Text = employee.City;
-            tbRegion.Text = employee.Region;
-            tbPostalcode.Text = employee.PostalCode;
-            tbCountry.Text = employee.Country;
-            mtbHomePhone.Text = employee.HomePhone;
-            tbExtension.Text = employee.Extension;
-            pbPhoto.Image = employee.Photo != null ? ByteArrayToImage(employee.Photo) : null;
-            tbNotes.Text = employee.Notes;
-            cbReportsTo.SelectedItem = employee.ReportsTo;
-            tbPhotoPath.Text = employee.PhotoPath;
+            if (empleado.ReportsTo != null)
+            {
+                if (empleados.ContainsKey((int)empleado.ReportsTo))
+                    cbReportsTo.SelectedItem = empleados[(int)empleado.ReportsTo];
+            }
+
+            pbPhoto.Image = empleado.Photo != null ? ByteArrayToImage(empleado.Photo) : null;
+
+            tbAddress.Text = empleado.Address;
+            tbCity.Text = empleado.City;
+            tbRegion.Text = empleado.Region;
+            tbPostalcode.Text = empleado.PostalCode;
+            tbCountry.Text = empleado.Country;
+            mtbHomePhone.Text = empleado.HomePhone;
+            tbExtension.Text = empleado.Extension;
+            tbNotes.Text = empleado.Notes;
+            tbPhotoPath.Text = empleado.PhotoPath;
 
             btInsertar.Text = "Actualizar";
         }
@@ -190,6 +187,31 @@ namespace Presentacion
             valHireDate = ValidarDatePicker(dtpHireDate);
         }
 
+        // El evento ocurre cuando se sale del mtbHomePhone
+        private void mtbHomePhone_Leave(object sender, EventArgs e)
+        {
+            valHomePhone = ValidarMaskedTextBox(mtbHomePhone);
+        }
+
+        // Método para validar un MaskedTextBox
+        private bool ValidarMaskedTextBox(MaskedTextBox mtb)
+        {
+            bool resultado;
+
+            if (mtb.MaskCompleted || String.IsNullOrEmpty(mtb.Text))
+            {
+                IndicarOK(mtb);
+                resultado = true;
+            }
+            else
+            {
+                IndicarError(mtb, "No es un número válido");
+                resultado = false;
+            }
+
+            return resultado;
+        }
+
         private void dtpBirthDate_ValueChanged(object sender, EventArgs e)
         {
             dtpBirthDate.Format = DateTimePickerFormat.Short;
@@ -242,6 +264,12 @@ namespace Presentacion
             return respuesta;
         }
 
+        // El evento ocurre cuando se introducen datos no numéricos
+        private void mtbHomePhone_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            IndicarError(mtbHomePhone, "Solo se permiten datos numéricos");
+        }
+
         private void btBorrarBirthDate_Click(object sender, EventArgs e)
         {
             BorrarFecha(dtpBirthDate);
@@ -254,6 +282,7 @@ namespace Presentacion
 
         private bool ComprobarCampos()
         {
+            // Se comprueba si todos los campos tienen datos correctos
             valFirstName = ValidarTextBoxString(tbFirstName, "First name", 10, false);
             valLastName = ValidarTextBoxString(tbLastName, "Last name", 20, false);
             valTitle = ValidarTextBoxString(tbTitle, "Title", 30, true);
@@ -266,9 +295,12 @@ namespace Presentacion
             valPhotoPath = ValidarPathUrl(tbPhotoPath, 255);
             valBirthDate = ValidarDatePicker(dtpBirthDate);
             valHireDate = ValidarDatePicker(dtpHireDate);
+            valHomePhone = ValidarMaskedTextBox(mtbHomePhone);
 
+            // Se devuelve true si todos los campos están correctos o false en caso contrario
             return valFirstName && valLastName && valTitle && valAddress && valCity && valRegion 
-                && valPostalCode && valCountry && valExtension && valPhotoPath && valBirthDate && valHireDate;
+                && valPostalCode && valCountry && valExtension && valPhotoPath && valBirthDate 
+                && valHireDate && valHomePhone;
         }
 
         private void btInsertar_Click(object sender, EventArgs e)
@@ -296,24 +328,25 @@ namespace Presentacion
                     nuevoEmployee.Region = FormatearTBNull(tbRegion);
                     nuevoEmployee.PostalCode = FormatearTBNull(tbPostalcode);
                     nuevoEmployee.Country = FormatearTBNull(tbCountry);
-                    nuevoEmployee.HomePhone = mtbHomePhone.Text;
+                    nuevoEmployee.HomePhone = mtbHomePhone.Text != String.Empty ? mtbHomePhone.Text.Trim() : null;
                     nuevoEmployee.Extension = FormatearTBNull(tbExtension);
                     nuevoEmployee.Photo = valPhoto ? ImageToByteArray(pbPhoto.Image) : null;
                     nuevoEmployee.PhotoPath = FormatearTBNull(tbPhotoPath);
                     nuevoEmployee.Notes = FormatearTBNull(tbNotes);
 
                     if (cbReportsTo.SelectedIndex > 0)
-                        nuevoEmployee.ReportsTo = Convert.ToInt32(cbReportsTo.SelectedItem);
+                        // Si se ha seleccionado algún empleado de la lista se obtiene la key
+                        // de la sortedList a partir del value. La key representa el EmployeeId
+                        nuevoEmployee.ReportsTo = empleados.
+                            FirstOrDefault(e => e.Value == (string)cbReportsTo.SelectedItem).Key;
                     else
                         nuevoEmployee.ReportsTo = null;
-
-                    
 
                     // Si está en modo actualizar
                     if (modoActualizar)
                     {
                         // Se copia el id del empleado recibido al nuevoEmployee
-                        nuevoEmployee.EmployeeId = employee!.EmployeeId;
+                        nuevoEmployee.EmployeeId = empleado!.EmployeeId;
 
                         using (Gestion g = new Gestion())
                         {
@@ -322,6 +355,7 @@ namespace Presentacion
 
                         MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha modificado correctamente", 
                             nuevoEmployee.EmployeeId, nuevoEmployee.FirstName, nuevoEmployee.LastName));
+                        this.Close();
                     }
                     // Si no está en modo actualizar se inserta el nuevoEmployee
                     else
@@ -333,6 +367,8 @@ namespace Presentacion
 
                         MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha insertado correctamente",
                             nuevoEmployee.EmployeeId, nuevoEmployee.FirstName, nuevoEmployee.LastName));
+
+                        this.Close();
                     }
                 }
                 catch (Exception)
@@ -458,7 +494,7 @@ namespace Presentacion
         // A través de este método se recibe el empleado desde el Form Buscar
         public void DefinirEmpleado(Employee employee)
         {
-            this.employee = employee;
+            this.empleado = employee;
         }
 
         // Método para recoger los string que admiten null
@@ -468,6 +504,11 @@ namespace Presentacion
             string? resultado = tb.Text != String.Empty ? tb.Text.Trim() : null;
             
             return resultado;
+        }
+
+        private void btBorrarPhoto_Click(object sender, EventArgs e)
+        {
+            pbPhoto.Image = null;
         }
     }
 }

@@ -76,6 +76,15 @@
         X3lCAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btBorrarPhoto.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAKFJREFUSEvtjdENg0AMQ2+A/rNlt+gM3YA16aVckOMSJQF+KvEki3Owk3aQeXwv
+        Yel6r88v4kWn0UUPeONi9mWihezTRIvYM6/xdYkWsld07v3f8ILshWzuh2yRvbCXM3BAfVUuHMBSRS57
+        YVGWMI9LUVmqeVPAIs6nLsxgLgQLWMT5fcCUFZzfB0xZwfn/HEBk9lyfhssOeJQPCFrKatDaB+Zywky6
+        X3lCAAAAAElFTkSuQmCC
+</value>
+  </data>
   <metadata name="ofdPhoto.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
