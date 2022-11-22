@@ -457,7 +457,7 @@
             // btBorrarBirthDate
             // 
             this.btBorrarBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btBorrarBirthDate.Image = ((System.Drawing.Image)(resources.GetObject("btBorrarBirthDate.Image")));
+            this.btBorrarBirthDate.Image = global::Presentacion.Properties.Resources.iconoBorrar;
             this.btBorrarBirthDate.Location = new System.Drawing.Point(298, 5);
             this.btBorrarBirthDate.Name = "btBorrarBirthDate";
             this.btBorrarBirthDate.Size = new System.Drawing.Size(31, 31);
@@ -623,7 +623,7 @@
             // btBorrarHireDate
             // 
             this.btBorrarHireDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btBorrarHireDate.Image = ((System.Drawing.Image)(resources.GetObject("btBorrarHireDate.Image")));
+            this.btBorrarHireDate.Image = global::Presentacion.Properties.Resources.iconoBorrar;
             this.btBorrarHireDate.Location = new System.Drawing.Point(300, 3);
             this.btBorrarHireDate.Name = "btBorrarHireDate";
             this.btBorrarHireDate.Size = new System.Drawing.Size(31, 31);
@@ -719,7 +719,7 @@
             // btBorrarPhoto
             // 
             this.btBorrarPhoto.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btBorrarPhoto.Image = ((System.Drawing.Image)(resources.GetObject("btBorrarPhoto.Image")));
+            this.btBorrarPhoto.Image = global::Presentacion.Properties.Resources.iconoBorrar;
             this.btBorrarPhoto.Location = new System.Drawing.Point(137, 3);
             this.btBorrarPhoto.Name = "btBorrarPhoto";
             this.btBorrarPhoto.Size = new System.Drawing.Size(31, 31);

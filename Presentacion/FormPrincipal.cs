@@ -25,8 +25,6 @@ namespace Presentacion
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             CargarFormAcceso();
-            
-            
         }
 
         private void CargarFormAcceso()
@@ -137,11 +135,9 @@ namespace Presentacion
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormEstadisticas formEstadisticas = new FormEstadisticas();
-            formEstadisticas.MdiParent = this;
-            formEstadisticas.Show();
+            FormPedidos formNuevoPedido  = new FormPedidos();
+            formNuevoPedido.MdiParent = this;
+            formNuevoPedido.Show();
         }
-
-        
     }
 }

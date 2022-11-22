@@ -55,7 +55,7 @@ namespace Entidades
             UnitsOnOrder = null;
             ReorderLevel = null;
             Discontinued = false;
-            Category = new Category();
+            Category = null;
             Supplier = null;
             OrderDetails = new HashSet<OrderDetail>();
             disposed = false;

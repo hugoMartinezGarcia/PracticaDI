@@ -3,6 +3,7 @@
 using Entidades;
 using Datos;
 using System.Linq;
+using System.Data;
 
 namespace Negocio
 {
@@ -86,6 +87,49 @@ namespace Negocio
             }
 
             return orders;
+        }
+
+
+
+        public DataTable DataTableProductos(int categorySeleccionada)
+        {
+            List<Product> productos = new List<Product>();
+
+            // Si se le pasa 0 al método, el datatable devolverá la lista completa de productos
+            if (categorySeleccionada == 0)
+                productos = ListarProduct();
+            else
+            {
+                productos = ListarProduct().
+                Where(p => p.CategoryId == categorySeleccionada).ToList();
+            }
+            
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Product Id", typeof(int));
+            dt.Columns.Add("Product name", typeof(string));
+            dt.Columns.Add("Supplier", typeof(string));
+            dt.Columns.Add("Category", typeof(string));
+            dt.Columns.Add("Quantity per unit", typeof(string));
+            dt.Columns.Add("Unit price", typeof(double));
+            dt.Columns.Add("Units in stock", typeof(int));
+            dt.Columns.Add("Units on order", typeof(int));
+            dt.Columns.Add("Reorder level", typeof(int));
+            dt.Columns.Add("Discontinued", typeof(bool));
+
+            productos.ForEach(p => dt.Rows.Add(
+                p.ProductId, 
+                p.ProductName, 
+                p.SupplierId != null ? BuscarSupplier((int)p.SupplierId).CompanyName : null,
+                p.CategoryId != null ? BuscarCategory((int)p.CategoryId).CategoryName : null, 
+                p.QuantityPerUnit, 
+                p.UnitPrice, 
+                p.UnitsInStock, 
+                p.UnitsOnOrder,
+                p.ReorderLevel, 
+                p.Discontinued));
+
+            return dt;
         }
         
         public override string ToString()

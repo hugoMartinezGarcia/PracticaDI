@@ -36,34 +36,42 @@ namespace Presentacion
         {
             int categorySeleccionada = (int)dgvCategories.CurrentRow.Cells["CategoryId"].Value;
 
-            dgvProducts.DataSource = Gestion.ListarProduct().
-                Where(p => p.CategoryId == categorySeleccionada).ToList();
-
-            dgvProducts.Columns["Supplier"].Visible = false;
-            dgvProducts.Columns["OrderDetails"].Visible = false;
-            dgvProducts.Columns["Category"].Visible = false;
+            using (Gestion g = new Gestion())
+            {
+                // Se obtiene el datatable de productos filtrando por categoryId
+                dgvProducts.DataSource = g.DataTableProductos(categorySeleccionada);
+            }
         }
 
         private void dgvProducts_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            product = (Product)dgvProducts.CurrentRow.DataBoundItem;
-
-            tbProductId.Text = Convert.ToString(product.ProductId);
-            tbProductName.Text = product.ProductName;
-            tbQuantityPerUnit.Text = Convert.ToString(product.QuantityPerUnit);
-            tbUnitPrice.Text = Convert.ToString(product.UnitPrice);
-            tbUnitsInStock.Text = Convert.ToString(product.UnitsInStock);
-            tbUnitsOnOrder.Text = Convert.ToString(product.UnitsOnOrder);
-            tbReorderLevel.Text = Convert.ToString(product.ReorderLevel);
-            tbDiscontinued.Text = Convert.ToString(product.Discontinued);
-
-            using (Gestion g = new Gestion())
+            try
             {
-                tbSupplierId.Text = product.SupplierId != null ? 
-                    g.BuscarSupplier((int)product.SupplierId).ContactName : null;
-                tbCategoryId.Text = product.CategoryId != null ? 
-                    g.BuscarCategory((int)product.CategoryId).CategoryName : null;
+                using (Gestion g = new Gestion())
+                {
+                    // Se obtiene el producto de la bbdd a partir de la celda seleccionada en el dgv
+                    product = g.BuscarProduct((int)dgvProducts.CurrentRow.Cells["Product Id"].Value);
+                    // Se extraen los datos de supplier y category de sus respectivas tablas.
+                    tbSupplierId.Text = product.SupplierId != null ?
+                        g.BuscarSupplier((int)product.SupplierId).ContactName : null;
+                    tbCategoryId.Text = product.CategoryId != null ?
+                        g.BuscarCategory((int)product.CategoryId).CategoryName : null;
+                }
+
+                tbProductId.Text = Convert.ToString(product.ProductId);
+                tbProductName.Text = product.ProductName;
+                tbQuantityPerUnit.Text = Convert.ToString(product.QuantityPerUnit);
+                tbUnitPrice.Text = Convert.ToString(product.UnitPrice);
+                tbUnitsInStock.Text = Convert.ToString(product.UnitsInStock);
+                tbUnitsOnOrder.Text = Convert.ToString(product.UnitsOnOrder);
+                tbReorderLevel.Text = Convert.ToString(product.ReorderLevel);
+                tbDiscontinued.Text = Convert.ToString(product.Discontinued);
             }
+            catch (Exception ex) 
+            {
+                // No hacer nada
+            }
+            
         }
 
         private void btModificarPrecio_Click(object sender, EventArgs e)
@@ -72,7 +80,7 @@ namespace Presentacion
             {
                 try
                 {
-                    product.UnitPrice = Convert.ToInt32(tbUnitPrice.Text);
+                    product.UnitPrice = Convert.ToDecimal(tbUnitPrice.Text);
 
                     using (Gestion g = new Gestion())
                     {
@@ -80,7 +88,7 @@ namespace Presentacion
                     }
 
                     MessageBox.Show("Se ha actualizado correctamente el Unit price del Product");
-                    FormProductos_Load(sender, e);
+                    tbUnitPrice.Text = Convert.ToString(product.UnitPrice);
                 }
                 catch (FormatException) 
                 {
