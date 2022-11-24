@@ -109,14 +109,14 @@ namespace Presentacion
             chartArea2.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea2);
             this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
+            //legend2.Name = "Legend1";
+            //this.chart2.Legends.Add(legend2);
             this.chart2.Location = new System.Drawing.Point(3, 3);
             this.chart2.Name = "chart2";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
+            //series2.Legend = "Legend1";
+            series2.Name = "Categorias";
             this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(1250, 729);
             this.chart2.TabIndex = 0;

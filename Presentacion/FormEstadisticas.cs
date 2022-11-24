@@ -50,9 +50,9 @@ namespace Presentacion
             foreach (KeyValuePair<string, int> d in serieProductosCategoria)
             {
                 // Se añaden los valores al gráfico
-                int indice = chart2.Series["Series1"].Points.AddXY(d.Key, d.Value);
-                // Se coloca un tool tip a cada punto para mostrar los datos más grandes
-                chart2.Series["Series1"].Points[indice].ToolTip = String.Format("{0} ({1}%)", d.Key, d.Value);
+                int indice = chart2.Series["Categorias"].Points.AddXY(d.Key, d.Value);
+                // Se coloca un tool tip a cada punto para mostrar los datos más detallados
+                chart2.Series["Categorias"].Points[indice].ToolTip = String.Format("{0} ({1}%)", d.Key, d.Value);
             }
         }
     }
