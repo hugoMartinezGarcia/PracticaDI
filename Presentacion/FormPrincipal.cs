@@ -121,14 +121,14 @@ namespace Presentacion
 
         private void totalPedidosPorClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormEstadisticas formEstadisticas= new FormEstadisticas();
+            FormEstadisticas formEstadisticas= new FormEstadisticas(0);
             formEstadisticas.MdiParent = this;
             formEstadisticas.Show();
         }
 
         private void productosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormEstadisticas formEstadisticas = new FormEstadisticas();
+            FormEstadisticas formEstadisticas = new FormEstadisticas(1);
             formEstadisticas.MdiParent = this;
             formEstadisticas.Show();
         }

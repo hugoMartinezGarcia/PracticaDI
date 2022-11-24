@@ -4,6 +4,7 @@ using Entidades;
 using Datos;
 using System.Linq;
 using System.Data;
+using System;
 
 namespace Negocio
 {
@@ -186,20 +187,57 @@ namespace Negocio
             return new ResumenFactura(precio, IVA);
         }
 
+        // Método para crear un Dictionary con los valores que se mostrarán en el gráfico Pedidos Cliente
         public Dictionary<string, int> SeriePedidosCliente()
         {
             Dictionary<string, int> resultado = new Dictionary<string, int>();
             ListarOrder().ForEach(o =>
                 {
-                    if (!resultado.ContainsKey(o.CustomerId))
-                        resultado.Add(o.CustomerId, 1);
-                    else
-                        resultado[o.CustomerId] = resultado[o.CustomerId] + 1;
+                    if (o.CustomerId != null)
+                    {
+                        o.Customer = BuscarCustomer(o.CustomerId);
+
+                        if (!resultado.ContainsKey(o.Customer.CompanyName))
+                            resultado.Add(o.Customer.CompanyName, 1);
+                        else
+                            resultado[o.Customer.CompanyName] = resultado[o.Customer.CompanyName] + 1;
+                    }
                 });
 
             return resultado;
         }
-        
+
+        // Método para crear un Dictionary con los valores que se mostrarán en el gráfico Productos por Categoría
+        public Dictionary<string, int> SerieProductosPorCategoria()
+        {
+            Dictionary<string, int> resultado = new Dictionary<string, int>();
+            List<Product> products = new List<Product>(ListarProduct());
+            int total = 0;
+
+            products.ForEach(p =>
+            {
+                if (p.CategoryId != null)
+                {
+                    p.Category = BuscarCategory((int)p.CategoryId);
+
+                   
+                    if (!resultado.ContainsKey(p.Category.CategoryName))
+                        resultado.Add(p.Category.CategoryName, 1);
+                    else
+                        resultado[p.Category.CategoryName] = resultado[p.Category.CategoryName] + 1;
+
+                    total++;
+                }
+            });
+
+            foreach (KeyValuePair<string, int> d in resultado)
+            {
+                resultado[d.Key] = d.Value * 100 / total;
+            }
+
+            return resultado;
+        }
+
         public override string ToString()
         {
             return String.Join("-", Empleados)

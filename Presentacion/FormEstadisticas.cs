@@ -18,27 +18,42 @@ namespace Presentacion
 {
     public partial class FormEstadisticas : Form
     {
-        public FormEstadisticas()
+        private int selectedPage;
+        public FormEstadisticas(int selectedPage)
         {
             InitializeComponent();
+            this.selectedPage = selectedPage;
         }
 
         private void FormEstadisticas_Load(object sender, EventArgs e)
         {
+            this.tcEstadisticas.SelectedIndex = selectedPage;
+            Dictionary<string, int> seriePedidosCliente;
+            Dictionary<string, int> serieProductosCategoria;
+
             using (Gestion g = new Gestion())
             {
-                Dictionary<string, int> dic = new Dictionary<string, int>(g.SeriePedidosCliente());
+                seriePedidosCliente = new Dictionary<string, int>(g.SeriePedidosCliente());
+                serieProductosCategoria = new Dictionary<string, int>(g.SerieProductosPorCategoria());
 
-                Debug.WriteLine("Dictionary<string, int> dic = new Dictionary<string, int>();");
-                foreach (KeyValuePair<string, int> d in dic)
-                {
-                    // Se añaden los valores al gráfico
-                    int indice = chart1.Series["Nº pedidos"].Points.AddXY(d.Key, d.Value);
-                    // Se coloca un tool tip a cada punto para mostrar los datos más grandes
-                    chart1.Series["Nº pedidos"].Points[indice].ToolTip = String.Format("{0} ({1})", d.Key, d.Value);
-                }
-            } 
-            
+            }  
+
+
+            foreach (KeyValuePair<string, int> d in seriePedidosCliente)
+            {
+                // Se añaden los valores al gráfico
+                int indice = chart1.Series["Nº pedidos"].Points.AddXY(d.Key, d.Value);
+                // Se coloca un tool tip a cada punto para mostrar los datos más grandes
+                chart1.Series["Nº pedidos"].Points[indice].ToolTip = String.Format("{0} ({1})", d.Key, d.Value);
+            }
+
+            foreach (KeyValuePair<string, int> d in serieProductosCategoria)
+            {
+                // Se añaden los valores al gráfico
+                int indice = chart2.Series["Series1"].Points.AddXY(d.Key, d.Value);
+                // Se coloca un tool tip a cada punto para mostrar los datos más grandes
+                chart2.Series["Series1"].Points[indice].ToolTip = String.Format("{0} ({1}%)", d.Key, d.Value);
+            }
         }
     }
 }
