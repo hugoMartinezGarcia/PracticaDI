@@ -15,44 +15,23 @@ namespace Presentacion
     public partial class FormBuscarCustomer : Form
     {
         private DataTable dtCustomers;
-        private List<Customer> customers;
         private FormPedidos formPedidos;
 
         public FormBuscarCustomer(FormPedidos formPedidos)
         {
             InitializeComponent();
-            customers = new List<Customer>();
             dtCustomers = new DataTable();
             this.formPedidos = formPedidos;
         }
 
         private void FormBuscarCustomer_Load(object sender, EventArgs e)
         {
-            // Se crea un DataTable con las columnas de Employee que se mostrarán
-            dtCustomers.Columns.Add("Customer Id", typeof(string));
-            dtCustomers.Columns.Add("Company name", typeof(string));
-            dtCustomers.Columns.Add("Contact name", typeof(string));
+            using (Gestion g = new Gestion()) 
+            {
+                dtCustomers = g.DataTableCustomers();
+            }
 
-            RellenarDataTable();
-        }
-
-        // Método para rellenar el dgv con la lista de empleados
-        private void RellenarDataTable()
-        {
-            // Se vacía el datatable por si tuviera datos
-            dtCustomers.Rows.Clear();
-
-            // Se recupera la lista de empleados de la BBDD
-            customers = Gestion.ListarCustomer();
-
-            // Se rellena el Datatable con los datos de la lista de Employees
-            customers.ForEach(c => dtCustomers.Rows.Add(c.CustomerId, c.CompanyName, c.ContactName));
-
-            // Se crea el DataView y se le asocia el DataTable
-            DataView dv = new DataView(dtCustomers);
-
-            // Se muestran los datos en el DataGridView
-            dgvCustomers.DataSource = dv;
+            dgvCustomers.DataSource = dtCustomers;
         }
 
         private void tbBuscar_TextChanged(object sender, EventArgs e)
@@ -94,6 +73,9 @@ namespace Presentacion
             }
         }
 
-        
+        private void btCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

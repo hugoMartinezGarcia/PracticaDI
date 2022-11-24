@@ -314,7 +314,7 @@ namespace Presentacion
 
                     nuevoEmployee.LastName = tbLastName.Text;
                     nuevoEmployee.FirstName = tbFirstName.Text;
-                    nuevoEmployee.Title = FormatearTBNull(tbTitle);
+                    nuevoEmployee.Title = FormatearTBNullString(tbTitle);
                     
                     if (cbTitleCourtesy.SelectedIndex > 0)
                         nuevoEmployee.TitleOfCourtesy = cbTitleCourtesy.SelectedItem.ToString();
@@ -323,16 +323,16 @@ namespace Presentacion
 
                     nuevoEmployee.BirthDate = dtpBirthDate.Value == dtpBirthDate.MinDate ? null : dtpBirthDate.Value;
                     nuevoEmployee.HireDate = dtpHireDate.Value == dtpHireDate.MinDate ? null : dtpHireDate.Value;
-                    nuevoEmployee.Address = FormatearTBNull(tbAddress);
-                    nuevoEmployee.City = FormatearTBNull(tbCity);
-                    nuevoEmployee.Region = FormatearTBNull(tbRegion);
-                    nuevoEmployee.PostalCode = FormatearTBNull(tbPostalcode);
-                    nuevoEmployee.Country = FormatearTBNull(tbCountry);
+                    nuevoEmployee.Address = FormatearTBNullString(tbAddress);
+                    nuevoEmployee.City = FormatearTBNullString(tbCity);
+                    nuevoEmployee.Region = FormatearTBNullString(tbRegion);
+                    nuevoEmployee.PostalCode = FormatearTBNullString(tbPostalcode);
+                    nuevoEmployee.Country = FormatearTBNullString(tbCountry);
                     nuevoEmployee.HomePhone = mtbHomePhone.Text != String.Empty ? mtbHomePhone.Text.Trim() : null;
-                    nuevoEmployee.Extension = FormatearTBNull(tbExtension);
+                    nuevoEmployee.Extension = FormatearTBNullString(tbExtension);
                     nuevoEmployee.Photo = valPhoto ? ImageToByteArray(pbPhoto.Image) : null;
-                    nuevoEmployee.PhotoPath = FormatearTBNull(tbPhotoPath);
-                    nuevoEmployee.Notes = FormatearTBNull(tbNotes);
+                    nuevoEmployee.PhotoPath = FormatearTBNullString(tbPhotoPath);
+                    nuevoEmployee.Notes = FormatearTBNullString(tbNotes);
 
                     if (cbReportsTo.SelectedIndex > 0)
                         // Si se ha seleccionado algún empleado de la lista se obtiene la key
@@ -355,7 +355,6 @@ namespace Presentacion
 
                         MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha modificado correctamente", 
                             nuevoEmployee.EmployeeId, nuevoEmployee.FirstName, nuevoEmployee.LastName));
-                        this.Close();
                     }
                     // Si no está en modo actualizar se inserta el nuevoEmployee
                     else
@@ -367,9 +366,8 @@ namespace Presentacion
 
                         MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha insertado correctamente",
                             nuevoEmployee.EmployeeId, nuevoEmployee.FirstName, nuevoEmployee.LastName));
-
-                        this.Close();
                     }
+                    this.Close();
                 }
                 catch (Exception)
                 {
@@ -498,7 +496,7 @@ namespace Presentacion
         }
 
         // Método para recoger los string que admiten null
-        public string? FormatearTBNull(TextBox tb)
+        public string? FormatearTBNullString(TextBox tb)
         {
 
             string? resultado = tb.Text != String.Empty ? tb.Text.Trim() : null;

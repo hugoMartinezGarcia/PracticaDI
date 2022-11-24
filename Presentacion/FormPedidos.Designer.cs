@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPedidos));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tlpOrder = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.btShippedDate = new System.Windows.Forms.Button();
+            this.dtpShippedDate = new System.Windows.Forms.DateTimePicker();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.btRequiredDate = new System.Windows.Forms.Button();
+            this.dtpRequiredDate = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.btEditarCustomer = new System.Windows.Forms.Button();
             this.tbCustomer = new System.Windows.Forms.TextBox();
@@ -53,17 +60,17 @@
             this.tbShipVia = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.dtpOrderDate = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.dtpRequiredDate = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.dtpShippedDate = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lbEmployeeId = new System.Windows.Forms.Label();
             this.tbEmployee = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbOrderId = new System.Windows.Forms.Label();
             this.tbOrderId = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btBorrarOrderDate = new System.Windows.Forms.Button();
+            this.dtpOrderDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tbTotal = new System.Windows.Forms.TextBox();
@@ -73,6 +80,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbPrecio = new System.Windows.Forms.TextBox();
             this.dgvOrderDetails = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -84,17 +92,22 @@
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.btGuardar = new System.Windows.Forms.Button();
             this.btCerrar = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             this.tlpOrder.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetails)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -117,6 +130,8 @@
             this.tlpOrder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.32539F));
             this.tlpOrder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.36565F));
             this.tlpOrder.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29F));
+            this.tlpOrder.Controls.Add(this.tableLayoutPanel9, 1, 4);
+            this.tlpOrder.Controls.Add(this.tableLayoutPanel8, 1, 3);
             this.tlpOrder.Controls.Add(this.tableLayoutPanel7, 1, 1);
             this.tlpOrder.Controls.Add(this.label20, 3, 5);
             this.tlpOrder.Controls.Add(this.tbShipCountry, 4, 5);
@@ -130,17 +145,15 @@
             this.tlpOrder.Controls.Add(this.tbShipName, 4, 1);
             this.tlpOrder.Controls.Add(this.tableLayoutPanel5, 1, 5);
             this.tlpOrder.Controls.Add(this.label15, 0, 2);
-            this.tlpOrder.Controls.Add(this.dtpOrderDate, 1, 2);
             this.tlpOrder.Controls.Add(this.label14, 0, 3);
-            this.tlpOrder.Controls.Add(this.dtpRequiredDate, 1, 3);
             this.tlpOrder.Controls.Add(this.label13, 0, 4);
-            this.tlpOrder.Controls.Add(this.dtpShippedDate, 1, 4);
             this.tlpOrder.Controls.Add(this.label22, 0, 5);
-            this.tlpOrder.Controls.Add(this.label16, 3, 0);
+            this.tlpOrder.Controls.Add(this.lbEmployeeId, 3, 0);
             this.tlpOrder.Controls.Add(this.tbEmployee, 4, 0);
             this.tlpOrder.Controls.Add(this.label26, 0, 1);
-            this.tlpOrder.Controls.Add(this.label12, 0, 0);
+            this.tlpOrder.Controls.Add(this.lbOrderId, 0, 0);
             this.tlpOrder.Controls.Add(this.tbOrderId, 1, 0);
+            this.tlpOrder.Controls.Add(this.tableLayoutPanel3, 1, 2);
             this.tlpOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpOrder.Location = new System.Drawing.Point(3, 18);
             this.tlpOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -155,6 +168,84 @@
             this.tlpOrder.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOrder.Size = new System.Drawing.Size(1217, 237);
             this.tlpOrder.TabIndex = 0;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.5679F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.4321F));
+            this.tableLayoutPanel9.Controls.Add(this.btShippedDate, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.dtpShippedDate, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(198, 159);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(324, 33);
+            this.tableLayoutPanel9.TabIndex = 36;
+            // 
+            // btShippedDate
+            // 
+            this.btShippedDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btShippedDate.Image = global::Presentacion.Properties.Resources.iconoBorrar;
+            this.btShippedDate.Location = new System.Drawing.Point(294, 3);
+            this.btShippedDate.Name = "btShippedDate";
+            this.btShippedDate.Size = new System.Drawing.Size(27, 27);
+            this.btShippedDate.TabIndex = 2;
+            this.btShippedDate.UseVisualStyleBackColor = true;
+            this.btShippedDate.Click += new System.EventHandler(this.btShippedDate_Click);
+            // 
+            // dtpShippedDate
+            // 
+            this.dtpShippedDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpShippedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpShippedDate.Location = new System.Drawing.Point(3, 5);
+            this.dtpShippedDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpShippedDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpShippedDate.Name = "dtpShippedDate";
+            this.dtpShippedDate.Size = new System.Drawing.Size(268, 23);
+            this.dtpShippedDate.TabIndex = 23;
+            this.dtpShippedDate.Value = new System.DateTime(1997, 9, 2, 0, 0, 0, 0);
+            this.dtpShippedDate.ValueChanged += new System.EventHandler(this.dtpShippedDate_ValueChanged);
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.5679F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.4321F));
+            this.tableLayoutPanel8.Controls.Add(this.btRequiredDate, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.dtpRequiredDate, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(198, 120);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(324, 33);
+            this.tableLayoutPanel8.TabIndex = 35;
+            // 
+            // btRequiredDate
+            // 
+            this.btRequiredDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btRequiredDate.Image = global::Presentacion.Properties.Resources.iconoBorrar;
+            this.btRequiredDate.Location = new System.Drawing.Point(294, 3);
+            this.btRequiredDate.Name = "btRequiredDate";
+            this.btRequiredDate.Size = new System.Drawing.Size(27, 27);
+            this.btRequiredDate.TabIndex = 2;
+            this.btRequiredDate.UseVisualStyleBackColor = true;
+            this.btRequiredDate.Click += new System.EventHandler(this.btRequiredDate_Click);
+            // 
+            // dtpRequiredDate
+            // 
+            this.dtpRequiredDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpRequiredDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRequiredDate.Location = new System.Drawing.Point(3, 5);
+            this.dtpRequiredDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpRequiredDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpRequiredDate.Name = "dtpRequiredDate";
+            this.dtpRequiredDate.Size = new System.Drawing.Size(268, 23);
+            this.dtpRequiredDate.TabIndex = 22;
+            this.dtpRequiredDate.Value = new System.DateTime(1997, 9, 22, 0, 0, 0, 0);
+            this.dtpRequiredDate.ValueChanged += new System.EventHandler(this.dtpRequiredDate_ValueChanged);
             // 
             // tableLayoutPanel7
             // 
@@ -396,17 +487,6 @@
             this.label15.TabIndex = 1;
             this.label15.Text = "Order date";
             // 
-            // dtpOrderDate
-            // 
-            this.dtpOrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpOrderDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpOrderDate.Location = new System.Drawing.Point(198, 86);
-            this.dtpOrderDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpOrderDate.Name = "dtpOrderDate";
-            this.dtpOrderDate.Size = new System.Drawing.Size(324, 23);
-            this.dtpOrderDate.TabIndex = 21;
-            this.dtpOrderDate.Value = new System.DateTime(1997, 8, 25, 0, 0, 0, 0);
-            // 
             // label14
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -416,17 +496,6 @@
             this.label14.Size = new System.Drawing.Size(189, 15);
             this.label14.TabIndex = 2;
             this.label14.Text = "Required date";
-            // 
-            // dtpRequiredDate
-            // 
-            this.dtpRequiredDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpRequiredDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRequiredDate.Location = new System.Drawing.Point(198, 125);
-            this.dtpRequiredDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpRequiredDate.Name = "dtpRequiredDate";
-            this.dtpRequiredDate.Size = new System.Drawing.Size(324, 23);
-            this.dtpRequiredDate.TabIndex = 22;
-            this.dtpRequiredDate.Value = new System.DateTime(1997, 9, 22, 0, 0, 0, 0);
             // 
             // label13
             // 
@@ -438,17 +507,6 @@
             this.label13.TabIndex = 3;
             this.label13.Text = "Shipped date";
             // 
-            // dtpShippedDate
-            // 
-            this.dtpShippedDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpShippedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpShippedDate.Location = new System.Drawing.Point(198, 164);
-            this.dtpShippedDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dtpShippedDate.Name = "dtpShippedDate";
-            this.dtpShippedDate.Size = new System.Drawing.Size(324, 23);
-            this.dtpShippedDate.TabIndex = 23;
-            this.dtpShippedDate.Value = new System.DateTime(1997, 9, 2, 0, 0, 0, 0);
-            // 
             // label22
             // 
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -459,16 +517,16 @@
             this.label22.TabIndex = 25;
             this.label22.Text = "Ship via";
             // 
-            // label16
+            // lbEmployeeId
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(678, 12);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(181, 15);
-            this.label16.TabIndex = 5;
-            this.label16.Text = "Employee ID";
-            this.label16.Visible = false;
+            this.lbEmployeeId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbEmployeeId.AutoSize = true;
+            this.lbEmployeeId.Location = new System.Drawing.Point(678, 12);
+            this.lbEmployeeId.Name = "lbEmployeeId";
+            this.lbEmployeeId.Size = new System.Drawing.Size(181, 15);
+            this.lbEmployeeId.TabIndex = 5;
+            this.lbEmployeeId.Text = "Employee ID";
+            this.lbEmployeeId.Visible = false;
             // 
             // tbEmployee
             // 
@@ -476,6 +534,7 @@
             this.tbEmployee.Location = new System.Drawing.Point(865, 8);
             this.tbEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbEmployee.Name = "tbEmployee";
+            this.tbEmployee.ReadOnly = true;
             this.tbEmployee.Size = new System.Drawing.Size(349, 23);
             this.tbEmployee.TabIndex = 11;
             this.tbEmployee.Visible = false;
@@ -490,16 +549,16 @@
             this.label26.TabIndex = 30;
             this.label26.Text = "Customer ID";
             // 
-            // label12
+            // lbOrderId
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 12);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(189, 15);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Order ID*";
-            this.label12.Visible = false;
+            this.lbOrderId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbOrderId.AutoSize = true;
+            this.lbOrderId.Location = new System.Drawing.Point(3, 12);
+            this.lbOrderId.Name = "lbOrderId";
+            this.lbOrderId.Size = new System.Drawing.Size(189, 15);
+            this.lbOrderId.TabIndex = 0;
+            this.lbOrderId.Text = "Order ID*";
+            this.lbOrderId.Visible = false;
             // 
             // tbOrderId
             // 
@@ -507,9 +566,49 @@
             this.tbOrderId.Location = new System.Drawing.Point(198, 8);
             this.tbOrderId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbOrderId.Name = "tbOrderId";
+            this.tbOrderId.ReadOnly = true;
             this.tbOrderId.Size = new System.Drawing.Size(72, 23);
             this.tbOrderId.TabIndex = 10;
             this.tbOrderId.Visible = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.5679F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.4321F));
+            this.tableLayoutPanel3.Controls.Add(this.btBorrarOrderDate, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dtpOrderDate, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(198, 81);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(324, 33);
+            this.tableLayoutPanel3.TabIndex = 34;
+            // 
+            // btBorrarOrderDate
+            // 
+            this.btBorrarOrderDate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btBorrarOrderDate.Image = global::Presentacion.Properties.Resources.iconoBorrar;
+            this.btBorrarOrderDate.Location = new System.Drawing.Point(294, 3);
+            this.btBorrarOrderDate.Name = "btBorrarOrderDate";
+            this.btBorrarOrderDate.Size = new System.Drawing.Size(27, 27);
+            this.btBorrarOrderDate.TabIndex = 2;
+            this.btBorrarOrderDate.UseVisualStyleBackColor = true;
+            this.btBorrarOrderDate.Click += new System.EventHandler(this.btBorrarOrderDate_Click);
+            // 
+            // dtpOrderDate
+            // 
+            this.dtpOrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpOrderDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpOrderDate.Location = new System.Drawing.Point(3, 5);
+            this.dtpOrderDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpOrderDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpOrderDate.Name = "dtpOrderDate";
+            this.dtpOrderDate.Size = new System.Drawing.Size(268, 23);
+            this.dtpOrderDate.TabIndex = 21;
+            this.dtpOrderDate.Value = new System.DateTime(1997, 8, 25, 0, 0, 0, 0);
+            this.dtpOrderDate.ValueChanged += new System.EventHandler(this.dtpOrderDate_ValueChanged);
             // 
             // groupBox1
             // 
@@ -606,12 +705,27 @@
             // 
             // dgvOrderDetails
             // 
+            this.dgvOrderDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOrderDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrderDetails.Location = new System.Drawing.Point(578, 321);
+            this.dgvOrderDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Eliminar});
+            this.dgvOrderDetails.Location = new System.Drawing.Point(693, 321);
             this.dgvOrderDetails.Name = "dgvOrderDetails";
             this.dgvOrderDetails.RowTemplate.Height = 25;
-            this.dgvOrderDetails.Size = new System.Drawing.Size(654, 229);
+            this.dgvOrderDetails.Size = new System.Drawing.Size(539, 229);
             this.dgvOrderDetails.TabIndex = 5;
+            this.dgvOrderDetails.DataSourceChanged += new System.EventHandler(this.dgvOrderDetails_DataSourceChanged);
+            this.dgvOrderDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDetails_CellClick);
+            this.dgvOrderDetails.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDetails_CellEndEdit);
+            this.dgvOrderDetails.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvOrderDetails_DataError);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::Presentacion.Properties.Resources.iconoBorrar;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Visible = false;
             // 
             // tableLayoutPanel6
             // 
@@ -674,7 +788,7 @@
             // 
             this.tbBuscarProducts.Location = new System.Drawing.Point(15, 321);
             this.tbBuscarProducts.Name = "tbBuscarProducts";
-            this.tbBuscarProducts.Size = new System.Drawing.Size(532, 23);
+            this.tbBuscarProducts.Size = new System.Drawing.Size(672, 23);
             this.tbBuscarProducts.TabIndex = 6;
             this.tbBuscarProducts.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -690,7 +804,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(578, 303);
+            this.label5.Location = new System.Drawing.Point(693, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 8;
@@ -698,11 +812,13 @@
             // 
             // dgvProducts
             // 
+            this.dgvProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(18, 350);
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(532, 200);
+            this.dgvProducts.Size = new System.Drawing.Size(669, 200);
             this.dgvProducts.TabIndex = 9;
             this.dgvProducts.DoubleClick += new System.EventHandler(this.dgvProducts_DoubleClick);
             // 
@@ -724,6 +840,11 @@
             this.btCerrar.TabIndex = 11;
             this.btCerrar.Text = "Cerrar";
             this.btCerrar.UseVisualStyleBackColor = true;
+            this.btCerrar.Click += new System.EventHandler(this.btCerrar_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // FormPedidos
             // 
@@ -747,12 +868,15 @@
             this.groupBox2.ResumeLayout(false);
             this.tlpOrder.ResumeLayout(false);
             this.tlpOrder.PerformLayout();
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -760,6 +884,7 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,5 +947,15 @@
         private DataGridView dgvProducts;
         private Button btGuardar;
         private Button btCerrar;
+        private DataGridViewImageColumn Eliminar;
+        private TableLayoutPanel tableLayoutPanel9;
+        private Button btShippedDate;
+        private TableLayoutPanel tableLayoutPanel8;
+        private Button btRequiredDate;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Button btBorrarOrderDate;
+        private ErrorProvider errorProvider1;
+        private Label lbEmployeeId;
+        private Label lbOrderId;
     }
 }

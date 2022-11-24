@@ -13,6 +13,7 @@ namespace Negocio
         List<Order> Pedidos { get; set; }
         // Flag: Has Dispose already been called?
         bool disposed;
+        private const decimal IVA = 16;
 
         public Gestion()
         {
@@ -44,30 +45,33 @@ namespace Negocio
         public Order DatosPedido(int orderId)
         {
             Order order = new Order();
-            // Se obtiene un Order de la tabla a partir de su id
-            using (OrderADO o = new OrderADO())
-            {
-                order = o.Listar(orderId);
-            }
+            // Se obtiene un Order de la bbdd a partir de su id
+            order = BuscarOrder(orderId);
 
             if (order != null)
             {
-                List<OrderDetail> listaOD = OrderDetailADO.Listar();
-                // Se añade al Order el listado de OrderDetails
+                // Se obtiene el Employee del pedido si no es null
+                order.Employee = order.EmployeeId != null ? BuscarEmployee((int)order.EmployeeId) : null;
+
+                // Se obtiene el Customer del pedido si no es null
+                order.Customer = order.CustomerId != null ? BuscarCustomer(order.CustomerId) : null;
+                
+                // Se obtiene la lista completa de orderDetails de la BBDD
+                List<OrderDetail> listaOD = ListarOrderDetail();
+
+                // Se añade al Order el listado de OrderDetails que le corresponden
                 foreach (OrderDetail d in listaOD.Where(d => d.OrderId == orderId))
                 {
                     order.OrderDetails.Add(d);
                 }   
+
                 // Se añade a cada OrderDetail el Producto
-                using (ProductADO p = new ProductADO())
-                {
-                    order.OrderDetails
-                    .ToList()
-                    .ForEach(o => o.Product = p.Listar(o.ProductId));
-                }
+                order.OrderDetails
+                .ToList()
+                .ForEach(o => o.Product = BuscarProduct(o.ProductId));
             }
 
-            return order;
+            return order!;
         }
 
         // Devuelve los pedidos de un cliente apoyándose en DatosPedido(int orderId)
@@ -90,7 +94,7 @@ namespace Negocio
         }
 
 
-
+        // Método que devuelve un DataTable con los datos de Products formateados
         public DataTable DataTableProductos(int categorySeleccionada)
         {
             List<Product> productos = new List<Product>();
@@ -130,6 +134,70 @@ namespace Negocio
                 p.Discontinued));
 
             return dt;
+        }
+
+
+        public DataTable DataTableCustomers()
+        {
+            DataTable dtCustomers = new DataTable();
+            // Se crea un DataTable con las columnas de Employee que se mostrarán
+            dtCustomers.Columns.Add("Customer Id", typeof(string));
+            dtCustomers.Columns.Add("Company name", typeof(string));
+            dtCustomers.Columns.Add("Contact name", typeof(string));
+
+            // Se recupera la lista de customers de la BBDD
+            List<Customer> customers = new List<Customer>(ListarCustomer());
+
+            // Se rellena el Datatable con los datos de la lista de Employees
+            customers.ForEach(c => dtCustomers.Rows.Add(c.CustomerId, c.CompanyName, c.ContactName));
+
+            return dtCustomers;
+        }
+
+        public DataTable DataTableOrders()
+        {
+            DataTable dtOrders = new DataTable();
+
+            dtOrders.Columns.Add("Order id", typeof(int));
+            dtOrders.Columns.Add("Customer id", typeof(string));
+            dtOrders.Columns.Add("Employee id", typeof(int));
+            dtOrders.Columns.Add("Order date", typeof(DateTime));
+            dtOrders.Columns.Add("Required date", typeof(DateTime));
+            dtOrders.Columns.Add("Shipped date", typeof(DateTime));
+
+            // Se recupera la lista de orders de la BBDD
+            List<Order> orders = new List<Order>(ListarOrder());
+
+            // Se rellena el datatable con los datos de la lista de orders
+            orders.ForEach(o => dtOrders.Rows.Add(o.OrderId, o.CustomerId, o.EmployeeId, o.OrderDate, o.RequiredDate, o.ShippedDate));
+
+            return dtOrders;
+        }
+
+        public static ResumenFactura ResumenFactura(List<OrderDetail> orderDetails)
+        {
+            decimal precio = 0;
+            orderDetails.ForEach(oD =>
+            {
+                precio += (oD.UnitPrice * oD.Quantity * (1 - (decimal)oD.Discount)); 
+            });
+            
+
+            return new ResumenFactura(precio, IVA);
+        }
+
+        public Dictionary<string, int> SeriePedidosCliente()
+        {
+            Dictionary<string, int> resultado = new Dictionary<string, int>();
+            ListarOrder().ForEach(o =>
+                {
+                    if (!resultado.ContainsKey(o.CustomerId))
+                        resultado.Add(o.CustomerId, 1);
+                    else
+                        resultado[o.CustomerId] = resultado[o.CustomerId] + 1;
+                });
+
+            return resultado;
         }
         
         public override string ToString()

@@ -42,9 +42,9 @@
             // 
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tbBuscar);
-            this.groupBox1.Location = new System.Drawing.Point(59, 54);
+            this.groupBox1.Location = new System.Drawing.Point(59, 63);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1042, 93);
+            this.groupBox1.Size = new System.Drawing.Size(559, 93);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Buscar customer";
@@ -55,9 +55,9 @@
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(20, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(335, 16);
+            this.label1.Size = new System.Drawing.Size(353, 16);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Buscar por Customer Id, company name o contact name";
+            this.label1.Text = "Intoduczca un Customer Id, company name o contact name";
             // 
             // tbBuscar
             // 
@@ -65,14 +65,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbBuscar.Location = new System.Drawing.Point(20, 47);
             this.tbBuscar.Name = "tbBuscar";
-            this.tbBuscar.Size = new System.Drawing.Size(335, 23);
+            this.tbBuscar.Size = new System.Drawing.Size(384, 23);
             this.tbBuscar.TabIndex = 5;
             this.tbBuscar.TextChanged += new System.EventHandler(this.tbBuscar_TextChanged);
             // 
             // lbDataGridView
             // 
             this.lbDataGridView.AutoSize = true;
-            this.lbDataGridView.Location = new System.Drawing.Point(59, 183);
+            this.lbDataGridView.Location = new System.Drawing.Point(59, 242);
             this.lbDataGridView.Name = "lbDataGridView";
             this.lbDataGridView.Size = new System.Drawing.Size(298, 15);
             this.lbDataGridView.TabIndex = 9;
@@ -84,22 +84,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustomers.Location = new System.Drawing.Point(59, 215);
+            this.dgvCustomers.Location = new System.Drawing.Point(59, 260);
             this.dgvCustomers.Name = "dgvCustomers";
             this.dgvCustomers.ReadOnly = true;
             this.dgvCustomers.RowTemplate.Height = 25;
-            this.dgvCustomers.Size = new System.Drawing.Size(1042, 292);
+            this.dgvCustomers.Size = new System.Drawing.Size(559, 364);
             this.dgvCustomers.TabIndex = 10;
             this.dgvCustomers.DoubleClick += new System.EventHandler(this.dgvCustomers_DoubleClick);
             // 
             // btCerrar
             // 
-            this.btCerrar.Location = new System.Drawing.Point(1026, 546);
+            this.btCerrar.Location = new System.Drawing.Point(543, 666);
             this.btCerrar.Name = "btCerrar";
             this.btCerrar.Size = new System.Drawing.Size(75, 23);
             this.btCerrar.TabIndex = 11;
             this.btCerrar.Text = "Cerrar";
             this.btCerrar.UseVisualStyleBackColor = true;
+            this.btCerrar.Click += new System.EventHandler(this.btCerrar_Click);
             // 
             // FormBuscarCustomer
             // 
@@ -112,6 +113,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormBuscarCustomer";
             this.Text = "FormBuscarCustomer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormBuscarCustomer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -39,7 +39,7 @@ namespace Entidades
             ProductId = 1;
             UnitPrice = 1;
             Quantity = 1;
-            Discount = 1;
+            Discount = 0;
             Order = new Order();
             Product = new Product();
             disposed = false;

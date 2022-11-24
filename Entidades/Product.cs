@@ -89,10 +89,13 @@ namespace Entidades
 
         public override string ToString()
         {
+            /*
             return ProductId + "#" + ProductName + "#" + SupplierId + "#" + CategoryId + "#" +
                 QuantityPerUnit + "#" + UnitPrice + "#" + UnitsInStock + "#" + UnitsOnOrder + "#" +
                 ReorderLevel + "#" + Discontinued + "#" + Category?.CategoryId + "#" + 
                 Supplier?.SupplierId + "#" + OrderDetails.Count;
+            */
+            return ProductName; 
         }
 
         // Public implementation of Dispose pattern callable by consumers.
