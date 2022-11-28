@@ -149,9 +149,9 @@
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(20, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(353, 16);
+            this.label1.Size = new System.Drawing.Size(346, 16);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Intoduczca un Customer Id, company name o contact name";
+            this.label1.Text = "Intoduzca un Customer Id, company name o contact name";
             // 
             // tbBuscarCustomer
             // 

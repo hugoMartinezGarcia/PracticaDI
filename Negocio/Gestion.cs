@@ -14,7 +14,7 @@ namespace Negocio
         List<Order> Pedidos { get; set; }
         // Flag: Has Dispose already been called?
         bool disposed;
-        private const decimal IVA = 16;
+        private const decimal IVA = 21;
 
         public Gestion()
         {
@@ -56,7 +56,10 @@ namespace Negocio
 
                 // Se obtiene el Customer del pedido si no es null
                 order.Customer = order.CustomerId != null ? BuscarCustomer(order.CustomerId) : null;
-                
+
+                // Se obtiene el Shipper del pedido si no es null
+                order.ShipViaNavigation = order.ShipVia != null ? BuscarShipper((int)order.ShipVia) : null;
+
                 // Se obtiene la lista completa de orderDetails de la BBDD
                 List<OrderDetail> listaOD = ListarOrderDetail();
 
@@ -137,7 +140,7 @@ namespace Negocio
             return dt;
         }
 
-
+        // Devuelve un DataTable con los campos de interés de la tabla Customers
         public DataTable DataTableCustomers()
         {
             DataTable dtCustomers = new DataTable();
@@ -155,6 +158,7 @@ namespace Negocio
             return dtCustomers;
         }
 
+        // Devuelve un DataTable con los campos de interés de la tabla Orders
         public DataTable DataTableOrders()
         {
             DataTable dtOrders = new DataTable();

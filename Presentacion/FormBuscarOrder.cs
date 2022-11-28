@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,13 +18,15 @@ namespace Presentacion
         private DataTable dtCustomers;
         private DataTable dtOrders;
         private string customerId;
+        private bool modoFactura;
 
-        public FormBuscarOrder()
+        public FormBuscarOrder(bool modoFactura)
         {
             InitializeComponent();
             dtCustomers = new DataTable();
             dtOrders = new DataTable();
             customerId = string.Empty;
+            this.modoFactura = modoFactura;
         }
 
         private void FormBuscarOrder_Load(object sender, EventArgs e)
@@ -33,8 +36,8 @@ namespace Presentacion
                 dtCustomers = g.DataTableCustomers();
                 dtOrders = g.DataTableOrders();
             }
-            dgvCustomers.DataSource = dtCustomers;
 
+            dgvCustomers.DataSource = dtCustomers;
             Utiles.BorrarFecha(dtpOrderDate);
         }
 
@@ -89,7 +92,7 @@ namespace Presentacion
 
                 dgvOrders.DataSource = dv;
         }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Ignorar la excepción
             }
@@ -117,6 +120,27 @@ namespace Presentacion
             this.Close();
         }
 
+        private void btBorrarSeleccion_Click(object sender, EventArgs e)
+        {
+            BorrarSeleccionDGVCustomers();
+        }
+
+        private void BorrarSeleccionDGVCustomers()
+        {
+            dgvCustomers.ClearSelection();
+            customerId = "";
+            DataView dv = new DataView(dtOrders);
+
+            if (dtpOrderDate.Value > dtpOrderDate.MinDate)
+            {
+                dv.RowFilter = String.Format(
+                    "[Order date] = '{0}'",
+                    dtpOrderDate.Value);
+            }
+
+            dgvOrders.DataSource = dv;
+        }
+
         private void dgvOrders_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -129,36 +153,27 @@ namespace Presentacion
                     order = g.DatosPedido(id);
                 }
 
-                FormPedidos formActualizarPedido= new FormPedidos(true);
-                formActualizarPedido.DefinirOrder(order);
-                formActualizarPedido.MdiParent = this.MdiParent;
-                this.Close();
-                formActualizarPedido.Show();
+                if (modoFactura)
+                {
+                    FormFactura formFactura = new FormFactura(order);
+                    formFactura.MdiParent = this.MdiParent;
+                    formFactura.Show();
+                    this.Close();
+                }
+                else
+                {
+                    FormPedidos formActualizarPedido = new FormPedidos(true);
+                    formActualizarPedido.DefinirOrder(order);
+                    formActualizarPedido.MdiParent = this.MdiParent;
+                    formActualizarPedido.Show();
+                    this.Close();
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 // Ignorar la excepción
             }
-        }
-
-        private void btBorrarSeleccion_Click(object sender, EventArgs e)
-        {
-            BorrarSeleccionDGVCustomers();
-        }
-
-        private void BorrarSeleccionDGVCustomers()
-        {
-            dgvCustomers.ClearSelection();
-            DataView dv = new DataView(dtOrders);
-
-            if (dtpOrderDate.Value > dtpOrderDate.MinDate)
-            {
-                dv.RowFilter = String.Format(
-                    "[Order date] = '{0}'",
-                    dtpOrderDate.Value);
-            }
-
-            dgvOrders.DataSource = dv;
         }
     }
 }

@@ -57,8 +57,8 @@
             this.tbShipName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tbFreight = new System.Windows.Forms.TextBox();
-            this.tbShipVia = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.cbShipVia = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -181,6 +181,7 @@
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(324, 33);
             this.tableLayoutPanel9.TabIndex = 36;
             // 
@@ -435,11 +436,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.14286F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.28572F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.57143F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.79012F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.28395F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.61728F));
             this.tableLayoutPanel5.Controls.Add(this.tbFreight, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.tbShipVia, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.cbShipVia, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.label24, 1, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(198, 197);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -452,30 +453,30 @@
             // tbFreight
             // 
             this.tbFreight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFreight.Location = new System.Drawing.Point(207, 7);
+            this.tbFreight.Location = new System.Drawing.Point(243, 7);
             this.tbFreight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbFreight.Name = "tbFreight";
-            this.tbFreight.Size = new System.Drawing.Size(114, 23);
+            this.tbFreight.Size = new System.Drawing.Size(78, 23);
             this.tbFreight.TabIndex = 21;
-            // 
-            // tbShipVia
-            // 
-            this.tbShipVia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbShipVia.Location = new System.Drawing.Point(3, 7);
-            this.tbShipVia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbShipVia.Name = "tbShipVia";
-            this.tbShipVia.Size = new System.Drawing.Size(107, 23);
-            this.tbShipVia.TabIndex = 21;
             // 
             // label24
             // 
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(116, 11);
+            this.label24.Location = new System.Drawing.Point(187, 11);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(85, 15);
+            this.label24.Size = new System.Drawing.Size(50, 15);
             this.label24.TabIndex = 9;
             this.label24.Text = "Freight";
+            // 
+            // cbShipVia
+            // 
+            this.cbShipVia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbShipVia.FormattingEnabled = true;
+            this.cbShipVia.Location = new System.Drawing.Point(3, 7);
+            this.cbShipVia.Name = "cbShipVia";
+            this.cbShipVia.Size = new System.Drawing.Size(178, 23);
+            this.cbShipVia.TabIndex = 37;
             // 
             // label15
             // 
@@ -911,7 +912,6 @@
         private Label label22;
         private TableLayoutPanel tableLayoutPanel5;
         private TextBox tbFreight;
-        private TextBox tbShipVia;
         private Label label24;
         private Label label13;
         private Label label14;
@@ -957,5 +957,6 @@
         private ErrorProvider errorProvider1;
         private Label lbEmployeeId;
         private Label lbOrderId;
+        private ComboBox cbShipVia;
     }
 }

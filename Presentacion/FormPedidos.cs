@@ -1,5 +1,8 @@
-﻿using Entidades;
+﻿///<author>Hugo Martínez</author>
+
+using Entidades;
 using Negocio;
+using Presentacion.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,18 +24,18 @@ namespace Presentacion
         private Employee? employee;
         private Order? order;
         private bool modoActualizar;
+        private SortedList<int, string> shippers;
 
         public FormPedidos()
         {
             InitializeComponent();
-            //int alturaFila = (int)tlpOrder.RowStyles[0].SizeType;
-            //tlpOrder.RowStyles[0].SizeType = 0;
             customer = null;
             employee = null;
             order = null;
             dtProducts = new DataTable();
             orderDetails = new List<OrderDetail>();
             modoActualizar = false;
+            shippers = new SortedList<int, string>();
         }
 
         public FormPedidos(bool modoActualizar) : this()
@@ -52,10 +55,20 @@ namespace Presentacion
                 dgvProducts.DataSource = dtProducts;
             }
 
+            // Se añaden los datos a la sorted List
+            shippers.Add(0, "Sin selección");
+            Gestion.ListarShipper().ForEach(s => shippers.Add(
+                s.ShipperId,
+                s.CompanyName
+                ));
+            cbShipVia.Items.AddRange(shippers.Values.ToArray());
+            cbShipVia.SelectedIndex = 0;
+
             if (modoActualizar)
                 ModoActualizar();
         }
 
+        // Si el formulario está en modo editar
         private void ModoActualizar()
         {
             // Se copia la lista del order recibido
@@ -88,7 +101,12 @@ namespace Presentacion
                 dtpShippedDate.Value = (DateTime)order.ShippedDate;
             }
 
-            tbShipVia.Text = order.ShipVia.ToString();
+            if (order.ShipVia != null)
+            {
+                if (shippers.ContainsKey((int)order.ShipVia))
+                    cbShipVia.SelectedItem = shippers[(int)order.ShipVia];
+            }
+
             tbFreight.Text =  order.Freight.ToString();
             tbShipName.Text = order.ShipName;
             tbShipAddress.Text = order.ShipAddress;
@@ -117,12 +135,6 @@ namespace Presentacion
         {
             customer = null;
             tbCustomer.Clear();
-        }
-
-        private void lbProducts_MouseMove(object sender, MouseEventArgs e)
-        {
-            ToolTip toolTip = new ToolTip();
-            toolTip.Active = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -166,7 +178,6 @@ namespace Presentacion
             }
 
             ActualizarDGVOrderDetails();
-
         }
 
         private void ActualizarResumenFactura(List<OrderDetail> orderDetails)
@@ -176,7 +187,29 @@ namespace Presentacion
             tbIVA.Text = resumenFactura.IVA.ToString();
             tbTotal.Text = resumenFactura.Total.ToString("n2");
         }
+        /* // Datatable para el dgvOrderDetails
+        private DataTable DTOrderDetails()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Product id", typeof(int));
+            dt.Columns.Add("Product", typeof(string));
+            dt.Columns.Add("Unit price", typeof(decimal));
+            dt.Columns.Add("Quantity", typeof(int));
+            dt.Columns.Add("Discount", typeof(decimal));
+            dt.Columns.Add("Eliminar", typeof(Button));
 
+            Button botonEliminar = new Button();
+            botonEliminar.Image = Resources.iconoBorrar;
+            botonEliminar.Text = "Eliminar";
+            // Se rellena el datatable con los datos de la lista de orders
+            orderDetails.ForEach(oD => dt.Rows.Add(oD.ProductId, oD.Product.ProductName,
+                oD.UnitPrice, oD.Quantity, oD.Discount, botonEliminar));
+
+            return dt;
+        }
+        */
+
+        // Método para actualizar el dgvOrderDetails
         private void ActualizarDGVOrderDetails()
         {
             dgvOrderDetails.DataSource = orderDetails.ToList();
@@ -193,8 +226,11 @@ namespace Presentacion
 
             dgvOrderDetails.Columns["ProductId"].ReadOnly = true;
             dgvOrderDetails.Columns["Product"].ReadOnly = true;
+            Debug.WriteLine("Número de líneas: " + orderDetails.Count);
+            Debug.WriteLine("Antiguas líneas: " + order.OrderDetails.Count);
         }
 
+        // Comportamiento botón guardar
         private void btGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -205,7 +241,14 @@ namespace Presentacion
                 nuevaOrder.OrderDate = dtpOrderDate.Value == dtpOrderDate.MinDate ? null : dtpOrderDate.Value;
                 nuevaOrder.RequiredDate = dtpRequiredDate.Value == dtpRequiredDate.MinDate ? null : dtpRequiredDate.Value;
                 nuevaOrder.ShippedDate = dtpShippedDate.Value == dtpShippedDate.MinDate ? null : dtpShippedDate.Value;
-                nuevaOrder.ShipVia = Utiles.FormatearTBNullInt(tbShipVia);
+                if (cbShipVia.SelectedIndex > 0)
+                    // Si se ha seleccionado algún shipper de la lista se obtiene la key
+                    // de la sortedList a partir del value. La key representa el shipperId
+                    nuevaOrder.ShipVia = shippers.
+                        FirstOrDefault(s => s.Value == (string)cbShipVia.SelectedItem).Key;
+                else
+                    nuevaOrder.ShipVia = null;
+
                 nuevaOrder.Freight = Utiles.FormatearTBNullDecimal(tbFreight);
                 nuevaOrder.ShipName = Utiles.FormatearTBNullString(tbShipName);
                 nuevaOrder.ShipAddress = Utiles.FormatearTBNullString(tbShipAddress);
@@ -263,38 +306,12 @@ namespace Presentacion
             }
            
         }
-
+        
         private void dgvOrderDetails_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            int fila = dgvOrderDetails.CurrentCell.RowIndex;
-            string nombreColumna = dgvOrderDetails.Columns[e.ColumnIndex].Name;
-            
-            switch (nombreColumna)
-            {
-                case "UnitPrice":
-                    if ((decimal)dgvOrderDetails.CurrentCell.Value > 0)
-                        orderDetails[fila].UnitPrice = (decimal)dgvOrderDetails.CurrentCell.Value;
-                    else
-                        MessageBox.Show("El valor tiene que ser mayor que 0");
-                    break;
-                case "Quantity":
-                    if ((short)dgvOrderDetails.CurrentCell.Value > 0)
-                        orderDetails[fila].Quantity = (short)dgvOrderDetails.CurrentCell.Value;
-                    else
-                        MessageBox.Show("El valor tiene que ser mayor que 0");
-                    break;
-                case "Discount":
-                    if ((float)dgvOrderDetails.CurrentCell.Value >= 0 && (float)dgvOrderDetails.CurrentCell.Value <= 1)
-                        orderDetails[fila].Discount = (float)dgvOrderDetails.CurrentCell.Value;
-                    else
-                        MessageBox.Show("El valor debe estar comprendido entre 0 y 1");
-                    break;
-                default: break;
-            }
-            ActualizarDGVOrderDetails();
             ActualizarResumenFactura(orderDetails);
         }
-
+        
         private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -303,6 +320,7 @@ namespace Presentacion
                 {
                     orderDetails.RemoveAt(e.RowIndex);
                     ActualizarDGVOrderDetails();
+                    //dgvOrderDetails.DataSource = DTOrderDetails();
                 }
             }
             catch (Exception) 

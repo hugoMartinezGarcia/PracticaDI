@@ -135,15 +135,34 @@ namespace Presentacion
 
         private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormPedidos formNuevoPedido  = new FormPedidos(false);
+            tsbNuevoPedido_Click(sender, e);
+        }
+
+        private void modificarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormBuscarOrder formBuscarOrder = new FormBuscarOrder(false);
+            formBuscarOrder.MdiParent = this;
+            formBuscarOrder.Show();
+        }
+
+        
+
+        private void tsbNuevoPedido_Click(object sender, EventArgs e)
+        {
+            FormPedidos formNuevoPedido = new FormPedidos(false);
             formNuevoPedido.DefinirEmployee(empleado!);
             formNuevoPedido.MdiParent = this;
             formNuevoPedido.Show();
         }
 
-        private void modificarToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void facturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormBuscarOrder formBuscarOrder = new FormBuscarOrder();
+            tsbImprimirFactura_Click(sender, e);
+        }
+
+        private void tsbImprimirFactura_Click(object sender, EventArgs e)
+        {
+            FormBuscarOrder formBuscarOrder = new FormBuscarOrder(true);
             formBuscarOrder.MdiParent = this;
             formBuscarOrder.Show();
         }

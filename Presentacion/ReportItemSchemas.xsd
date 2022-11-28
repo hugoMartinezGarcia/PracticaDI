@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" id="ReportItemSchemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Informe" nillable="true" type="Informe" />
+  <xs:complexType name="Informe" />
+  <xs:element name="ResumenFactura" nillable="true" type="ResumenFactura" />
+  <xs:complexType name="ResumenFactura">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Precio" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IVA" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Total" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LineaFactura" nillable="true" type="LineaFactura" />
+  <xs:complexType name="LineaFactura">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Producto" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PrecioUnitario" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Cantidad" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Descuento" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResumenPedido" nillable="true" type="ResumenPedido" />
+  <xs:complexType name="ResumenPedido">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="OrderId" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Customer" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Employee" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OrderDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RequiredDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ShippedDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipVia" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Freight" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipAddress" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipCity" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipRegion" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipPostalCode" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ShipCountry" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

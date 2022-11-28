@@ -33,6 +33,7 @@ namespace Presentacion
         private bool modoActualizar;
 
         private Employee? empleado;
+        // Sorted list para mostrar los datos de los empleados
         private SortedList<int, string> empleados;
 
         public FormInsertarEmpleado()
@@ -305,6 +306,7 @@ namespace Presentacion
 
         private void btInsertar_Click(object sender, EventArgs e)
         {
+            // Se comprueban todos los campos antes de intentar guardar
             if (ComprobarCampos()) 
             {
                 try

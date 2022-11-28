@@ -151,6 +151,7 @@
             this.tsbNuevoPedido.Name = "tsbNuevoPedido";
             this.tsbNuevoPedido.Size = new System.Drawing.Size(86, 29);
             this.tsbNuevoPedido.Text = "Nuevo pedido";
+            this.tsbNuevoPedido.Click += new System.EventHandler(this.tsbNuevoPedido_Click);
             // 
             // tsbImprimirFactura
             // 
@@ -160,6 +161,7 @@
             this.tsbImprimirFactura.Name = "tsbImprimirFactura";
             this.tsbImprimirFactura.Size = new System.Drawing.Size(97, 29);
             this.tsbImprimirFactura.Text = "Imprimir factura";
+            this.tsbImprimirFactura.Click += new System.EventHandler(this.tsbImprimirFactura_Click);
             // 
             // menuStrip1
             // 
@@ -236,14 +238,14 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // modificarToolStripMenuItem1
             // 
             this.modificarToolStripMenuItem1.Name = "modificarToolStripMenuItem1";
-            this.modificarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.modificarToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
             this.modificarToolStripMenuItem1.Text = "Modificar";
             this.modificarToolStripMenuItem1.Click += new System.EventHandler(this.modificarToolStripMenuItem1_Click);
             // 
@@ -283,6 +285,7 @@
             this.facturaToolStripMenuItem.Name = "facturaToolStripMenuItem";
             this.facturaToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.facturaToolStripMenuItem.Text = "Factura";
+            this.facturaToolStripMenuItem.Click += new System.EventHandler(this.facturaToolStripMenuItem_Click);
             // 
             // tsmAcercaDe
             // 
