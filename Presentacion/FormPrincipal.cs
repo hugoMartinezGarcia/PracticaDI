@@ -66,7 +66,6 @@ namespace Presentacion
             {
                 e.Cancel = true;
 
-                // Si no había un empleado cargado se lanza de nuevo el formulario de acceso
                 if (empleado == null)
                 {
                     CargarFormAcceso();

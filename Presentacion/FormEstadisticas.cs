@@ -35,6 +35,7 @@ namespace Presentacion
             {
                 seriePedidosCliente = new Dictionary<string, int>(g.SeriePedidosCliente());
                 serieProductosCategoria = new Dictionary<string, int>(g.SerieProductosPorCategoria());
+
             }  
 
 
