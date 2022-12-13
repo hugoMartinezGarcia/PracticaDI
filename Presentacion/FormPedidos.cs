@@ -51,6 +51,7 @@ namespace Presentacion
 
             using (Gestion g = new Gestion())
             {
+                // se obtiene el datatable relleno con todos los productos
                 dtProducts = g.DataTableProductos(0);
                 dgvProducts.DataSource = dtProducts;
             }
@@ -215,19 +216,19 @@ namespace Presentacion
             dgvOrderDetails.DataSource = orderDetails.ToList();
             dgvOrderDetails.Columns["OrderId"].Visible = false;
             dgvOrderDetails.Columns["Order"].Visible = false;
+            // La columna "Eliminar" está añadida al dgv desde la parte gráfica
             dgvOrderDetails.Columns["Eliminar"].Visible = true;
 
-            dgvOrderDetails.Columns["ProductId"].DisplayIndex = 0;
-            dgvOrderDetails.Columns["Product"].DisplayIndex = 1;
-            dgvOrderDetails.Columns["UnitPrice"].DisplayIndex = 2;
-            dgvOrderDetails.Columns["Quantity"].DisplayIndex = 3;
-            dgvOrderDetails.Columns["Discount"].DisplayIndex = 4;
-            dgvOrderDetails.Columns["Eliminar"].DisplayIndex = 5;
+            dgvOrderDetails.Columns["Eliminar"].DisplayIndex = 0;
+            dgvOrderDetails.Columns["ProductId"].DisplayIndex = 1;
+            dgvOrderDetails.Columns["Product"].DisplayIndex = 2;
+            dgvOrderDetails.Columns["UnitPrice"].DisplayIndex = 3;
+            dgvOrderDetails.Columns["Quantity"].DisplayIndex = 4;
+            dgvOrderDetails.Columns["Discount"].DisplayIndex = 5;
+            
 
             dgvOrderDetails.Columns["ProductId"].ReadOnly = true;
             dgvOrderDetails.Columns["Product"].ReadOnly = true;
-            Debug.WriteLine("Número de líneas: " + orderDetails.Count);
-            Debug.WriteLine("Antiguas líneas: " + order.OrderDetails.Count);
         }
 
         // Comportamiento botón guardar
@@ -320,7 +321,6 @@ namespace Presentacion
                 {
                     orderDetails.RemoveAt(e.RowIndex);
                     ActualizarDGVOrderDetails();
-                    //dgvOrderDetails.DataSource = DTOrderDetails();
                 }
             }
             catch (Exception) 
