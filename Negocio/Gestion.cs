@@ -5,6 +5,7 @@ using Datos;
 using System.Linq;
 using System.Data;
 using System;
+using System.Numerics;
 
 namespace Negocio
 {
@@ -15,6 +16,7 @@ namespace Negocio
         // Flag: Has Dispose already been called?
         bool disposed;
         private const decimal IVA = 21;
+        public const int INTENTOS = 3;
 
         public Gestion()
         {
@@ -34,6 +36,23 @@ namespace Negocio
         {
             Empleados = new List<Employee>(otro.Empleados);
             Pedidos = new List<Order>(otro.Pedidos);
+        }
+
+        // Método para comprobar el acceso a la aplicación
+        public bool ComprobarAcceso(Employee empleadoSeleccionado, string idIntroducida)
+        {
+            bool resultado = false;
+            try
+            {
+                if (Convert.ToInt32(idIntroducida) == empleadoSeleccionado.EmployeeId)
+                    resultado = true;
+            }
+            catch (FormatException)
+            {
+                throw new FormatException("El id no tiene un valor numérico válido");
+            }
+
+            return resultado;
         }
 
         // Método para listar los Orders de un Employee
