@@ -8,7 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Imagenes\welcome.png" />
+    <None Remove="img\dashboard.png" />
+    <None Remove="img\delete.png" />
+    <None Remove="img\edit.png" />
+    <None Remove="img\employee.png" />
+    <None Remove="img\notification.png" />
+    <None Remove="img\order.png" />
+    <None Remove="img\printer.png" />
+    <None Remove="img\product.png" />
+    <None Remove="img\timer.png" />
+    <None Remove="img\welcome.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,8 +26,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Imagenes\welcome.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Resource Include="img\dashboard.png" />
+    <Resource Include="img\delete.png" />
+    <Resource Include="img\edit.png" />
+    <Resource Include="img\employee.png" />
+    <Resource Include="img\notification.png" />
+    <Resource Include="img\order.png" />
+    <Resource Include="img\printer.png" />
+    <Resource Include="img\product.png" />
+    <Resource Include="img\timer.png" />
+    <Resource Include="img\welcome.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

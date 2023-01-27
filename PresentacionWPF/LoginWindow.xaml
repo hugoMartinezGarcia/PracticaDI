@@ -8,38 +8,39 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         Title="LoginWindow" Height="600" Width="508" Closing="Window_Closing">
-    <Grid>
+    <Grid Background="#FFC7E7FF">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="49.168"/>
+            <RowDefinition Height="50.832"/>
         </Grid.RowDefinitions>
-        <Image Source="/Imagenes/welcome.png" Height="100" Width="100" Margin="0,20,0,0" Stretch="Fill"/>
-        <TextBlock TextWrapping="Wrap" Text="Empleado" Width="350" Height="20" Grid.Row="1" Margin="0,20,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listbEmpleados" Grid.Row="2" Height="250" d:ItemsSource="{d:SampleData ItemCount=5}" Width="350">
+        <Image Source="/img/welcome.png" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill" Height="75" Width="170" Margin="0,20,0,20"/>
+        <TextBlock TextWrapping="Wrap" Text="Empleado" Width="350" Height="40" Grid.Row="1" VerticalAlignment="Center" FontSize="18" FontWeight="Bold"/>
+        <ListBox x:Name="listbEmpleados" Grid.Row="2" Height="220" d:ItemsSource="{d:SampleData ItemCount=5}" Width="350" BorderBrush="{x:Null}" Background="{x:Null}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                            <ColumnDefinition Width="100"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        
-                        <TextBlock Grid.Column="0" Text="{Binding FirstName}" Margin="0,0,20,0" VerticalAlignment="Center"></TextBlock>
-                        <TextBlock Grid.Column="1" Text="{Binding LastName}" Margin="0,0,20,0" VerticalAlignment="Center"></TextBlock>
-                        <Image Grid.Column="2" Source="{Binding Photo}" Stretch="Fill" Margin="0,0,20,0" VerticalAlignment="Center"/>
-                    </Grid>
-                    
+                    <Border BorderBrush="#FF8FC4FF" BorderThickness="2,2,2,2">
+                        <Grid Background="#FFF2FFC8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85"></ColumnDefinition>
+                                <ColumnDefinition Width="85"></ColumnDefinition>
+                                <ColumnDefinition Width="85"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding FirstName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding LastName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
+                            <Image Grid.Column="2" Source="{Binding Photo}" Stretch="Fill" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock TextWrapping="Wrap" Text="ID empleado" Width="350" Height="20" Grid.Row="3" Margin="0,20,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbIdEmpleado" TextWrapping="Wrap"  Width="350" Height="20" BorderThickness="0,0,0,1" Grid.Row="4" Margin="0,0,0,20" KeyDown="tbIdEmpleado_KeyDown"/>
-        <Button x:Name="btAcceder" Content="Acceder" Width="350" Height="30" Grid.Row="5" Margin="0,20,0,20" Click="Button_Click"/>
-
+        <TextBlock TextWrapping="Wrap" Text="ID empleado" Width="350" Height="40" Grid.Row="3" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Margin="0,30,0,0"/>
+        <TextBox x:Name="tbIdEmpleado" TextWrapping="Wrap"  Width="350" Height="30" BorderThickness="0,0,0,2" Grid.Row="4" KeyDown="tbIdEmpleado_KeyDown" Background="#FFC7E7FF" SelectionBrush="#FF0044CA" SnapsToDevicePixels="True" FontWeight="Bold" FontSize="14"/>
+        <Button x:Name="btAcceder" Content="Acceder" Width="350" Height="30" Grid.Row="5" Click="Button_Click" FontWeight="Bold" FontSize="14" Grid.RowSpan="2"/>
     </Grid>
 </Window>
