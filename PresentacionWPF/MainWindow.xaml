@@ -18,27 +18,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="stckPanelLateral" Grid.Row="1" Background="#FFC7E7FF">
-            <ToggleButton x:Name="btDashboard" IsChecked="True" Margin="0,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btDashboard_Click">
+            <RadioButton x:Name="btDashboard" IsChecked="True" Margin="0,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btDashboard_Click">
                 <Image Source="img/dashboard.png" Width="46"/>
-            </ToggleButton>
-            <ToggleButton x:Name="btEmpleado" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btEmpleado_Click">
+            </RadioButton>
+            <RadioButton x:Name="btEmpleado" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btEmpleado_Click">
                 <Image Source="img/employee.png"/>
-            </ToggleButton>
-            <ToggleButton x:Name="btProductos" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btProductos_Click">
+            </RadioButton>
+            <RadioButton x:Name="btProductos" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btProductos_Click">
                 <Image Source="img/product.png"/>
-            </ToggleButton>
-            <ToggleButton x:Name="btPedidos" Height="50" Margin="0,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btPedidos_Click">
+            </RadioButton>
+            <RadioButton x:Name="btPedidos" Height="50" Margin="0,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btPedidos_Click">
                 <Image Source="img/order.png"/>
-            </ToggleButton>
-            <ToggleButton x:Name="btInformes" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btInformes_Click">
+            </RadioButton>
+            <RadioButton x:Name="btInformes" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btInformes_Click">
                 <Image Source="img/printer.png"/>
-            </ToggleButton>
-            <ToggleButton x:Name="btTemporizador" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btTemporizador_Click">
+            </RadioButton>
+            <RadioButton x:Name="btTemporizador" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btTemporizador_Click">
                 <Image Source="img/timer.png"/>
-            </ToggleButton>
+            </RadioButton>
         </StackPanel>
         <Grid x:Name="gridCentral" Grid.Column="1" Grid.Row="1">
-            <Label Content="AQUI SE MOSTRARÁ EL DASHBOARD" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
         </Grid>
         <StatusBar Grid.ColumnSpan="2" Foreground="White" BorderThickness="0,0,0,5" Height="80" Background="#FFC7E7FF">
             <Separator Margin="2,2,900,2" Background="{x:Null}" Height="0" Width="0"/>

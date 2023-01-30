@@ -2,6 +2,8 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -22,23 +25,68 @@ namespace PresentacionWPF
     /// </summary>
     public partial class UCBuscarEmpleado : UserControl
     {
+        private ObservableCollection<Employee> empleados;
+        private CollectionViewSource MiVista;
+
         public UCBuscarEmpleado()
         {
             InitializeComponent();
-            List<Employee> empleados = Gestion.ListarEmployee();
-            listbEmpleados.ItemsSource = empleados;
+            // Se le asigna el DataContext al UserControl para que no haga Binding
+            // hacia el empleado cargado en el gridPrincipal
+            this.DataContext = empleados;
+            MiVista = (CollectionViewSource)FindResource("Empleados");
+            empleados = new ObservableCollection<Employee>(Gestion.ListarEmployee());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MiVista.Source = empleados;
+        }
+        
+        private void Filtrar(object sender, FilterEventArgs e)
+        {
+            Employee empleado = (Employee)e.Item;
+
+            if (empleado != null)
+            {
+                string textoABuscar = tbBuscarEmpleado.Text.ToLower().Trim();
+                string firstName = empleado.FirstName.ToLower();
+                string lastName = empleado.LastName.ToLower();
+                string? city = empleado.City != null ? empleado.City.ToLower() : null;
+
+                if (firstName.Contains(textoABuscar) 
+                    || lastName.Contains(textoABuscar) 
+                    || (city != null && city.Contains(textoABuscar)))
+                {
+                    e.Accepted = true;
+                }
+                else
+                    e.Accepted = false;
+            }
+        }
+        
+        private void btInsertarEmpleado_Click(object sender, RoutedEventArgs e)
         {
             Grid gridContenedor = (Grid)Parent;
             gridContenedor.Children.Clear();
             gridContenedor.Children.Add(new UCEmpleado());
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+
+        private void btModificarEmpleado_Click(object sender, RoutedEventArgs e)
         {
-            Employee empleado = (Employee)listbEmpleados.SelectedItem;
+            if (listvEmpleados.SelectedItem != null) 
+            {
+                Grid gridContenedor = (Grid)Parent;
+                gridContenedor.Children.Clear();
+                gridContenedor.Children.Add(new UCEmpleado((Employee)listvEmpleados.SelectedItem));
+            }
+            
+        }
+
+        private void btBorrarEmpleado_Click(object sender, RoutedEventArgs e)
+        {
+            Employee empleado = (Employee)listvEmpleados.SelectedItem;
 
             if (empleado != null)
             {
@@ -56,6 +104,7 @@ namespace PresentacionWPF
                         using (Gestion g = new Gestion())
                         {
                             g.BorrarEmployee(empleado);
+                            empleados.Remove(empleado);
                         }
 
                         MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha eliminado correctamente",
@@ -67,6 +116,16 @@ namespace PresentacionWPF
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un empleado de la lista para eliminar");
+            }
         }
+        
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MiVista.Filter += Filtrar;
+        }
+        
     }
 }

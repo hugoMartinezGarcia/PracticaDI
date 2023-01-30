@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,16 +22,28 @@ namespace PresentacionWPF
     /// </summary>
     public partial class UCEmpleado : UserControl
     {
+
+        private Employee? empleado;
+
         public UCEmpleado()
         {
             InitializeComponent();
+            string[] titCortesia = new string[] { "Sin selección", "Ms.", "Dr.", "Mrs.", "Mr." };
+            cbTitleOfCourtesy.DataContext = titCortesia;
+            cbInformaA.DataContext = Gestion.ListarEmployee();
+        }
+
+        public UCEmpleado(Employee empleado) : this()
+        {
+            this.empleado = empleado;
+            this.DataContext = empleado;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Grid gridContenedor = (Grid) Parent;
             gridContenedor.Children.Clear();
-            gridContenedor.Children.Add(new UCEmpleado());
+            gridContenedor.Children.Add(new UCDashboard());
         }
     }
 }

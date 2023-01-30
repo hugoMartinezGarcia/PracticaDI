@@ -1,14 +1,19 @@
-﻿<UserControl x:Class="PresentacionWPF.UCBuscarEmpleado"
+﻿<UserControl x:Name="ucBuscarEmpleado" x:Class="PresentacionWPF.UCBuscarEmpleado"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="820" d:DesignWidth="1160">
+             d:DesignHeight="804" d:DesignWidth="1160" 
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource  x:Key="Empleados" Source="{Binding}"/>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="900"/>
+            <ColumnDefinition Width="800"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,33 +23,33 @@
         </Grid.RowDefinitions>
 
         <Label Content="Buscar empleado" VerticalAlignment="Bottom" Margin="50,0,0,0"/>
-        <TextBox Grid.Row="1" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left" Margin="50,0,0,0"/>
-        <ListBox x:Name="listbEmpleados" Grid.Row="2" d:ItemsSource="{d:SampleData ItemCount=10}"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="50,0,40,0">
-            <ListBox.ItemTemplate>
+        <TextBox x:Name="tbBuscarEmpleado" Grid.Row="1" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left" Margin="50,0,0,0" TextChanged="TextBox_TextChanged"/>
+        <ListView x:Name="listvEmpleados" ItemsSource="{Binding Source={StaticResource Empleados}}" IsSynchronizedWithCurrentItem="True" Grid.Row="2"  BorderBrush="{x:Null}" Background="{x:Null}" Margin="50,20,40,20" HorizontalAlignment="Left">
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="#FF8FC4FF" BorderThickness="2,2,2,2">
-                        <Grid>
+                        <Grid Margin="10,0,10,5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding FirstName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
-                            <TextBlock Grid.Column="1" Text="{Binding LastName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
-                            <TextBlock Grid.Column="2" Text="{Binding City}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=FirstName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=LastName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
+                            <TextBlock Grid.Column="2" Text="{Binding Path=City}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
                             <Image Grid.Column="3" Source="{Binding Photo}" Stretch="Fill" Margin="0,0,20,0" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Button Content="Insertar" Margin="0,0,0,20" Click="Button_Click"/>
-            <Button Content="Modificar" Margin="0,0,0,20"/>
-            <Button Content="Borrar" Margin="0,0,0,21" Click="Button_Click_1"/>
-            <Button Content="Cancelar"/>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button x:Name="btInsertarEmpleado" Content="Insertar" Margin="0,0,0,20" Click="btInsertarEmpleado_Click"/>
+            <Button x:Name="btModificarEmpleado" Content="Modificar" Margin="0,0,0,20" Click="btModificarEmpleado_Click"/>
+            <Button x:Name="btBorrarEmpleado" Content="Borrar" Margin="0,0,0,21" Click="btBorrarEmpleado_Click"/>
+            <Button x:Name="btCancelar" Content="Cancelar"/>
         </StackPanel>
     </Grid>
 </UserControl>

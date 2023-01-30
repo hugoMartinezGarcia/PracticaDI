@@ -32,7 +32,7 @@ namespace PresentacionWPF
             this.Hide();
         }
 
-        public void DefinirEmpleado(Employee empleado)
+        public void DefinirEmpleadoYHora(Employee empleado)
         {
             this.empleado = empleado;
             gridPrincipal.DataContext = empleado;
@@ -41,33 +41,14 @@ namespace PresentacionWPF
 
         private void btDashboard_Click(object sender, RoutedEventArgs e)
         {
-            
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCDashboard());
         }
 
         private void btEmpleado_Click(object sender, RoutedEventArgs e)
         {
-            if (((ToggleButton)sender).IsChecked == false)
-            {
-                ((ToggleButton)sender).IsChecked = true;
-            }
-            else
-            {
-                foreach (Control control in stckPanelLateral.Children)
-                {
-                    if (control is ToggleButton)
-                    {
-                        ToggleButton tb = (ToggleButton) control;
-
-                        if (tb.IsChecked == true && tb != sender)
-                        {
-                            tb.IsChecked = false;
-                        }
-                    }
-                }
- 
-                gridCentral.Children.Clear();
-                gridCentral.Children.Add(new UCBuscarEmpleado());
-            }
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCBuscarEmpleado());
         }
 
         private void btProductos_Click(object sender, RoutedEventArgs e)
@@ -89,5 +70,33 @@ namespace PresentacionWPF
         {
 
         }
+
+        /*
+        private void btEmpleado_Click(object sender, RoutedEventArgs e)
+        {
+            if (((ToggleButton)sender).IsChecked == false)
+            {
+                ((ToggleButton)sender).IsChecked = true;
+            }
+            else
+            {
+                foreach (Control control in stckPanelLateral.Children)
+                {
+                    if (control is ToggleButton)
+                    {
+                        ToggleButton tb = (ToggleButton)control;
+
+                        if (tb.IsChecked == true && tb != sender)
+                        {
+                            tb.IsChecked = false;
+                        }
+                    }
+                }
+
+                gridCentral.Children.Clear();
+                gridCentral.Children.Add(new UCBuscarEmpleado());
+            }
+        }
+        */
     }
 }

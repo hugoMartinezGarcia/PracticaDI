@@ -32,7 +32,7 @@ namespace PresentacionWPF
             this.mainWindow = mainWindow;
             intentos = 0;
             List<Employee> empleados = Gestion.ListarEmployee();
-            listbEmpleados.ItemsSource= empleados;
+            listbEmpleados.ItemsSource = empleados;
             empleado = null;
         }
 
@@ -53,7 +53,7 @@ namespace PresentacionWPF
                         {
                             empleado = (Employee)listbEmpleados.SelectedItem;
                             this.Close();
-                            mainWindow.DefinirEmpleado(empleado);
+                            mainWindow.DefinirEmpleadoYHora(empleado);
                             mainWindow.Show();
                         }
                         else
