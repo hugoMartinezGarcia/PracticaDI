@@ -26,6 +26,10 @@ namespace PresentacionWPF
         public MainWindow()
         {
             InitializeComponent();
+
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCDashboard());
+
             empleado = null;
             LoginWindow lw = new LoginWindow(this);
             lw.Show();
@@ -53,7 +57,8 @@ namespace PresentacionWPF
 
         private void btProductos_Click(object sender, RoutedEventArgs e)
         {
-
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCDashboard());
         }
 
         private void btPedidos_Click(object sender, RoutedEventArgs e)
