@@ -27,9 +27,11 @@ namespace PresentacionWPF
     {
         private ObservableCollection<Employee> empleados;
         private CollectionViewSource MiVista;
+        private Employee usuario;
 
-        public UCBuscarEmpleado()
+        public UCBuscarEmpleado(Employee usuario)
         {
+            this.usuario = usuario;
             InitializeComponent();
             // Se le asigna el DataContext al UserControl para que no haga Binding
             // hacia el empleado cargado en el gridPrincipal
@@ -67,9 +69,11 @@ namespace PresentacionWPF
         
         private void btInsertarEmpleado_Click(object sender, RoutedEventArgs e)
         {
+            UCEmpleado insertarEmpleado = new UCEmpleado(false);
+            insertarEmpleado.DefinirUsuario(usuario);
             Grid gridContenedor = (Grid)Parent;
             gridContenedor.Children.Clear();
-            gridContenedor.Children.Add(new UCEmpleado());
+            gridContenedor.Children.Add(insertarEmpleado);
         }
 
 
@@ -77,9 +81,12 @@ namespace PresentacionWPF
         {
             if (listvEmpleados.SelectedItem != null) 
             {
+                UCEmpleado editarEmpleado = new UCEmpleado(true);
+                editarEmpleado.DefinirUsuario(usuario);
+                editarEmpleado.DefinirEmpleado((Employee)listvEmpleados.SelectedItem);
                 Grid gridContenedor = (Grid)Parent;
                 gridContenedor.Children.Clear();
-                gridContenedor.Children.Add(new UCEmpleado((Employee)listvEmpleados.SelectedItem));
+                gridContenedor.Children.Add(editarEmpleado);
             }
             
         }
@@ -126,6 +133,12 @@ namespace PresentacionWPF
         {
             MiVista.Filter += Filtrar;
         }
-        
+
+        private void btCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            Grid gridContenedor = (Grid)Parent;
+            gridContenedor.Children.Clear();
+            gridContenedor.Children.Add(new UCDashboard(usuario));
+        }
     }
 }

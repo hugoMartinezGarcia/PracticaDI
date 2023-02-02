@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:PresentacionWPF"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160">
-    <Grid Background="#FFD4D4D4">
+             d:DesignHeight="804" d:DesignWidth="1160" Background="White">
+    <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="350"/>
+            <RowDefinition Height="290"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="20,60,20,60">
+        <Grid Margin="20,30,20,30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="280"/>
                 <ColumnDefinition Width="280"/>
@@ -34,8 +34,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Total Pedidos" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="1000" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Grid.Row="2" Text="Actualizado 20:45h" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=PedidosUsuarioUltimoMes}"  Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Column="1" Margin="20,40,20,40">
@@ -51,25 +51,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Total Productos &lt; 10" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="1000" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Grid.Row="2" Text="Actualizado 20:45h" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
-            </Grid>
-
-            <Grid Grid.Column="1" Margin="20,40,20,40">
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFF5A95B" Offset="0"/>
-                        <GradientStop Color="#FFEFD453" Offset="0.666"/>
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Total Productos &lt; 10" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="1000" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Grid.Row="2" Text="Actualizado 20:45h" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=ProductosStock10}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Column="2" Margin="20,40,20,40">
@@ -85,8 +68,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="€ pedidos hoy" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="1000" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Grid.Row="2" Text="Actualizado 20:45h" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=ImportePedidosHoy, StringFormat='{}{0:#,0.00}€'}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
 
             <Grid Grid.Column="3" Margin="20,40,20,40">
@@ -102,28 +85,31 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="€ pedidos usuario" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="1000" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
-                <TextBlock Grid.Row="2" Text="Actualizado 20:45h" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Path=ImportePedidosUsuHoy, StringFormat='{}{0:#,0.00}€'}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
 
-        <Grid Margin="20,60,20,60" Grid.Row="1">
+        <Grid Margin="20,20,20,20" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Grafico de pastel -->
-            <lvc:PieChart x:Name="pieChart" Background="#FFFDFAFA" Grid.Column="0" Grid.Row="1">
+            <lvc:PieChart x:Name="pieChart" Background="#FFFDFAFA" Grid.Column="0" Grid.Row="1" LegendLocation="Bottom">
             </lvc:PieChart>
 
             <!-- Grafico de columnas -->
-            <lvc:CartesianChart x:Name="columnChart" Background="#FFFDFAFA" Grid.Column="1" Grid.Row="0">
+            <lvc:CartesianChart x:Name="columnChart" Background="#FFFDFAFA" Grid.Column="1" Grid.Row="0" Margin="10,0,0,0">
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis Title="Pedidos por cliente"/>
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis x:Name="columnChartEjeX" Title="Clientes">
+                    <lvc:Axis x:Name="columnChartEjeX" Title="Clientes" LabelsRotation="-60" FontSize="9" >
+                        <lvc:Axis.Separator >
+                            <lvc:Separator IsEnabled="False" Step="1"></lvc:Separator>
+                        </lvc:Axis.Separator>
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>

@@ -20,6 +20,6 @@ namespace Negocio
             Total = Precio + (Precio * IVA / 100);
         }
 
-        public ResumenFactura()  : this(1, 16) { }
+        public ResumenFactura()  : this(1, 21) { }
     }
 }

@@ -49,7 +49,7 @@
             <Button x:Name="btInsertarEmpleado" Content="Insertar" Margin="0,0,0,20" Click="btInsertarEmpleado_Click"/>
             <Button x:Name="btModificarEmpleado" Content="Modificar" Margin="0,0,0,20" Click="btModificarEmpleado_Click"/>
             <Button x:Name="btBorrarEmpleado" Content="Borrar" Margin="0,0,0,21" Click="btBorrarEmpleado_Click"/>
-            <Button x:Name="btCancelar" Content="Cancelar"/>
+            <Button x:Name="btCancelar" Content="Cancelar" Click="btCancelar_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

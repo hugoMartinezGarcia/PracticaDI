@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,11 @@ namespace PresentacionWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        Employee? empleado;
+        private Employee? empleado;
         public MainWindow()
         {
             InitializeComponent();
-
-            gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCDashboard());
-
+ 
             empleado = null;
             LoginWindow lw = new LoginWindow(this);
             lw.Show();
@@ -41,24 +39,29 @@ namespace PresentacionWPF
             this.empleado = empleado;
             gridPrincipal.DataContext = empleado;
             lbHoraAcceso.DataContext = DateTime.Now.ToShortTimeString();
+            
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCDashboard(empleado!));
         }
 
         private void btDashboard_Click(object sender, RoutedEventArgs e)
         {
-            gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCDashboard());
+            if (btDashboard.IsChecked == true)
+            {
+                gridCentral.Children.Clear();
+                gridCentral.Children.Add(new UCDashboard(empleado!));
+            }
         }
 
         private void btEmpleado_Click(object sender, RoutedEventArgs e)
         {
             gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCBuscarEmpleado());
+            gridCentral.Children.Add(new UCBuscarEmpleado(empleado!));
         }
 
         private void btProductos_Click(object sender, RoutedEventArgs e)
         {
-            gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCDashboard());
+
         }
 
         private void btPedidos_Click(object sender, RoutedEventArgs e)

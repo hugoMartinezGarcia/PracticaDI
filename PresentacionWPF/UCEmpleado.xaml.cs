@@ -24,6 +24,9 @@ namespace PresentacionWPF
     {
 
         private Employee? empleado;
+        private Employee? usuario;
+        private Employee? nuevoEmpleado;
+        private bool modoEditar;
 
         public UCEmpleado()
         {
@@ -33,17 +36,44 @@ namespace PresentacionWPF
             cbInformaA.DataContext = Gestion.ListarEmployee();
         }
 
-        public UCEmpleado(Employee empleado) : this()
+        public UCEmpleado(bool modoEditar) : this()
+        {
+            this.modoEditar = modoEditar;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (modoEditar)
+            {
+                ModoEditar();
+            }
+            else
+            {
+                nuevoEmpleado = new Employee();
+                this.DataContext = nuevoEmpleado;
+            }
+        }
+
+        private void ModoEditar()
+        {
+            this.DataContext = empleado;
+        }
+
+        public void DefinirUsuario(Employee usuario)
+        {
+            this.usuario = usuario;
+        }
+
+        public void DefinirEmpleado(Employee empleado)
         {
             this.empleado = empleado;
-            this.DataContext = empleado;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Grid gridContenedor = (Grid) Parent;
             gridContenedor.Children.Clear();
-            gridContenedor.Children.Add(new UCDashboard());
+            gridContenedor.Children.Add(new UCDashboard(usuario!));
         }
     }
 }

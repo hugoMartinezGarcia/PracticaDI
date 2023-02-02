@@ -6,6 +6,7 @@ using System.Linq;
 using System.Data;
 using System;
 using System.Numerics;
+using System.Diagnostics;
 
 namespace Negocio
 {
@@ -259,6 +260,51 @@ namespace Negocio
             }
 
             return resultado;
+        }
+
+        public DatosDashboard ActualizarDashboard(Employee employee)
+        {
+            int pedidosUsuarioUltimoMes = 
+                OrderADO.Listar().Where(cO => cO.EmployeeId == employee.EmployeeId
+                                  && cO.OrderDate != null
+                                  && ((DateTime)cO.OrderDate!).Year == DateTime.Now.Year
+                                  && ((DateTime)cO.OrderDate!).Month == DateTime.Now.Month)
+                                 .Count();
+            
+            int productosStock10 = ProductADO.Listar().Where(p => p.UnitsInStock < 10).Count();
+
+            List<OrderDetail> listaOD = ListarOrderDetail();
+            List<Order> listaPedidosHoy = ListarOrder().Where(o => o.OrderDate != null
+                                     && o.OrderDate == DateTime.Today).ToList();
+
+            listaPedidosHoy.ForEach(p => listaOD
+                        .Where(oD => oD.OrderId == p.OrderId)
+                        .ToList()
+                        .ForEach(oD => p.OrderDetails.Add(oD)));
+
+            decimal importePedidosHoy = 0;
+
+            foreach (Order o in listaPedidosHoy)
+            {
+                ResumenFactura rF = ResumenFactura(o.OrderDetails.ToList());
+                importePedidosHoy += rF.Total;
+            }
+
+            decimal importePedidosUsuHoy = 0;
+
+            foreach (Order o in listaPedidosHoy.Where(o => o.EmployeeId == employee.EmployeeId))
+            {
+                ResumenFactura rF = ResumenFactura(o.OrderDetails.ToList());
+                importePedidosUsuHoy += rF.Total;
+            }
+
+            Dictionary<string, int> seriePedidosCliente = SeriePedidosCliente();
+            Dictionary<string, int> serieProductosPorCategoria = SerieProductosPorCategoria();
+            DateTime HoraActual = DateTime.Now;
+
+
+            return new DatosDashboard(pedidosUsuarioUltimoMes, productosStock10, importePedidosHoy, 
+                importePedidosUsuHoy, seriePedidosCliente, serieProductosPorCategoria, HoraActual);
         }
 
         public override string ToString()
