@@ -52,6 +52,7 @@ namespace PresentacionWPF
                 nuevoEmpleado = new Employee();
                 this.DataContext = nuevoEmpleado;
             }
+
         }
 
         private void ModoEditar()
@@ -71,9 +72,11 @@ namespace PresentacionWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            /*
             Grid gridContenedor = (Grid) Parent;
             gridContenedor.Children.Clear();
             gridContenedor.Children.Add(new UCDashboard(usuario!));
+            */
         }
     }
 }

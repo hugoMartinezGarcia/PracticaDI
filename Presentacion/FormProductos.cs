@@ -53,9 +53,9 @@ namespace Presentacion
                     product = g.BuscarProduct((int)dgvProducts.CurrentRow.Cells["Product Id"].Value);
                     // Se extraen los datos de supplier y category de sus respectivas tablas.
                     tbSupplierId.Text = product.SupplierId != null ?
-                        g.BuscarSupplier((int)product.SupplierId).ContactName : null;
+                        Gestion.BuscarSupplier((int)product.SupplierId).ContactName : null;
                     tbCategoryId.Text = product.CategoryId != null ?
-                        g.BuscarCategory((int)product.CategoryId).CategoryName : null;
+                        Gestion.BuscarCategory((int)product.CategoryId).CategoryName : null;
                 }
 
                 tbProductId.Text = Convert.ToString(product.ProductId);

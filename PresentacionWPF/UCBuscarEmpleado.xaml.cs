@@ -28,10 +28,12 @@ namespace PresentacionWPF
         private ObservableCollection<Employee> empleados;
         private CollectionViewSource MiVista;
         private Employee usuario;
+        private MainWindow mainWindow;
 
-        public UCBuscarEmpleado(Employee usuario)
+        public UCBuscarEmpleado(Employee usuario, MainWindow mainWindow)
         {
             this.usuario = usuario;
+            this.mainWindow = mainWindow;
             InitializeComponent();
             // Se le asigna el DataContext al UserControl para que no haga Binding
             // hacia el empleado cargado en el gridPrincipal
@@ -138,7 +140,7 @@ namespace PresentacionWPF
         {
             Grid gridContenedor = (Grid)Parent;
             gridContenedor.Children.Clear();
-            gridContenedor.Children.Add(new UCDashboard(usuario));
+            gridContenedor.Children.Add(new UCDashboard(usuario, mainWindow));
         }
     }
 }

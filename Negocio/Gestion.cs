@@ -307,6 +307,42 @@ namespace Negocio
                 importePedidosUsuHoy, seriePedidosCliente, serieProductosPorCategoria, HoraActual);
         }
 
+        public static List<Product> ListarProductosConDatos()
+        {
+            List<Product> productos = new List<Product>(ListarProduct());
+
+            foreach (Product p in productos)
+            {
+                if (p.SupplierId != null)
+                {
+                    p.Supplier = BuscarSupplier((int) p.SupplierId);
+                }
+
+                if (p.CategoryId != null)
+                {
+                    p.Category = BuscarCategory((int)p.CategoryId);
+                }
+            }
+
+            return productos;
+        }
+
+        public static List<Product> ListarProductosPorCategoria(int categoryId)
+        {
+            List<Product> productos = new List<Product>(ListarProductosConDatos());
+
+            return productos.Where(p => p.CategoryId == categoryId).ToList();
+        }
+
+        public List<Category> ListarCategoriasConDatos()
+        {
+            List<Category> categorias = new List<Category>(ListarCategory());
+
+            categorias.ForEach(c => c.Products = ListarProductosPorCategoria(c.CategoryId));
+
+            return categorias;
+        }
+
         public override string ToString()
         {
             return String.Join("-", Empleados)
@@ -346,7 +382,7 @@ namespace Negocio
             return CategoryADO.Listar();
         }
 
-        public Category BuscarCategory(int id)
+        public static Category BuscarCategory(int id)
         {
             Category cat = new Category();
 
@@ -640,7 +676,7 @@ namespace Negocio
             return SupplierADO.Listar();
         }
 
-        public Supplier BuscarSupplier(int id)
+        public static Supplier BuscarSupplier(int id)
         {
             Supplier sup = new Supplier();
 

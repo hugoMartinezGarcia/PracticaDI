@@ -5,8 +5,86 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160">
+             d:DesignHeight="804" d:DesignWidth="1160" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <CollectionViewSource  x:Key="Categorias" Source="{Binding}"/>
+    </UserControl.Resources>
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Top" Margin="20,20,100,0">
+            <Label Margin="0,0,0,20" Content="Buscar categoría" />
+            <TextBox x:Name="tbBuscarCategoria" TextChanged="tbBuscarCategoria_TextChanged" />
+        </StackPanel>
+
+        <DataGrid IsSynchronizedWithCurrentItem="True" x:Name="dgCategorias" Grid.Column="1" Margin="20,20,20,20" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Categoría" Binding="{Binding CategoryId}" Width="*"/>
+                <DataGridTextColumn Header="Nombre categoría" Binding="{Binding CategoryName}" Width="2*"/>
+                <DataGridTextColumn Header="Descripción" Binding="{Binding Description}" Width="4*"/>
+                <DataGridTemplateColumn Header="Imagen" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Picture}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid IsSynchronizedWithCurrentItem="True" x:Name="dgProductos" Margin="20,20,20,20" Grid.Row="1" ItemsSource="{Binding Path=Products}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Producto" Binding="{Binding Path=ProductId}" Width="2*" />
+                <DataGridTextColumn Header="Nombre producto" Binding="{Binding Path=ProductName}" Width="5*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid x:Name="gridDetalleProducto" Grid.Row="1" Margin="20,20,20,20" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Id Producto" VerticalAlignment="Center" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/ProductId}" Grid.Column="1" VerticalAlignment="Center" IsReadOnly="True"/>
+            <Label Content="Nombre producto" VerticalAlignment="Center" Grid.Row="1" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/ProductName}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="1" IsReadOnly="True"/>
+            <Label Content="Proveedor" VerticalAlignment="Center" Grid.Row="2" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/Supplier.CompanyName}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="2" IsReadOnly="True"/>
+            <Label Content="Categoría" VerticalAlignment="Center" Grid.Row="3" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/Category.CategoryName}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" IsReadOnly="True"/>
+            <Label Content="Precio unidad" VerticalAlignment="Center" Grid.Row="4" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/UnitPrice}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="4" IsReadOnly="True"/>
+            <Label Content="Cantidad por unidad" VerticalAlignment="Center" Grid.Row="0" Margin="30,0,0,0" Grid.Column="2"/>
+            <TextBox Text="{Binding Path=Products/QuantityPerUnit}" Grid.Column="3" VerticalAlignment="Center" IsReadOnly="True"/>
+            <Label Content="Unidades en stock" VerticalAlignment="Center" Grid.Column="2" Margin="30,0,0,0" Grid.Row="1"/>
+            <TextBox Text="{Binding Path=Products/UnitsInStock}" Grid.Column="3" VerticalAlignment="Center" Grid.Row="1" IsReadOnly="True"/>
+            <Label Content="Unidades por encargo" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/UnitsOnOrder}" Grid.Column="3" VerticalAlignment="Center" Grid.Row="2" IsReadOnly="True"/>
+            <Label Content="Reordenar nivel" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/ReorderLevel}" Grid.Column="5" VerticalAlignment="Center" Grid.Row="3" IsReadOnly="True"/>
+            <Label Content="Interrumpido" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" Margin="30,0,0,0"/>
+            <TextBox Text="{Binding Path=Products/Discontinued}" Grid.Column="5" VerticalAlignment="Center" Grid.Row="4" IsReadOnly="True"/>
+        </Grid>
+        
+        <Button x:Name="btRetroceder" Content="Atrás" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,20,0" FontSize="14" Padding="8,5,8,5" Click="btRetroceder_Click" />
     </Grid>
 </UserControl>

@@ -34,14 +34,13 @@ namespace PresentacionWPF
 
         public DatosDashboard DatosDashboard { get; set; }
 
-        public UCDashboard(Employee empleado)
+        public UCDashboard(Employee empleado, MainWindow mainWindow)
         {
             InitializeComponent();
             Empleado = empleado;
-            TiempoActualizacion = 5;
-
             ActualizarDatos(empleado);
-
+            TiempoActualizacion = mainWindow.TiempoActualizacion;
+           
             // Temporizador
             t = new DispatcherTimer();
             t.Interval = TimeSpan.FromSeconds(TiempoActualizacion);

@@ -23,25 +23,27 @@ namespace PresentacionWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Employee? empleado;
+        public Employee? usuario;
+
+        public int TiempoActualizacion { get; set; } = 5;
         public MainWindow()
         {
             InitializeComponent();
  
-            empleado = null;
+            usuario = null;
             LoginWindow lw = new LoginWindow(this);
             lw.Show();
             this.Hide();
         }
 
-        public void DefinirEmpleadoYHora(Employee empleado)
+        public void DefinirUsuarioYHora(Employee usuario)
         {
-            this.empleado = empleado;
-            gridPrincipal.DataContext = empleado;
+            this.usuario = usuario;
+            gridPrincipal.DataContext = usuario;
             lbHoraAcceso.DataContext = DateTime.Now.ToShortTimeString();
             
             gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCDashboard(empleado!));
+            gridCentral.Children.Add(new UCDashboard(usuario!, this));
         }
 
         private void btDashboard_Click(object sender, RoutedEventArgs e)
@@ -49,19 +51,20 @@ namespace PresentacionWPF
             if (btDashboard.IsChecked == true)
             {
                 gridCentral.Children.Clear();
-                gridCentral.Children.Add(new UCDashboard(empleado!));
+                gridCentral.Children.Add(new UCDashboard(usuario!, this));
             }
         }
 
         private void btEmpleado_Click(object sender, RoutedEventArgs e)
         {
             gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCBuscarEmpleado(empleado!));
+            gridCentral.Children.Add(new UCBuscarEmpleado(usuario!, this));
         }
 
         private void btProductos_Click(object sender, RoutedEventArgs e)
         {
-
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCProductos(usuario!, this));
         }
 
         private void btPedidos_Click(object sender, RoutedEventArgs e)
@@ -76,7 +79,8 @@ namespace PresentacionWPF
 
         private void btTemporizador_Click(object sender, RoutedEventArgs e)
         {
-
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCTemporizador(usuario!, this));
         }
 
         /*

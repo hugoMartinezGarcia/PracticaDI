@@ -53,7 +53,7 @@ namespace PresentacionWPF
                         {
                             empleado = (Employee)listbEmpleados.SelectedItem;
                             this.Close();
-                            mainWindow.DefinirEmpleadoYHora(empleado);
+                            mainWindow.DefinirUsuarioYHora(empleado);
                             mainWindow.Show();
                         }
                         else
