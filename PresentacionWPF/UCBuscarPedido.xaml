@@ -5,20 +5,48 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160">
+             d:DesignHeight="804" d:DesignWidth="1160" Loaded="UserControl_Loaded">
+    
+    <UserControl.Resources>
+        <CollectionViewSource  x:Key="Clientes" Source="{Binding}"/>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Label Content="Buscar cliente" VerticalAlignment="Bottom" Margin="50,0,0,0"/>
+        <TextBox x:Name="tbBuscarCliente" Grid.Row="1" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left" Margin="50,0,0,0" TextChanged="TextBox_TextChanged"/>
+
+        <DataGrid IsSynchronizedWithCurrentItem="True" x:Name="dgClientes" Margin="20,20,20,20" ItemsSource="{Binding}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Row="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID cliente" Binding="{Binding CustomerId}" Width="*"/>
+                <DataGridTextColumn Header="Nombre compañía" Binding="{Binding CompanyName}" Width="2*"/>
+                <DataGridTextColumn Header="Nombre de contacto" Binding="{Binding ContactName}" Width="4*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid IsSynchronizedWithCurrentItem="True" x:Name="dgPedidos" Margin="20,20,140,100" ItemsSource="{Binding Path=Orders}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID pedido" Binding="{Binding OrderId}" Width="*"/>
+                <DataGridTextColumn Header="ID empleado" Binding="{Binding EmployeeId}" Width="*"/>
+                <DataGridTextColumn Header="Fecha pedido" Binding="{Binding OrderDate}" Width="2*"/>
+                <DataGridTextColumn Header="Fecha requerida" Binding="{Binding RequiredDate}" Width="2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button x:Name="btInsertarPedido" Content="Insertar" Margin="0,0,0,20" Click="btInsertarPedido_Click"/>
+            <Button x:Name="btModificarPedido" Content="Modificar" Margin="0,0,0,20" Click="btModificarPedido_Click"/>
+            <Button x:Name="btCancelar" Content="Cancelar" Click="btCancelar_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

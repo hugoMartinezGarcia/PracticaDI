@@ -343,6 +343,31 @@ namespace Negocio
             return categorias;
         }
 
+        // Devuelve solo aquellos clientes que tienen algún pedido sin fecha de envío.
+        public List<Customer> ListarClientesConOrdersPendientes()
+        {
+            List<Customer> clientes = new List<Customer>(ListarCustomer());
+
+            /*
+            foreach (Customer c in clientes)
+            {
+                foreach (Order o in ListarOrder())
+                {
+                    if (o.CustomerId == c.CustomerId && o.ShippedDate == null)
+                    {
+                        c.Orders.Add(o);
+                    }
+                }
+            }
+            */
+
+            clientes.ForEach(c => c.Orders = ListarOrder()
+                    .Where(o => o.CustomerId == c.CustomerId && o.ShippedDate == null)
+                    .ToList());
+
+            return clientes.Where(c => c.Orders.Count > 0).ToList();
+        }
+
         public override string ToString()
         {
             return String.Join("-", Empleados)

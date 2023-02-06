@@ -69,7 +69,8 @@ namespace PresentacionWPF
 
         private void btPedidos_Click(object sender, RoutedEventArgs e)
         {
-
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCBuscarPedido(usuario!, this));
         }
 
         private void btInformes_Click(object sender, RoutedEventArgs e)
