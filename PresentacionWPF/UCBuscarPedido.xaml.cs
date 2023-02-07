@@ -27,18 +27,34 @@ namespace PresentacionWPF
         private CollectionViewSource MiVista;
         private Employee usuario;
         private MainWindow mainWindow;
+        private bool modoFactura;
 
-        public UCBuscarPedido(Employee usuario, MainWindow mainWindow)
+        public UCBuscarPedido(Employee usuario, MainWindow mainWindow, bool modoFactura)
         {
             InitializeComponent();
             this.usuario = usuario;
             this.mainWindow = mainWindow;
+            this.modoFactura = modoFactura;
             MiVista = (CollectionViewSource)FindResource("Clientes");
             this.DataContext = MiVista;
             
-            using (Gestion g = new Gestion())
+
+            if (modoFactura)
             {
-                clientes = new ObservableCollection<Customer>(g.ListarClientesConOrdersPendientes());
+                using (Gestion g = new Gestion())
+                {
+                    clientes = new ObservableCollection<Customer>(g.ListarClientesConOrders());
+                }
+
+                btModificarPedido.Visibility = Visibility.Hidden;
+                btNuevo.Content = "Mostrar factura";
+            }
+            else
+            {
+                using (Gestion g = new Gestion())
+                {
+                    clientes = new ObservableCollection<Customer>(g.ListarClientesConOrdersPendientes());
+                }
             }
         }
 
@@ -69,32 +85,59 @@ namespace PresentacionWPF
             }
         }
 
-        private void btInsertarPedido_Click(object sender, RoutedEventArgs e)
+        private void btNuevo_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            UCEmpleado insertarEmpleado = new UCEmpleado(false);
-            insertarEmpleado.DefinirUsuario(usuario);
-            Grid gridContenedor = (Grid)Parent;
-            gridContenedor.Children.Clear();
-            gridContenedor.Children.Add(insertarEmpleado);
-            */
+            if (modoFactura)
+            {
+
+                if (dgPedidos.SelectedItem != null)
+                {
+                    Order pedido = new Order();
+                    using (Gestion g = new Gestion())
+                    {
+                        pedido = g.DatosPedido(((Order)dgPedidos.SelectedItem).OrderId);
+                    }
+                    UCFactura factura = new UCFactura(pedido);
+                    Grid gridContenedor = (Grid)Parent;
+                    gridContenedor.Children.Clear();
+                    gridContenedor.Children.Add(factura);
+                }
+                else
+                {
+                    MessageBox.Show("Debes seleccionar un pedido de la lista!");
+                }    
+            }
+            else
+            {
+                UCPedidos insertarPedido = new UCPedidos(false);
+                insertarPedido.DefinirUsuario(usuario);
+                Grid gridContenedor = (Grid)Parent;
+                gridContenedor.Children.Clear();
+                gridContenedor.Children.Add(insertarPedido);
+            }
         }
 
 
         private void btModificarPedido_Click(object sender, RoutedEventArgs e)
-        {
-            /*
-            if (listvClientes.SelectedItem != null)
+        {         
+            if (dgPedidos.SelectedItem != null)
             {
-                UCEmpleado editarEmpleado = new UCEmpleado(true);
-                editarEmpleado.DefinirUsuario(usuario);
-                editarEmpleado.DefinirEmpleado((Employee)listvClientes.SelectedItem);
+                UCPedidos editarPedido = new UCPedidos(true);
+                editarPedido.DefinirUsuario(usuario);
+
+                using (Gestion g = new Gestion())
+                {
+                    editarPedido.DefinirPedido(g.DatosPedido(((Order)dgPedidos.SelectedItem).OrderId));
+                }
+                
                 Grid gridContenedor = (Grid)Parent;
                 gridContenedor.Children.Clear();
-                gridContenedor.Children.Add(editarEmpleado);
+                gridContenedor.Children.Add(editarPedido);
             }
-            */
-
+            else
+            {
+                MessageBox.Show("Debes seleccionar un pedido de la lista!");
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

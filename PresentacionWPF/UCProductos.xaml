@@ -72,7 +72,7 @@
             <Label Content="Categoría" VerticalAlignment="Center" Grid.Row="3" Margin="30,0,0,0"/>
             <TextBox Text="{Binding Path=Products/Category.CategoryName}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="3" IsReadOnly="True"/>
             <Label Content="Precio unidad" VerticalAlignment="Center" Grid.Row="4" Margin="30,0,0,0"/>
-            <TextBox Text="{Binding Path=Products/UnitPrice}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="4" IsReadOnly="True"/>
+            <TextBox Text="{Binding Path=Products/UnitPrice, StringFormat='{}{0:#,0.00}€'}" Grid.Column="1" VerticalAlignment="Center" Grid.Row="4" IsReadOnly="True"/>
             <Label Content="Cantidad por unidad" VerticalAlignment="Center" Grid.Row="0" Margin="30,0,0,0" Grid.Column="2"/>
             <TextBox Text="{Binding Path=Products/QuantityPerUnit}" Grid.Column="3" VerticalAlignment="Center" IsReadOnly="True"/>
             <Label Content="Unidades en stock" VerticalAlignment="Center" Grid.Column="2" Margin="30,0,0,0" Grid.Row="1"/>

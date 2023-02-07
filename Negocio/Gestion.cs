@@ -348,21 +348,20 @@ namespace Negocio
         {
             List<Customer> clientes = new List<Customer>(ListarCustomer());
 
-            /*
-            foreach (Customer c in clientes)
-            {
-                foreach (Order o in ListarOrder())
-                {
-                    if (o.CustomerId == c.CustomerId && o.ShippedDate == null)
-                    {
-                        c.Orders.Add(o);
-                    }
-                }
-            }
-            */
-
             clientes.ForEach(c => c.Orders = ListarOrder()
                     .Where(o => o.CustomerId == c.CustomerId && o.ShippedDate == null)
+                    .ToList());
+
+            return clientes.Where(c => c.Orders.Count > 0).ToList();
+        }
+
+        // Devuelve solo aquellos clientes que tienen algún pedido con fecha de envío.
+        public List<Customer> ListarClientesConOrders()
+        {
+            List<Customer> clientes = new List<Customer>(ListarCustomer());
+
+            clientes.ForEach(c => c.Orders = ListarOrder()
+                    .Where(o => o.CustomerId == c.CustomerId && o.ShippedDate != null)
                     .ToList());
 
             return clientes.Where(c => c.Orders.Count > 0).ToList();

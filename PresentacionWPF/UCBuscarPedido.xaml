@@ -44,7 +44,7 @@
         </DataGrid>
 
         <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button x:Name="btInsertarPedido" Content="Insertar" Margin="0,0,0,20" Click="btInsertarPedido_Click"/>
+            <Button x:Name="btNuevo" Content="Insertar" Margin="0,0,0,20" Click="btNuevo_Click"/>
             <Button x:Name="btModificarPedido" Content="Modificar" Margin="0,0,0,20" Click="btModificarPedido_Click"/>
             <Button x:Name="btCancelar" Content="Cancelar" Click="btCancelar_Click"/>
         </StackPanel>

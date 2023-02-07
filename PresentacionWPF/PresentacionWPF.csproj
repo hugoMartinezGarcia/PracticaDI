@@ -12,6 +12,7 @@
     <None Remove="img\delete.png" />
     <None Remove="img\edit.png" />
     <None Remove="img\employee.png" />
+    <None Remove="img\logo.png" />
     <None Remove="img\notification.png" />
     <None Remove="img\order.png" />
     <None Remove="img\printer.png" />
@@ -34,6 +35,7 @@
     <Resource Include="img\delete.png" />
     <Resource Include="img\edit.png" />
     <Resource Include="img\employee.png" />
+    <Resource Include="img\logo.png" />
     <Resource Include="img\notification.png" />
     <Resource Include="img\order.png" />
     <Resource Include="img\printer.png" />

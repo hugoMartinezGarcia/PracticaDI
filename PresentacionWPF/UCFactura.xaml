@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="PresentacionWPF.UCFactura"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentacionWPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="804" d:DesignWidth="1160">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <FlowDocumentScrollViewer x:Name="flowDocumentViewer">
+            <FlowDocument>
+                <!--titulo factura -->
+                <Paragraph>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750">
+                        <Image Source="img/logo.png" Width="90" Height="90" Margin="0,0,30,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Label Content="FACTURA NORTHWIND" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Paragraph>
+                <BlockUIContainer>
+                    <Rectangle Height="30"/>
+                </BlockUIContainer>
+                
+                <!--parte superior de la factura -->
+                <Section>
+                    <Paragraph>
+                        <Grid x:Name="gridCabecera" Width="700">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Content="Id Pedido:"/>
+                            <TextBlock Text="{Binding OrderId, Mode=OneWay}" Grid.Column="1" VerticalAlignment="Center"/>
+                            <Label Content="Cliente:" Grid.Row="1"/>
+                            <TextBlock Text="{Binding Customer, Mode=OneWay}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                            <Label Content="Empleado:" Grid.Row="2"/>
+                            <TextBlock Text="{Binding Employee, Mode=OneWay}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+                            <Label Content="Fecha pedido:" Grid.Row="3"/>
+                            <TextBlock Text="{Binding OrderDate, Mode=OneWay}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+                            <Label Content="Fecha reqerida:" Grid.Row="4"/>
+                            <TextBlock Text="{Binding RequiredDate, Mode=OneWay}" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+                            <Label Content="Fecha envío:" Grid.Row="5"/>
+                            <TextBlock Text="{Binding ShippedDate, Mode=OneWay}" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+                            <Label Content="Transportista:" Grid.Column="2" />
+                            <TextBlock Text="{Binding ShipVia, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center"/>
+                            <Label Content="Nombre envío:" Grid.Row="1" Grid.Column="2"/>
+                            <TextBlock Text="{Binding ShipName, Mode=OneWay}" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center"/>
+                            <Label Content="Dirección envío:" Grid.Column="2" Grid.Row="2"/>
+                            <TextBlock Text="{Binding ShipAddress, Mode=OneWay}" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"/>
+                            <Label Content="Ciudad envío:" Grid.Row="3" Grid.Column="2"/>
+                            <TextBlock Text="{Binding ShipCity, Mode=OneWay}" Grid.Column="3" Grid.Row="3" VerticalAlignment="Center"/>
+                            <Label Content="País envío:" Grid.Row="4" Grid.Column="2"/>
+                            <TextBlock Text="{Binding ShipCountry, Mode=OneWay}" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
+                            <Label Content="Transporte:" Grid.Row="5" Grid.Column="2"/>
+                            <TextBlock Text="{Binding Freight, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Paragraph>
+                </Section>
+                <BlockUIContainer>
+                    <Rectangle Height="30"/>
+                </BlockUIContainer>
+                
+                <!--Detalle de la factura -->
+                <Section>
+                    <Paragraph>
+                        <DataGrid x:Name="dgDetallesFactura" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="True" Width="700" VerticalContentAlignment="Stretch" GridLinesVisibility="None" BorderThickness="0,0,0,0" ClipToBounds="True"/>
+                    </Paragraph>
+                </Section>
+                <BlockUIContainer>
+                    <Rectangle Height="30"/>
+                </BlockUIContainer>
+                
+                <!--parte inferior de la factura -->
+                <Section>
+                    <Paragraph>
+                        <Border BorderThickness="2,2,2,2" Width="750">
+                            <Grid x:Name="gridResumenFactura">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="120"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="PRECIO"/>
+                                <TextBlock Text="{Binding Precio, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="1"/>
+                                <Label Content="IVA" Grid.Column="2"/>
+                                <TextBlock Text="{Binding IVA, Mode=OneWay}" Grid.Column="3"/>
+                                <Label Content="TOTAL" Grid.Column="4"/>
+                                <TextBlock Text="{Binding Total, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="5"/>
+                            </Grid>
+                        </Border>
+                    </Paragraph>
+                </Section>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+        <Button x:Name="btImprimir" Grid.Row="1" Content="Imprimir" Click="btImprimir_Click" Height="48" Margin="50,50,50,50" />
+    </Grid>
+</UserControl>

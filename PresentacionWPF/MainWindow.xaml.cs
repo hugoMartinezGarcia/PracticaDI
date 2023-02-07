@@ -70,12 +70,13 @@ namespace PresentacionWPF
         private void btPedidos_Click(object sender, RoutedEventArgs e)
         {
             gridCentral.Children.Clear();
-            gridCentral.Children.Add(new UCBuscarPedido(usuario!, this));
+            gridCentral.Children.Add(new UCBuscarPedido(usuario!, this, false));
         }
 
         private void btInformes_Click(object sender, RoutedEventArgs e)
         {
-
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCBuscarPedido(usuario!, this, true));
         }
 
         private void btTemporizador_Click(object sender, RoutedEventArgs e)

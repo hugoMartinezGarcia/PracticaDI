@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160">
+             d:DesignHeight="804" d:DesignWidth="1160" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -39,24 +39,96 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+                
+                <Label Content="ID Pedido" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Path=OrderId}" Grid.Column="1" VerticalAlignment="Center"/>
+                <Label Content="Cliente" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Path=CustomerId}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                <Label Content="Fecha pedido" Grid.Row="2" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <DatePicker SelectedDate="{Binding Path=OrderDate}" VerticalAlignment="Center" Width="180" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarOrderDate" Height="25" VerticalAlignment="Center">
+                        <Image Source="img/delete.png" Height="20"/>
+                    </Button>
+                </StackPanel>
+                <Label Content="Fecha requerida" Grid.Row="3" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <DatePicker SelectedDate="{Binding Path=RequiredDate}" VerticalAlignment="Center" Width="180" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarRequiredDate" Height="25" VerticalAlignment="Center">
+                        <Image Source="img/delete.png" Height="20"/>
+                    </Button>
+                </StackPanel>
+                <Label Content="Fecha envío" Grid.Row="4" VerticalAlignment="Center"/>
+                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                    <DatePicker SelectedDate="{Binding Path=ShippedDate}" VerticalAlignment="Center" Width="180" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarShippedDate" Height="25" VerticalAlignment="Center">
+                        <Image Source="img/delete.png" Height="20"/>
+                    </Button>
+                </StackPanel>
+                <Label Content="Via envío" Grid.Row="5" VerticalAlignment="Center"/>
+                <Grid Grid.Column="1" Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Text="{Binding Path=ShipVia}" VerticalAlignment="Center"/>
+                    <Label Content="Transporte" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Text="{Binding Path=Freight}" Grid.Column="2" VerticalAlignment="Center"/>
+                </Grid>
             </Grid>
         </GroupBox>
-        <Label Content="Buscar productos" Grid.Row="1" VerticalAlignment="Bottom"/>
-        <TextBox Grid.Row="2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-        <ListBox Grid.Row="3" Grid.ColumnSpan="2" Margin="20,0,20,0">
-            <ListBox.ItemTemplate>
+        <Label Content="Buscar productos" Grid.Row="1" VerticalAlignment="Bottom" Margin="20,0,0,0"/>
+        <TextBox Grid.Row="2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="20,0,0,0"/>
+        <ListView x:Name="lbProductos" ItemsSource="{Binding}" Grid.Row="3" Grid.ColumnSpan="3" Margin="20,0,20,0">
+            <ListView.Resources>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="HandleDoubleClick" />
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    
+                    <Border BorderBrush="#FF8FC4FF" BorderThickness="2,2,2,2">
+                        <Grid Background="#FFB8F7AB">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition Width="65"></ColumnDefinition>
+                                <ColumnDefinition Width="80"></ColumnDefinition>
+                                <ColumnDefinition Width="65"></ColumnDefinition>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding ProductId}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{Binding ProductName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="2" Text="{Binding QuantityPerUnit}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="3" Text="{Binding UnitPrice}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="4" Text="{Binding UnitsInStock}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="5" Text="{Binding UnitsOnOrder}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="6" Text="{Binding ReorderLevel}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="7" Text="{Binding Discontinued}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="8" Text="{Binding Supplier.CompanyName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="9" Text="{Binding Category.CategoryName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Content="Detalles pedido" Grid.Row="1" VerticalAlignment="Bottom" Grid.Column="2"/>
-        <DataGrid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Margin="20,0,20,0" Grid.RowSpan="2">
-            
+            </ListView.ItemTemplate>
+        </ListView>
+        <Label Content="Detalles pedido" Grid.Row="1" VerticalAlignment="Bottom" Grid.Column="3"/>
+        <DataGrid x:Name="dgDetallesPedido" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Margin="20,0,20,0" Grid.RowSpan="2" AutoGenerateColumns="False" CellEditEnding="dgDetallesPedido_CellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="tcProductId" Header="ID producto" Binding="{Binding ProductId}" Width="*"/>
+                <DataGridTextColumn Header="Precio uni." Binding="{Binding UnitPrice}" Width="2*"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding Quantity}" Width="4*"/>
+            </DataGrid.Columns>
         </DataGrid>
         
         <GroupBox Grid.ColumnSpan="5" Header="Resumen factura" Grid.Row="4">
-            <Grid>
+            <Grid DataContext="{Binding UpdateSourceTrigger=PropertyChanged}" x:Name="gridResumenFactura">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -65,10 +137,17 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+
+                <Label Content="Precio sin IVA" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Path=Precio}" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left"/>
+                <Label Content="IVA" Grid.Column="2" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Path=IVA}" Grid.Column="3" Height="30" Width="100" HorizontalAlignment="Left"/>
+                <Label Content="TOTAL" Grid.Column="4" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding Path=Total}" Grid.Column="5" Height="30" Width="100" HorizontalAlignment="Left"/>
             </Grid>
         </GroupBox>
 
-        <Button Content="Aceptar" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button Content="Aceptar" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <Button Content="Cancelar" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>
