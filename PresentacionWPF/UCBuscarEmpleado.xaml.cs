@@ -71,7 +71,7 @@ namespace PresentacionWPF
         
         private void btInsertarEmpleado_Click(object sender, RoutedEventArgs e)
         {
-            UCEmpleado insertarEmpleado = new UCEmpleado(false);
+            UCEmpleado insertarEmpleado = new UCEmpleado(usuario, mainWindow, false);
             insertarEmpleado.DefinirUsuario(usuario);
             Grid gridContenedor = (Grid)Parent;
             gridContenedor.Children.Clear();
@@ -83,7 +83,7 @@ namespace PresentacionWPF
         {
             if (listvEmpleados.SelectedItem != null) 
             {
-                UCEmpleado editarEmpleado = new UCEmpleado(true);
+                UCEmpleado editarEmpleado = new UCEmpleado(usuario, mainWindow, true);
                 editarEmpleado.DefinirUsuario(usuario);
                 editarEmpleado.DefinirEmpleado((Employee)listvEmpleados.SelectedItem);
                 Grid gridContenedor = (Grid)Parent;

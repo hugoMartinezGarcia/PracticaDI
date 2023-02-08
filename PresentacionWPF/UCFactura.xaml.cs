@@ -46,6 +46,7 @@ namespace PresentacionWPF
         }
 
 
+        // Método para mostrar el diálogo para imprimir
         private void btImprimir_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
