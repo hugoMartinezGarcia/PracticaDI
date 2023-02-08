@@ -78,7 +78,7 @@
                 <!--Detalle de la factura -->
                 <Section>
                     <Paragraph>
-                        <DataGrid x:Name="dgDetallesFactura" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="True" Width="700" VerticalContentAlignment="Stretch" GridLinesVisibility="None" BorderThickness="0,0,0,0" ClipToBounds="True"/>
+                        <DataGrid x:Name="dgDetallesFactura" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="True" Width="700" GridLinesVisibility="None" BorderThickness="0"/>
                     </Paragraph>
                 </Section>
                 <BlockUIContainer>
@@ -88,8 +88,8 @@
                 <!--parte inferior de la factura -->
                 <Section>
                     <Paragraph>
-                        <Border BorderThickness="2,2,2,2" Width="750">
-                            <Grid x:Name="gridResumenFactura">
+                        <Border BorderThickness="3" Width="700" BorderBrush="Black" CornerRadius="5">
+                            <Grid x:Name="gridResumenFactura" Background="#FFC2EAFF">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="120"/>
                                     <ColumnDefinition Width="120"/>
@@ -110,6 +110,10 @@
                 </Section>
             </FlowDocument>
         </FlowDocumentScrollViewer>
-        <Button x:Name="btImprimir" Grid.Row="1" Content="Imprimir" Click="btImprimir_Click" Height="48" Margin="50,50,50,50" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="btImprimir" Content="Imprimir" Click="btImprimir_Click" Height="48" Width="400" Margin="50,50,50,50" />
+            <Button x:Name="btAtras" Content="Atras" Height="48" Width="400" Margin="50,50,50,50" Click="btAtras_Click" />
+        </StackPanel>
+        
     </Grid>
 </UserControl>

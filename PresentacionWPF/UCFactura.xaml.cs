@@ -23,10 +23,14 @@ namespace PresentacionWPF
     /// </summary>
     public partial class UCFactura : UserControl
     {
+        private Employee usuario;
+        private MainWindow mainWindow;
         private Order pedido;
-        public UCFactura(Order pedido)
+        public UCFactura(MainWindow mainWindow, Employee usuario, Order pedido)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
+            this.usuario = usuario;
             this.pedido = pedido;
             using (Gestion g = new Gestion())
             {
@@ -57,9 +61,21 @@ namespace PresentacionWPF
                 IDocumentPaginatorSource document = flowDocument as IDocumentPaginatorSource;
                 printDialog.PrintDocument(document.DocumentPaginator, "Factura NORTHWIND  Nº: " + pedido.OrderId);
 
-
+                Retroceder();
 
             }
+        }
+
+        private void btAtras_Click(object sender, RoutedEventArgs e)
+        {
+            Retroceder();   
+        }
+
+        private void Retroceder()
+        {
+            Grid gridContenedor = (Grid)Parent;
+            gridContenedor.Children.Clear();
+            gridContenedor.Children.Add(new UCBuscarPedido(usuario, mainWindow, true));
         }
     }
 }

@@ -97,7 +97,7 @@ namespace PresentacionWPF
                     {
                         pedido = g.DatosPedido(((Order)dgPedidos.SelectedItem).OrderId);
                     }
-                    UCFactura factura = new UCFactura(pedido);
+                    UCFactura factura = new UCFactura(mainWindow, usuario, pedido);
                     Grid gridContenedor = (Grid)Parent;
                     gridContenedor.Children.Clear();
                     gridContenedor.Children.Add(factura);
