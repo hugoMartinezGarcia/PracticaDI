@@ -25,9 +25,9 @@ namespace PresentacionWPF
     /// </summary>
     public partial class UCEmpleado : UserControl
     {
-        private Employee? usuario;
+        private Employee usuario;
         private MainWindow mainWindow;
-        private Employee? empleado;
+        private Employee empleado;
         private bool modoEditar;
 
         public UCEmpleado()
@@ -38,8 +38,9 @@ namespace PresentacionWPF
             cbReportsTo.ItemsSource = Gestion.ListarEmployee();
         }
 
-        public UCEmpleado(Employee usuario, MainWindow mainWindow, bool modoEditar) : this()
+        public UCEmpleado(Employee empleado, Employee usuario, MainWindow mainWindow, bool modoEditar) : this()
         {
+            this.empleado = empleado;
             this.usuario = usuario;
             this.mainWindow = mainWindow;
             this.modoEditar = modoEditar;
@@ -47,29 +48,22 @@ namespace PresentacionWPF
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            this.DataContext = empleado;
+
             if (modoEditar)
             {
                 ModoEditar();
             }
             else
             {
-                empleado = new Employee();
-                this.DataContext = empleado;
+                empleado.FirstName = "";
+                empleado.LastName = "";
             }
-
         }
 
         private void ModoEditar()
         {
-            this.DataContext = empleado;
-            btInsertar.Content = "Modificar";
-            //cbTitleOfCourtesy.SelectedItem = empleado!.TitleOfCourtesy;
-            //cbInformaA.SelectedValue = empleado!.ReportsTo;
-        }
-
-        public void DefinirUsuario(Employee usuario)
-        {
-            this.usuario = usuario;
+            btInsertar.Content = "Modificar"; 
         }
 
         public void DefinirEmpleado(Employee empleado)
@@ -78,6 +72,11 @@ namespace PresentacionWPF
         }
 
         private void btCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            Retroceder();
+        }
+
+        private void Retroceder()
         {
             Grid gridContenedor = (Grid)Parent;
             gridContenedor.Children.Clear();
@@ -92,6 +91,9 @@ namespace PresentacionWPF
                 {
                     g.ActualizarEmployee(empleado!);
                 }
+
+                MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha modificado correctamente",
+                            empleado!.EmployeeId, empleado.FirstName, empleado.LastName));
             }
             else
             {
@@ -99,12 +101,12 @@ namespace PresentacionWPF
                 {
                     g.InsertarEmployee(empleado!);
                 }
-            }
-        }
 
-        private void btBorrarBirthDate_Click(object sender, RoutedEventArgs e)
-        {
-            dtBirthDate.SelectedDate = null;
+                MessageBox.Show(String.Format("El empleado {0}- {1} {2} se ha insertado correctamente",
+                            empleado!.EmployeeId, empleado.FirstName, empleado.LastName));
+            }
+
+            Retroceder();
         }
 
         private void btSeleccionarFoto_Click(object sender, RoutedEventArgs e)
@@ -140,6 +142,16 @@ namespace PresentacionWPF
             empleado!.Photo = null;
         }
 
+        private void btBorrarBirthDate_Click(object sender, RoutedEventArgs e)
+        {
+            dtBirthDate.SelectedDate = null;
+        }
+
+        private void btBorrarHireDate_Click(object sender, RoutedEventArgs e)
+        {
+            dtHireDate.SelectedDate = null;
+        }
+
         private void btBorrarTitleOfCourtesy_Click(object sender, RoutedEventArgs e)
         {
             cbTitleOfCourtesy.SelectedItem = null;
@@ -149,5 +161,6 @@ namespace PresentacionWPF
         {
             cbReportsTo.SelectedItem = null;
         }
+        
     }
 }

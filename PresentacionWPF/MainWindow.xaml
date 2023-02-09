@@ -7,34 +7,52 @@
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="900" Width="1280">
+        Title="MainWindow" Height="900" Width="1280" Closing="Window_Closing">
     <Grid x:Name="gridPrincipal">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="stckPanelLateral" Grid.Row="1" Background="#FFC7E7FF">
-            <RadioButton x:Name="btDashboard" IsChecked="True" Margin="0,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btDashboard_Click">
-                <Image Source="img/dashboard.png" Width="46"/>
+        <StackPanel x:Name="stckPanelLateral" Style="{StaticResource EstiloMenuLateral}" Grid.Row="1" Background="#FFC7E7FF" Width="70" Height="803" HorizontalAlignment="Left">
+            <RadioButton x:Name="btDashboard" Style="{StaticResource botonMenu}" Click="btDashboard_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource IconoBotonMenu}" Source="img/dashboard.png"/>
+                    <TextBlock Style="{StaticResource textoBotonMenu}" Text="Dashboard"/>
+                </StackPanel>
             </RadioButton>
-            <RadioButton x:Name="btEmpleado" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btEmpleado_Click">
-                <Image Source="img/employee.png"/>
+            <RadioButton x:Name="btEmpleado" Style="{StaticResource botonMenu}" Click="btEmpleado_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource IconoBotonMenu}" Source="img/employee.png"/>
+                    <TextBlock Style="{StaticResource textoBotonMenu}" Text="Empleados"/>
+                </StackPanel>
             </RadioButton>
-            <RadioButton x:Name="btProductos" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btProductos_Click">
-                <Image Source="img/product.png"/>
+            <RadioButton x:Name="btProductos" Style="{StaticResource botonMenu}" Click="btProductos_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource IconoBotonMenu}" Source="img/product.png"/>
+                    <TextBlock Style="{StaticResource textoBotonMenu}" Text="Productos"/>
+                </StackPanel>
             </RadioButton>
-            <RadioButton x:Name="btPedidos" Height="50" Margin="0,30,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="btPedidos_Click">
-                <Image Source="img/order.png"/>
+            <RadioButton x:Name="btPedidos" Style="{StaticResource botonMenu}" Click="btPedidos_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource IconoBotonMenu}" Source="img/order.png"/>
+                    <TextBlock Style="{StaticResource textoBotonMenu}" Text="Pedidos"/>
+                </StackPanel>
             </RadioButton>
-            <RadioButton x:Name="btInformes" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btInformes_Click">
-                <Image Source="img/printer.png"/>
+            <RadioButton x:Name="btFacturas" Style="{StaticResource botonMenu}" Click="btFacturas_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource IconoBotonMenu}" Source="img/printer.png"/>
+                    <TextBlock Style="{StaticResource textoBotonMenu}" Text="Facturas"/>
+                </StackPanel>
             </RadioButton>
-            <RadioButton x:Name="btTemporizador" Height="50" Margin="0,30,0,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="btTemporizador_Click">
-                <Image Source="img/timer.png"/>
+            <RadioButton x:Name="btTemporizador" Style="{StaticResource botonMenu}" Click="btTemporizador_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Style="{StaticResource IconoBotonMenu}" Source="img/timer.png"/>
+                    <TextBlock Style="{StaticResource textoBotonMenu}" Text="Temporizador"/>
+                </StackPanel>
             </RadioButton>
         </StackPanel>
         <Grid x:Name="gridCentral" Grid.Column="1" Grid.Row="1">

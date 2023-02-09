@@ -88,8 +88,8 @@
                 </Grid.RowDefinitions>
                 <Label Content="Fecha contratación" VerticalAlignment="Center"/>
                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                    <DatePicker SelectedDate="{Binding Path=HireDate}" Grid.Column="1" VerticalAlignment="Center" Width="280" Margin="0,0,20,0"/>
-                    <Button x:Name="btBorrarFechaContratacion" Height="25" VerticalAlignment="Center">
+                    <DatePicker x:Name="dtHireDate" SelectedDate="{Binding Path=HireDate}" Grid.Column="1" VerticalAlignment="Center" Width="280" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarHireDate" Height="25" VerticalAlignment="Center" Click="btBorrarHireDate_Click">
                         <Image Source="img/delete.png" Height="20"/>
                     </Button>
                 </StackPanel>
@@ -127,8 +127,8 @@
         </GroupBox>
         
         <StackPanel Grid.Row="3" Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0,20,30,0" VerticalAlignment="Top">
-            <Button x:Name="btInsertar" Content="Insertar" Margin="0,0,50,0" Height="30" Width="70" BorderThickness="5" BorderBrush="White" Background="#FF1F3456" Foreground="White" FontWeight="Bold" Click="btInsertar_Click"/>
-            <Button x:Name="btCancelar" Content="Cancelar" Width="70" Click="btCancelar_Click"/>
+            <Button x:Name="btInsertar" Style="{StaticResource EstiloBoton}" Content="Insertar" Margin="0,0,50,0" Click="btInsertar_Click"/>
+            <Button x:Name="btCancelar" Style="{StaticResource EstiloBoton}" Content="Cancelar" Click="btCancelar_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -43,10 +43,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button x:Name="btNuevo" Content="Insertar" Margin="0,0,0,20" Click="btNuevo_Click"/>
-            <Button x:Name="btModificarPedido" Content="Modificar" Margin="0,0,0,20" Click="btModificarPedido_Click"/>
-            <Button x:Name="btCancelar" Content="Cancelar" Click="btCancelar_Click"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0">
+            <Button x:Name="btNuevo" Style="{StaticResource EstiloBoton}" Content="Nuevo" Margin="0,0,0,50" Click="btNuevo_Click"/>
+            <Button x:Name="btModificarPedido" Style="{StaticResource EstiloBoton}" Content="Modificar" Margin="0,0,0,20" Click="btModificarPedido_Click"/>
+            <Button x:Name="btCancelar" Style="{StaticResource EstiloBoton}" Content="Cancelar" Click="btCancelar_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -96,7 +96,22 @@ namespace PresentacionWPF
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (empleado == null)
-                mainWindow.Close();
+            {
+                MessageBoxResult respuesta = MessageBox.Show(
+                "¿Confirma que desea salir?",
+                "Salir de la aplicación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+                if (respuesta == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    mainWindow.Close();
+                }
+            }
         }
     }
 }

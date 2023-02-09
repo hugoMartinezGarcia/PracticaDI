@@ -48,11 +48,8 @@ namespace PresentacionWPF
 
         private void btDashboard_Click(object sender, RoutedEventArgs e)
         {
-            if (btDashboard.IsChecked == true)
-            {
-                gridCentral.Children.Clear();
-                gridCentral.Children.Add(new UCDashboard(usuario!, this));
-            }
+            gridCentral.Children.Clear();
+            gridCentral.Children.Add(new UCDashboard(usuario!, this));
         }
 
         private void btEmpleado_Click(object sender, RoutedEventArgs e)
@@ -69,11 +66,12 @@ namespace PresentacionWPF
 
         private void btPedidos_Click(object sender, RoutedEventArgs e)
         {
+
             gridCentral.Children.Clear();
             gridCentral.Children.Add(new UCBuscarPedido(usuario!, this, false));
         }
 
-        private void btInformes_Click(object sender, RoutedEventArgs e)
+        private void btFacturas_Click(object sender, RoutedEventArgs e)
         {
             gridCentral.Children.Clear();
             gridCentral.Children.Add(new UCBuscarPedido(usuario!, this, true));
@@ -84,6 +82,25 @@ namespace PresentacionWPF
             gridCentral.Children.Clear();
             gridCentral.Children.Add(new UCTemporizador(usuario!, this));
         }
+
+        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (usuario != null)
+            {
+                MessageBoxResult respuesta = MessageBox.Show(
+                "¿Confirma que desea salir?",
+                "Salir de la aplicación",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+                if (respuesta == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
 
         /*
         private void btEmpleado_Click(object sender, RoutedEventArgs e)

@@ -13,12 +13,12 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="650"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -30,26 +30,26 @@
                     <Border BorderBrush="#FF8FC4FF" BorderThickness="2,2,2,2">
                         <Grid Margin="10,0,10,5">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
-                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="140"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0" Text="{Binding Path=FirstName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
                             <TextBlock Grid.Column="1" Text="{Binding Path=LastName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
-                            <TextBlock Grid.Column="2" Text="{Binding Path=City}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="14"></TextBlock>
-                            <Image Grid.Column="3" Source="{Binding Photo}" Stretch="Fill" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Path=City}" Margin="0,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Right" FontWeight="Medium" FontSize="12"></TextBlock>
+                            <Image Grid.Column="3" Source="{Binding Photo}" Height="70" Stretch="Uniform" Margin="0,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button x:Name="btInsertarEmpleado" Content="Insertar" Margin="0,0,0,20" Click="btInsertarEmpleado_Click"/>
-            <Button x:Name="btModificarEmpleado" Content="Modificar" Margin="0,0,0,20" Click="btModificarEmpleado_Click"/>
-            <Button x:Name="btBorrarEmpleado" Content="Borrar" Margin="0,0,0,21" Click="btBorrarEmpleado_Click"/>
-            <Button x:Name="btCancelar" Content="Cancelar" Click="btCancelar_Click"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0">
+            <Button x:Name="btInsertarEmpleado" Style="{StaticResource EstiloBoton}" Content="Nuevo" Margin="0,0,0,50" Click="btInsertarEmpleado_Click"/>
+            <Button x:Name="btModificarEmpleado" Style="{StaticResource EstiloBoton}" Content="Modificar" Margin="0,0,0,20" Click="btModificarEmpleado_Click"/>
+            <Button x:Name="btBorrarEmpleado" Style="{StaticResource EstiloBoton}" Content="Borrar" Margin="0,0,0,21" Click="btBorrarEmpleado_Click"/>
+            <Button x:Name="btCancelar" Style="{StaticResource EstiloBoton}" Content="Cancelar" Click="btCancelar_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

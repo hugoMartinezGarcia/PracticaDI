@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel VerticalAlignment="Top" Margin="20,20,100,0">
-            <Label Margin="0,0,0,20" Content="Buscar categoría" />
+            <Label Margin="0,0,0,10" Content="Buscar categoría" />
             <TextBox x:Name="tbBuscarCategoria" TextChanged="tbBuscarCategoria_TextChanged" />
         </StackPanel>
 
@@ -84,7 +84,7 @@
             <Label Content="Interrumpido" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" Margin="30,0,0,0"/>
             <TextBox Text="{Binding Path=Products/Discontinued}" Grid.Column="5" VerticalAlignment="Center" Grid.Row="4" IsReadOnly="True"/>
         </Grid>
-        
-        <Button x:Name="btRetroceder" Content="Atrás" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,20,0" FontSize="14" Padding="8,5,8,5" Click="btRetroceder_Click" />
+
+        <Button x:Name="btRetroceder" Style="{StaticResource EstiloBoton}" Content="Atrás" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="0,0,20,0" Click="btRetroceder_Click" />
     </Grid>
 </UserControl>

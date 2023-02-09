@@ -110,9 +110,9 @@
                 </Section>
             </FlowDocument>
         </FlowDocumentScrollViewer>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="btImprimir" Content="Imprimir" Click="btImprimir_Click" Height="48" Width="400" Margin="50,50,50,50" />
-            <Button x:Name="btAtras" Content="Atras" Height="48" Width="400" Margin="50,50,50,50" Click="btAtras_Click" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btImprimir" Style="{StaticResource EstiloBoton}" Content="Imprimir" Click="btImprimir_Click" Margin="50,50,50,50" />
+            <Button x:Name="btAtras" Style="{StaticResource EstiloBoton}" Content="Atras" Margin="50,50,50,50" Click="btAtras_Click" />
         </StackPanel>
         
     </Grid>

@@ -1,12 +1,131 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="EstiloBoton" TargetType="RadioButton">
-        <Setter Property="Height" Value="50"/>
-        <Setter Property="Margin" Value="-5,0,0,5"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="-5,0,0,5"/>
+    <!--Tipo de letra para toda la app-->
+    <!--Todos los controles en WPF heredan de TextBlock, por lo que afectará a todos aquellos controles con texto-->
+    <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+        <Setter Property="FontFamily" Value="Century Gothic"/>
     </Style>
 
+    <!--Estilo y animación para todos los botones-->
+    <Style x:Key="EstiloBoton" TargetType="Button">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="FontFamily" Value="Century Gothic"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="borde" CornerRadius="5" BorderThickness="3" BorderBrush="White" Background="#FF62A2F9">
+                            <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontFamily="Century Gothic" HorizontalAlignment="Center"/>
+                        <Border.RenderTransform>
+                            <ScaleTransform />
+                        </Border.RenderTransform>
+                    </Border>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Name="sb">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="borde" Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                               From="1" To="1.1" Duration="0:0:0.5" AutoReverse="True" RepeatBehavior="Forever"/>
+                                        <DoubleAnimation Storyboard.TargetName="borde" Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                               From="1" To="1.1" Duration="0:0:0.5" AutoReverse="True" RepeatBehavior="Forever"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="sb"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+    <!--Botón menú-->
+    <Style x:Key="botonMenu" TargetType="RadioButton">
+        <!--Esilo Normal-->
+        <Setter Property="Height" Value="70"/>
+        <Setter Property="Margin" Value="-5,0,0,5"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#FF629EFF"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="4,0,0,0"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <!--Estilo ratón encima-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="#FF4E8EF7"/>
+                <Setter Property="Foreground" Value="#FFDEDEDE"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+
+            <!--Estilo cuando está seleccionado-->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="#FF2A24E8"/>
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Icono botón menú-->
+    <Style x:Key="IconoBotonMenu" TargetType="Image">
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="Margin" Value="15,0,20,0"/>
+    </Style>
+
+    <!--Texto botón menú-->
+    <Style x:Key="textoBotonMenu" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!--Animación Stackpanel lateral-->
+    <Storyboard x:Key="AnimacionExpandir">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="Width" 
+            From="70" 
+            To="180" 
+            Duration="0:0:0.5" />
+    </Storyboard>
+    <Storyboard x:Key="AnimacionContraer">
+        <DoubleAnimation 
+            Storyboard.TargetProperty="Width" 
+            From="180" 
+            To="70" 
+            Duration="0:0:0.5" />
+    </Storyboard>
+    <!--Estilo Stackpanel lateral-->
+    <Style x:Key="EstiloMenuLateral">
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="StackPanel.MouseEnter">
+                <BeginStoryboard Storyboard="{StaticResource AnimacionExpandir}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="StackPanel.MouseLeave">
+                <BeginStoryboard Storyboard="{StaticResource AnimacionContraer}"/>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>
