@@ -6,6 +6,40 @@
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
              d:DesignHeight="804" d:DesignWidth="1100" Loaded="UserControl_Loaded">
+
+    <UserControl.Resources>
+        <!-- Establecemos el estilo del error-->
+        <ControlTemplate x:Key="ValidationTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="20" FontWeight="ExtraBold">!</TextBlock>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+
+        <!-- Establecemos cómo mostrar el error -->
+        <Style x:Key="TextBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                              Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="EstiloBotonError" TargetType="Button" BasedOn="{StaticResource EstiloBoton}">
+            <Setter Property="IsEnabled" Value="False"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbFirstName}" Value="False"/>
+                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=tbLastName}" Value="False"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="True"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -29,9 +63,32 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Label Content="Nombre" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Path=FirstName}" Grid.Column="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="tbFirstName" Grid.Column="1" VerticalAlignment="Center"
+                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                         Style="{StaticResource TextBoxInError}">
+                    
+                    <TextBox.Text>
+                        <Binding Path="FirstName" UpdateSourceTrigger="LostFocus" >
+                            <!-- Establecemos la validation rule, con lo parámetros establecidos -->
+                            <Binding.ValidationRules>
+                                <local:ValidationRules Min="1" Max="10"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <Label Content="Apellido" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Path=LastName}" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBox x:Name="tbLastName"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"
+                         Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
+                         Style="{StaticResource TextBoxInError}">
+
+                    <TextBox.Text>
+                        <Binding Path="LastName" UpdateSourceTrigger="LostFocus" >
+                            <Binding.ValidationRules>
+                                <local:ValidationRules Min="1" Max="20"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <Label Content="Título" Grid.Row="2" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Path=Title}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
                 <Label Content="Título de cortesía" Grid.Row="3" VerticalAlignment="Center"/>
@@ -127,7 +184,9 @@
         </GroupBox>
         
         <StackPanel Grid.Row="3" Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0,20,30,0" VerticalAlignment="Top">
-            <Button x:Name="btInsertar" Style="{StaticResource EstiloBoton}" Content="Insertar" Margin="0,0,50,0" Click="btInsertar_Click"/>
+            <Button x:Name="btInsertar" Style="{StaticResource EstiloBotonError}" Content="Insertar" Margin="0,0,50,0" Click="btInsertar_Click">
+                
+            </Button>
             <Button x:Name="btCancelar" Style="{StaticResource EstiloBoton}" Content="Cancelar" Click="btCancelar_Click"/>
         </StackPanel>
     </Grid>
