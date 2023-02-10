@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160">
+             d:DesignHeight="804" d:DesignWidth="1100">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <FlowDocumentScrollViewer x:Name="flowDocumentViewer">
-            <FlowDocument>
+            <FlowDocument FontSize="12">
                 <!--titulo factura -->
                 <Paragraph>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="750">
@@ -24,7 +24,7 @@
                 <BlockUIContainer>
                     <Rectangle Height="30"/>
                 </BlockUIContainer>
-                
+
                 <!--parte superior de la factura -->
                 <Section>
                     <Paragraph>
@@ -38,10 +38,10 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5*"/>
                                 <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="4*"/>
                             </Grid.ColumnDefinitions>
 
                             <Label Content="Id Pedido:"/>
@@ -51,11 +51,11 @@
                             <Label Content="Empleado:" Grid.Row="2"/>
                             <TextBlock Text="{Binding Employee, Mode=OneWay}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
                             <Label Content="Fecha pedido:" Grid.Row="3"/>
-                            <TextBlock Text="{Binding OrderDate, Mode=OneWay}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding OrderDate, Mode=OneWay, StringFormat=d}" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center"/>
                             <Label Content="Fecha reqerida:" Grid.Row="4"/>
-                            <TextBlock Text="{Binding RequiredDate, Mode=OneWay}" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding RequiredDate, Mode=OneWay, StringFormat=d}" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center"/>
                             <Label Content="Fecha envío:" Grid.Row="5"/>
-                            <TextBlock Text="{Binding ShippedDate, Mode=OneWay}" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding ShippedDate, Mode=OneWay, StringFormat=d}" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"/>
                             <Label Content="Transportista:" Grid.Column="2" />
                             <TextBlock Text="{Binding ShipVia, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center"/>
                             <Label Content="Nombre envío:" Grid.Row="1" Grid.Column="2"/>
@@ -67,29 +67,32 @@
                             <Label Content="País envío:" Grid.Row="4" Grid.Column="2"/>
                             <TextBlock Text="{Binding ShipCountry, Mode=OneWay}" Grid.Column="3" Grid.Row="4" VerticalAlignment="Center"/>
                             <Label Content="Transporte:" Grid.Row="5" Grid.Column="2"/>
-                            <TextBlock Text="{Binding Freight, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Freight, Mode=OneWay}" Grid.Column="3" Grid.Row="5" VerticalAlignment="Center"/>
                         </Grid>
                     </Paragraph>
                 </Section>
                 <BlockUIContainer>
                     <Rectangle Height="30"/>
                 </BlockUIContainer>
-                
+
                 <!--Detalle de la factura -->
                 <Section>
                     <Paragraph>
-                        <DataGrid x:Name="dgDetallesFactura" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="True" Width="700" GridLinesVisibility="None" BorderThickness="0"/>
+                        <DataGrid x:Name="dgDetallesFactura" ItemsSource="{Binding Mode=OneWay}" AutoGenerateColumns="True" Width="700" ColumnWidth="135" GridLinesVisibility="None" BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" ClipToBounds="True" AutomationProperties.IsColumnHeader="True"/>
                     </Paragraph>
                 </Section>
                 <BlockUIContainer>
                     <Rectangle Height="30"/>
                 </BlockUIContainer>
-                
+
                 <!--parte inferior de la factura -->
                 <Section>
                     <Paragraph>
                         <Border BorderThickness="3" Width="700" BorderBrush="Black" CornerRadius="5">
-                            <Grid x:Name="gridResumenFactura" Background="#FFC2EAFF">
+                            <Grid x:Name="gridResumenFactura">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                                </Grid.Background>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="120"/>
                                     <ColumnDefinition Width="120"/>
@@ -99,21 +102,21 @@
                                     <ColumnDefinition Width="120"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Content="PRECIO"/>
-                                <TextBlock Text="{Binding Precio, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="1"/>
+                                <TextBlock Text="{Binding Precio, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="1" VerticalAlignment="Center"/>
                                 <Label Content="IVA" Grid.Column="2"/>
-                                <TextBlock Text="{Binding IVA, Mode=OneWay}" Grid.Column="3"/>
+                                <TextBlock Text="{Binding IVA, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center"/>
                                 <Label Content="TOTAL" Grid.Column="4"/>
-                                <TextBlock Text="{Binding Total, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="5"/>
+                                <TextBlock Text="{Binding Total, Mode=OneWay, StringFormat='{}{0:#,0.00}€'}" Grid.Column="5" VerticalAlignment="Center" FontWeight="Bold"/>
                             </Grid>
                         </Border>
                     </Paragraph>
                 </Section>
             </FlowDocument>
         </FlowDocumentScrollViewer>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,400,0">
             <Button x:Name="btImprimir" Style="{StaticResource EstiloBoton}" Content="Imprimir" Click="btImprimir_Click" Margin="50,50,50,50" />
             <Button x:Name="btAtras" Style="{StaticResource EstiloBoton}" Content="Atras" Margin="50,50,50,50" Click="btAtras_Click" />
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

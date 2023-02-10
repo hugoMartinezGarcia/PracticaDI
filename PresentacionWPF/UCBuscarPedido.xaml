@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160" Loaded="UserControl_Loaded">
+             d:DesignHeight="804" d:DesignWidth="1100" Loaded="UserControl_Loaded">
     
     <UserControl.Resources>
         <CollectionViewSource  x:Key="Clientes" Source="{Binding}"/>
@@ -34,16 +34,17 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid IsSynchronizedWithCurrentItem="True" x:Name="dgPedidos" Margin="20,20,140,100" ItemsSource="{Binding Path=Orders}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Row="3">
+        <DataGrid IsSynchronizedWithCurrentItem="True" x:Name="dgPedidos"  ItemsSource="{Binding Path=Orders}" Margin="20,20,20,20" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.Row="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID pedido" Binding="{Binding OrderId}" Width="*"/>
-                <DataGridTextColumn Header="ID empleado" Binding="{Binding EmployeeId}" Width="*"/>
+                <DataGridTextColumn Header="Ciudad" Binding="{Binding ShipCity}" Width="*"/>
+                <DataGridTextColumn Header="Direccion" Binding="{Binding ShipAddress}" Width="*"/>
                 <DataGridTextColumn Header="Fecha pedido" Binding="{Binding OrderDate}" Width="2*"/>
                 <DataGridTextColumn Header="Fecha requerida" Binding="{Binding RequiredDate}" Width="2*"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0">
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0">
             <Button x:Name="btNuevo" Style="{StaticResource EstiloBoton}" Content="Nuevo" Margin="0,0,0,50" Click="btNuevo_Click"/>
             <Button x:Name="btModificarPedido" Style="{StaticResource EstiloBoton}" Content="Modificar" Margin="0,0,0,20" Click="btModificarPedido_Click"/>
             <Button x:Name="btCancelar" Style="{StaticResource EstiloBoton}" Content="Cancelar" Click="btCancelar_Click"/>

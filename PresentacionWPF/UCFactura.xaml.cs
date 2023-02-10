@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -50,6 +51,7 @@ namespace PresentacionWPF
         private void btImprimir_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDialog = new PrintDialog();
+            
             if (printDialog.ShowDialog() == true)
             {
                 FlowDocument flowDocument = flowDocumentViewer.Document;
@@ -63,7 +65,6 @@ namespace PresentacionWPF
                 printDialog.PrintDocument(document.DocumentPaginator, "Factura NORTHWIND  Nº: " + pedido.OrderId);
 
                 Retroceder();
-
             }
         }
 

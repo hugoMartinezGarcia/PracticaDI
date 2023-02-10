@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PresentacionWPF"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160" Background="White">
+             d:DesignHeight="804" d:DesignWidth="1100" Background="White">
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="290"/>
@@ -34,7 +34,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Total Pedidos" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding Path=PedidosUsuarioUltimoMes}"  Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Path=PedidosUsuarioUltimoMes}"  Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" FontSize="20" Foreground="White"/>
                 <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
 
@@ -51,7 +51,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Total Productos &lt; 10" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding Path=ProductosStock10}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Path=ProductosStock10}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" FontSize="20" Foreground="White"/>
                 <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
 
@@ -68,7 +68,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="€ pedidos hoy" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding Path=ImportePedidosHoy, StringFormat='{}{0:#,0.00}€'}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Path=ImportePedidosHoy, StringFormat='{}{0:#,0.00}€'}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" FontSize="20" Foreground="White"/>
                 <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
 
@@ -85,7 +85,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="€ pedidos usuario" Height="60" FontWeight="Bold" FontSize="22" Foreground="#FFDADADA" Margin="20,0,0,0"/>
-                <TextBlock Text="{Binding Path=ImportePedidosUsuHoy, StringFormat='{}{0:#,0.00}€'}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" Foreground="White"/>
+                <TextBlock Text="{Binding Path=ImportePedidosUsuHoy, StringFormat='{}{0:#,0.00}€'}" Grid.Row="1" Margin="20,0,0,0" FontWeight="Bold" FontSize="20" Foreground="White"/>
                 <TextBlock Grid.Row="2" Text="{Binding Path=HoraActual, StringFormat='Actualizado: {0}'}" Foreground="White" Margin="20,0,0,0" VerticalAlignment="Center"/>
             </Grid>
         </Grid>

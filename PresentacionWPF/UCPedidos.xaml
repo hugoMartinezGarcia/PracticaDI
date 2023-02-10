@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160" Loaded="UserControl_Loaded">
+             d:DesignHeight="804" d:DesignWidth="1100" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,13 +23,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <GroupBox Grid.ColumnSpan="5" Header="Información del pedido">
-            <Grid>
+            <Grid Margin="0,0,20,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -39,48 +39,82 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
-                <Label Content="ID Pedido" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" VerticalAlignment="Center"/>
+
+                <Label Name="lbOrderId" Content="ID Pedido" VerticalAlignment="Center"/>
+                <TextBox Name="tbOrderId" Grid.Column="1" VerticalAlignment="Center"/>
                 <Label Content="Cliente" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-                <Label Content="Fecha pedido" Grid.Row="2" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                    <TextBox Name="tbCustomer" VerticalAlignment="Center" Width="200" Margin="0,0,20,0" IsReadOnly="True"/>
+                    <Button x:Name="btSeleccionarCustomer" Height="25" VerticalAlignment="Center" Click="btSeleccionarCustomer_Click" Margin="0,0,10,0">
+                        <Image Source="img/edit.png" Height="20"/>
+                    </Button>
+                    <Button x:Name="btBorrarCustomer" Height="25" VerticalAlignment="Center" Click="btBorrarCustomer_Click">
+                        <Image Source="img/delete.png" Height="20"/>
+                    </Button>
+                </StackPanel>
+                
+                <Label Name="lbOrderDate" Content="Fecha pedido" Grid.Row="2" VerticalAlignment="Center"/>
                 <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-                    <DatePicker VerticalAlignment="Center" Width="180" Margin="0,0,20,0"/>
-                    <Button x:Name="btBorrarOrderDate" Height="25" VerticalAlignment="Center">
+                    <DatePicker Name="dtpOrderDate" VerticalAlignment="Center" Width="200" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarOrderDate" Height="25" VerticalAlignment="Center" Click="btBorrarOrderDate_Click">
                         <Image Source="img/delete.png" Height="20"/>
                     </Button>
                 </StackPanel>
-                <Label Content="Fecha requerida" Grid.Row="3" VerticalAlignment="Center"/>
+                <Label Name="lbRequiredDate" Content="Fecha requerida" Grid.Row="3" VerticalAlignment="Center"/>
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                    <DatePicker VerticalAlignment="Center" Width="180" Margin="0,0,20,0"/>
-                    <Button x:Name="btBorrarRequiredDate" Height="25" VerticalAlignment="Center">
+                    <DatePicker Name="dtpRequiredDate" VerticalAlignment="Center" Width="200" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarRequiredDate" Height="25" VerticalAlignment="Center" Click="btBorrarRequiredDate_Click">
                         <Image Source="img/delete.png" Height="20"/>
                     </Button>
                 </StackPanel>
-                <Label Content="Fecha envío" Grid.Row="4" VerticalAlignment="Center"/>
+                <Label Name="lbShippedDate" Content="Fecha envío" Grid.Row="4" VerticalAlignment="Center"/>
                 <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                    <DatePicker VerticalAlignment="Center" Width="180" Margin="0,0,20,0"/>
-                    <Button x:Name="btBorrarShippedDate" Height="25" VerticalAlignment="Center">
+                    <DatePicker Name="dtpShippedDate" VerticalAlignment="Center" Width="200" Margin="0,0,20,0"/>
+                    <Button x:Name="btBorrarShippedDate" Height="25" VerticalAlignment="Center" Click="btBorrarShippedDate_Click">
                         <Image Source="img/delete.png" Height="20"/>
                     </Button>
                 </StackPanel>
-                <Label Content="Via envío" Grid.Row="5" VerticalAlignment="Center"/>
+                <Label Name="lbShipVia" Content="Via envío" Grid.Row="5" VerticalAlignment="Center"/>
                 <Grid Grid.Column="1" Grid.Row="5">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Name="cbShipVia" VerticalAlignment="Center"/>
+                    <Button x:Name="btBorrarShipVia" Grid.Column="1" Width="25" VerticalAlignment="Center" Click="btBorrarShipVia_Click">
+                        <Image Source="img/delete.png" Height="20"/>
+                    </Button>
+                    <Label Name="lbFreight" Content="Transporte" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Name="tbFreight" Grid.Column="3" VerticalAlignment="Center"/>
+                </Grid>
+                <Label Name="lbEmployee"  Content="Empleado" VerticalAlignment="Center" Grid.Column="3"/>
+                <TextBox Name="tbEmployee" Grid.Column="4" VerticalAlignment="Center"/>
+                <Label Name="lbShipName" Content="Nombre envío" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>
+                <TextBox Name="tbShipName" Grid.Row="1" Grid.Column="4" VerticalAlignment="Center"/>
+                <Label Name="lbShipAddress" Content="Dirección envío" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center"/>
+                <TextBox Name="tbShipAddress" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center"/>
+                <Label Name="lbShipCity" Content="Ciudad envío" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center"/>
+                <TextBox Name="tbShipCity" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center"/>
+                <Label Name="lbShipRegion" Content="Región envío" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center"/>
+                <Grid Grid.Column="4" Grid.Row="4">
+                    <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBox VerticalAlignment="Center"/>
-                    <Label Content="Transporte" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBox Grid.Column="2" VerticalAlignment="Center"/>
+                    <TextBox Name="tbShipRegion" VerticalAlignment="Center"/>
+                    <Label Name="lbShipPostalCode" Content="Cod. Postal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBox Name="tbShipPostalCode" Grid.Column="2" VerticalAlignment="Center"/>
                 </Grid>
+                <Label Name="lbShipCountry" Content="País envío" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center"/>
+                <TextBox Name="tbShipCountry" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center"/>
             </Grid>
         </GroupBox>
         <Label Content="Buscar productos" Grid.Row="1" VerticalAlignment="Bottom" Margin="20,0,0,0"/>
         <TextBox Grid.Row="2" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="20,0,0,0"/>
-        <ListView x:Name="lbProductos" ItemsSource="{Binding}" Grid.Row="3" Grid.ColumnSpan="3" Margin="20,0,20,0">
+        <ListView x:Name="lbProductos" ItemsSource="{Binding}" Grid.Row="3" Grid.ColumnSpan="2" Margin="20,0,20,0">
             <ListView.Resources>
                 <Style TargetType="{x:Type ListViewItem}">
                     <EventSetter Event="MouseDoubleClick" Handler="HandleDoubleClick"/>
@@ -88,8 +122,8 @@
             </ListView.Resources>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#FF8FC4FF" BorderThickness="2,2,2,2">
-                        <Grid Background="#FFB8F7AB">
+                    <Border BorderBrush="#FF2A5DFB" BorderThickness="2,2,2,2" Background="#FFAAD1F5" Height="30">
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40"></ColumnDefinition>
                                 <ColumnDefinition Width="65"></ColumnDefinition>
@@ -97,36 +131,28 @@
                                 <ColumnDefinition Width="65"></ColumnDefinition>
                                 <ColumnDefinition Width="40"></ColumnDefinition>
                                 <ColumnDefinition Width="40"></ColumnDefinition>
-                                <ColumnDefinition Width="40"></ColumnDefinition>
-                                <ColumnDefinition Width="50"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
 
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="{Binding ProductId}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
                             <TextBlock Grid.Column="1" Text="{Binding ProductName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
                             <TextBlock Grid.Column="2" Text="{Binding QuantityPerUnit}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
-                            <TextBlock Grid.Column="3" Text="{Binding UnitPrice}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
+                            <TextBlock Grid.Column="3" Text="{Binding UnitPrice, StringFormat='{}{0:#,0.00}€'}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
                             <TextBlock Grid.Column="4" Text="{Binding UnitsInStock}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
                             <TextBlock Grid.Column="5" Text="{Binding UnitsOnOrder}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
-                            <TextBlock Grid.Column="6" Text="{Binding ReorderLevel}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
-                            <TextBlock Grid.Column="7" Text="{Binding Discontinued}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
-                            <TextBlock Grid.Column="8" Text="{Binding Supplier.CompanyName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
-                            <TextBlock Grid.Column="9" Text="{Binding Category.CategoryName}" Margin="0,0,20,0" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"></TextBlock>
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Label Content="Detalles pedido" Grid.Row="1" VerticalAlignment="Bottom" Grid.Column="3"/>
-        <DataGrid x:Name="dgDetallesPedido" ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Margin="20,0,20,0" Grid.RowSpan="2" AutoGenerateColumns="False" CellEditEnding="dgDetallesPedido_CellEditEnding">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="tcProductId" Header="ID producto" Binding="{Binding ProductId}" Width="*"/>
-                <DataGridTextColumn Header="Precio uni." Binding="{Binding UnitPrice}" Width="2*"/>
-                <DataGridTextColumn Header="Cantidad" Binding="{Binding Quantity}" Width="4*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="2"  Orientation="Horizontal">
+            <DataGrid x:Name="dgDetallesPedido" Margin="0,0,20,0" AutoGenerateColumns="True" CellEditEnding="dgDetallesPedido_CellEditEnding" CanUserReorderColumns="False" CanUserAddRows="False" CanUserSortColumns="False" CurrentCellChanged="dgDetallesPedido_CurrentCellChanged" ColumnWidth="110"/>
+            <Button x:Name="btBorrarDetalle" Height="30" VerticalAlignment="Center" Click="btBorrarDetalle_Click">
+                <Image Source="img/delete.png"/>
+            </Button>
+        </StackPanel>
         
+
         <GroupBox Grid.ColumnSpan="5" Header="Resumen factura" Grid.Row="4">
             <Grid DataContext="{Binding UpdateSourceTrigger=PropertyChanged}" x:Name="gridResumenFactura">
                 <Grid.ColumnDefinitions>
@@ -139,15 +165,15 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Precio sin IVA" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Path=Precio}" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding Path=Precio, StringFormat='{}{0:#,0.00}€'}" Grid.Column="1" Height="30" Width="100" HorizontalAlignment="Left"/>
                 <Label Content="IVA" Grid.Column="2" VerticalAlignment="Center"/>
                 <TextBox Text="{Binding Path=IVA}" Grid.Column="3" Height="30" Width="100" HorizontalAlignment="Left"/>
                 <Label Content="TOTAL" Grid.Column="4" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding Path=Total}" Grid.Column="5" Height="30" Width="100" HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding Path=Total, StringFormat='{}{0:#,0.00}€'}" Grid.Column="5" Height="30" Width="100" HorizontalAlignment="Left"/>
             </Grid>
         </GroupBox>
 
-        <Button Content="Aceptar" Style="{StaticResource EstiloBoton}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <Button Content="Cancelar" Style="{StaticResource EstiloBoton}" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button x:Name="btGuardar" Content="Guardar" Style="{StaticResource EstiloBoton}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btGuardar_Click"/>
+        <Button x:Name="btCancelar" Content="Cancelar" Style="{StaticResource EstiloBoton}" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

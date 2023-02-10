@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PresentacionWPF"
              mc:Ignorable="d" 
-             d:DesignHeight="804" d:DesignWidth="1160" Loaded="UserControl_Loaded">
+             d:DesignHeight="804" d:DesignWidth="1100" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

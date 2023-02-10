@@ -109,8 +109,7 @@ namespace PresentacionWPF
             }
             else
             {
-                UCPedidos insertarPedido = new UCPedidos(false);
-                insertarPedido.DefinirUsuario(usuario);
+                UCPedidos insertarPedido = new UCPedidos(mainWindow, usuario, false);
                 Grid gridContenedor = (Grid)Parent;
                 gridContenedor.Children.Clear();
                 gridContenedor.Children.Add(insertarPedido);
@@ -122,8 +121,7 @@ namespace PresentacionWPF
         {         
             if (dgPedidos.SelectedItem != null)
             {
-                UCPedidos editarPedido = new UCPedidos(true);
-                editarPedido.DefinirUsuario(usuario);
+                UCPedidos editarPedido = new UCPedidos(mainWindow, usuario, true);
 
                 using (Gestion g = new Gestion())
                 {

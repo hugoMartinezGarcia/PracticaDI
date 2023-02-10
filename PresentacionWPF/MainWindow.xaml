@@ -18,7 +18,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel x:Name="stckPanelLateral" Style="{StaticResource EstiloMenuLateral}" Grid.Row="1" Background="#FFC7E7FF" Width="70" Height="803" HorizontalAlignment="Left">
-            <RadioButton x:Name="btDashboard" Style="{StaticResource botonMenu}" Click="btDashboard_Click">
+            <RadioButton x:Name="btDashboard" Style="{StaticResource botonMenu}" IsChecked="True" Click="btDashboard_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Style="{StaticResource IconoBotonMenu}" Source="img/dashboard.png"/>
                     <TextBlock Style="{StaticResource textoBotonMenu}" Text="Dashboard"/>

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Presentacion
 {
-    internal class Utiles
+    public class Utiles
     {
         // Método para recoger los string que admiten null
         public static string? FormatearTBNullString(TextBox tb)
@@ -127,7 +127,5 @@ namespace Presentacion
 
             return respuesta;
         }
-
-
     }
 }
