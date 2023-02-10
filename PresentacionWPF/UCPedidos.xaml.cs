@@ -169,7 +169,7 @@ namespace PresentacionWPF
             string valor = ((TextBox)e.EditingElement).Text;
 
             // Comprueba si el valor es un número válido
-            bool esNumero = int.TryParse(valor, out int resultado);
+            bool esNumero = double.TryParse(valor, out double resultado);
             if (!esNumero || resultado <= 0)
             {
                 // Muestra un mensaje de error
@@ -301,6 +301,12 @@ namespace PresentacionWPF
             }
         }
 
+        public void DefinirCliente(Customer cliente)
+        {
+            this.cliente = cliente;
+            tbCustomer.Text = cliente.ContactName;
+        }
+
         private void btBorrarCustomer_Click(object sender, RoutedEventArgs e)
         {
             cliente = null;
@@ -309,7 +315,8 @@ namespace PresentacionWPF
 
         private void btSeleccionarCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            WSelClientes selClientes = new WSelClientes(this);
+            selClientes.ShowDialog();
         }
     }
 }
