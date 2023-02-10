@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,9 @@ namespace PresentacionWPF
 
         private Employee? empleado;
         private Customer? cliente;
-        private List<Shipper> shippers;
+
+        private ObservableCollection<Product> productos;
+        private CollectionViewSource MiVista;
 
         public UCPedidos()
         {
@@ -45,7 +48,13 @@ namespace PresentacionWPF
             pedido = null;
             resumenFactura = new ResumenFactura();
             detallesPedido = new List<OrderDetail>();
-            shippers = new List<Shipper>();
+
+            // Se le asigna el DataContext al UserControl para que no haga Binding
+            // hacia el empleado cargado en el gridPrincipal
+            this.DataContext = productos;
+            MiVista = (CollectionViewSource)FindResource("Productos");
+            productos = new ObservableCollection<Product>(Gestion.ListarProductosConDatos());
+
         }
 
         public UCPedidos(MainWindow mainWindow, Employee usuario, bool modoEditar) : this()
@@ -54,7 +63,7 @@ namespace PresentacionWPF
             this.usuario = usuario;
             this.modoEditar = modoEditar;
 
-            lbProductos.DataContext = Gestion.ListarProductosConDatos();
+            lbProductos.DataContext = MiVista;
             gridResumenFactura.DataContext = resumenFactura;
         }
 
@@ -69,7 +78,9 @@ namespace PresentacionWPF
             cbShipVia.SelectedValuePath = "ShipperId";
             empleado = usuario;
 
-            
+            MiVista.Source = productos;
+
+
             ActualizarDataGridDetalles();
 
             if (modoEditar)
@@ -315,8 +326,32 @@ namespace PresentacionWPF
 
         private void btSeleccionarCustomer_Click(object sender, RoutedEventArgs e)
         {
-            WSelClientes selClientes = new WSelClientes(this);
-            selClientes.ShowDialog();
+            WSelClientes ventanaSelClientes = new WSelClientes(this);
+            ventanaSelClientes.ShowDialog();
+        }
+
+        private void Filtrar(object sender, FilterEventArgs e)
+        {
+            Product producto = (Product)e.Item;
+
+            if (producto != null)
+            {
+                string textoABuscar = tbBuscarProducto.Text.ToLower().Trim();
+                string productName = producto.ProductName.ToLower();
+
+                if (productName.Contains(textoABuscar))
+
+                {
+                    e.Accepted = true;
+                }
+                else
+                    e.Accepted = false;
+            }
+        }
+
+        private void tbBuscarProducto_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MiVista.Filter += Filtrar;
         }
     }
 }
